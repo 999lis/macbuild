@@ -312,53 +312,67 @@
         </div>
 
         <figure class="showroom-art">
-          <svg viewBox="0 0 560 420" role="img" aria-label="Mac mini M4 产品示意图" class="macmini">
+                    <svg viewBox="0 0 560 430" role="img" aria-label="Mac mini M4 产品示意图" class="macmini">
             <defs>
-              <linearGradient id="mmTop" x1="0" y1="0" x2="0.7" y2="1">
-                <stop offset="0" stop-color="#fbfbfa"/>
-                <stop offset="0.35" stop-color="#eeeef0"/>
-                <stop offset="0.7" stop-color="#dededf"/>
-                <stop offset="1" stop-color="#c9c9cb"/>
+              <linearGradient id="mmTop" x1="0.1" y1="0" x2="0.9" y2="1">
+                <stop offset="0" stop-color="#fdfdfc"/>
+                <stop offset="0.28" stop-color="#f0f0ee"/>
+                <stop offset="0.62" stop-color="#e2e2e0"/>
+                <stop offset="1" stop-color="#cfcfcd"/>
               </linearGradient>
               <linearGradient id="mmFront" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#c4c4c6"/>
-                <stop offset="0.35" stop-color="#adadaf"/>
-                <stop offset="1" stop-color="#8d8d90"/>
+                <stop offset="0" stop-color="#d2d2d0"/>
+                <stop offset="0.22" stop-color="#bcbcba"/>
+                <stop offset="0.72" stop-color="#9d9d9b"/>
+                <stop offset="1" stop-color="#8a8a88"/>
               </linearGradient>
-              <linearGradient id="mmEdge" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#ffffff" stop-opacity="0.95"/>
+              <linearGradient id="mmSheen" x1="0" y1="0" x2="0.6" y2="1">
+                <stop offset="0" stop-color="#ffffff" stop-opacity="0.85"/>
+                <stop offset="0.5" stop-color="#ffffff" stop-opacity="0.10"/>
                 <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
               </linearGradient>
               <radialGradient id="mmShadow" cx="0.5" cy="0.5" r="0.5">
-                <stop offset="0" stop-color="#1a1a18" stop-opacity="0.30"/>
-                <stop offset="0.55" stop-color="#1a1a18" stop-opacity="0.12"/>
-                <stop offset="1" stop-color="#1a1a18" stop-opacity="0"/>
+                <stop offset="0" stop-color="#000000" stop-opacity="0.42"/>
+                <stop offset="0.5" stop-color="#000000" stop-opacity="0.16"/>
+                <stop offset="1" stop-color="#000000" stop-opacity="0"/>
               </radialGradient>
-              <radialGradient id="mmGlow" cx="0.5" cy="0.5" r="0.5">
-                <stop offset="0" stop-color="#1e5a48" stop-opacity="0.16"/>
-                <stop offset="1" stop-color="#1e5a48" stop-opacity="0"/>
+              <radialGradient id="mmGlow" cx="0.5" cy="0.45" r="0.55">
+                <stop offset="0" stop-color="#3f8f74" stop-opacity="0.22"/>
+                <stop offset="1" stop-color="#3f8f74" stop-opacity="0"/>
               </radialGradient>
             </defs>
 
-            <ellipse cx="280" cy="250" rx="250" ry="150" fill="url(#mmGlow)"/>
-            <ellipse cx="286" cy="352" rx="188" ry="30" fill="url(#mmShadow)"/>
+            <!-- 背后光晕 -->
+            <ellipse cx="280" cy="230" rx="250" ry="165" fill="url(#mmGlow)"/>
 
-            <path d="M126 232 h308 a20 20 0 0 1 20 20 v40 a20 20 0 0 1 -20 20 h-308 a20 20 0 0 1 -20 -20 v-40 a20 20 0 0 1 20 -20 z" fill="url(#mmFront)"/>
-            <path d="M126 232 h308 a20 20 0 0 1 20 20 v2 h-348 v-2 a20 20 0 0 1 20 -20 z" fill="#ffffff" opacity="0.55"/>
-            <path d="M106 288 h348 v4 a20 20 0 0 1 -20 20 h-308 a20 20 0 0 1 -20 -20 z" fill="#6b6b6e" opacity="0.55"/>
+            <!-- 落地投影 -->
+            <ellipse cx="280" cy="352" rx="176" ry="24" fill="url(#mmShadow)"/>
 
-            <path d="M126 132 h308 a20 20 0 0 1 20 20 v80 a20 20 0 0 1 -20 20 h-308 a20 20 0 0 1 -20 -20 v-80 a20 20 0 0 1 20 -20 z" fill="url(#mmTop)"/>
-            <path d="M126 132 h308 a20 20 0 0 1 20 20 v58 h-348 v-58 a20 20 0 0 1 20 -20 z" fill="url(#mmEdge)" opacity="0.7"/>
-            <path d="M126 132 h308 a20 20 0 0 1 20 20 v80 a20 20 0 0 1 -20 20 h-308 a20 20 0 0 1 -20 -20 v-80 a20 20 0 0 1 20 -20 z" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.85"/>
+            <!-- 机身侧面（厚度） -->
+            <path d="M136 262 h288 a26 26 0 0 1 26 26 v18 a26 26 0 0 1 -26 26 h-288 a26 26 0 0 1 -26 -26 v-18 a26 26 0 0 1 26 -26 z" fill="url(#mmFront)"/>
+            <!-- 侧面底部阴影 -->
+            <path d="M110 306 h340 v0 a26 26 0 0 1 -26 26 h-288 a26 26 0 0 1 -26 -26 z" fill="#6e6e6c" opacity="0.5"/>
+            <!-- 侧面顶部亮线 -->
+            <path d="M136 262 h288 a26 26 0 0 1 25 19 h-338 a26 26 0 0 1 25 -19 z" fill="#ffffff" opacity="0.5"/>
 
-            <rect x="252" y="266" width="14" height="4" rx="2" fill="#e9e9e7" opacity="0.9"/>
-            <circle cx="322" cy="268" r="3" fill="#1e5a48" opacity="0.9"/>
+            <!-- 顶面 -->
+            <path d="M136 118 h288 a26 26 0 0 1 26 26 v92 a26 26 0 0 1 -26 26 h-288 a26 26 0 0 1 -26 -26 v-92 a26 26 0 0 1 26 -26 z" fill="url(#mmTop)"/>
+            <!-- 顶面光泽 -->
+            <path d="M136 118 h288 a26 26 0 0 1 26 26 v92 a26 26 0 0 1 -26 26 h-288 a26 26 0 0 1 -26 -26 v-92 a26 26 0 0 1 26 -26 z" fill="url(#mmSheen)"/>
+            <!-- 顶面描边 -->
+            <path d="M136 118 h288 a26 26 0 0 1 26 26 v92 a26 26 0 0 1 -26 26 h-288 a26 26 0 0 1 -26 -26 v-92 a26 26 0 0 1 26 -26 z" fill="none" stroke="#ffffff" stroke-width="1" opacity="0.7"/>
 
-            <rect x="258" y="176" width="44" height="30" rx="7" fill="none" stroke="#8f8f92" stroke-width="2.2" opacity="0.5"/>
-            <circle cx="280" cy="191" r="4.5" fill="#8f8f92" opacity="0.5"/>
+            <!-- 顶面中央极淡的内凹 -->
+            <ellipse cx="280" cy="190" rx="34" ry="16" fill="#b9b9b7" opacity="0.28"/>
 
-            <rect x="150" y="332" width="34" height="7" rx="3.5" fill="#7a7a7d" opacity="0.5"/>
-            <rect x="376" y="332" width="34" height="7" rx="3.5" fill="#7a7a7d" opacity="0.5"/>
+            <!-- 前面板：指示灯与端口 -->
+            <circle cx="280" cy="296" r="3.5" fill="#3f8f74"/>
+            <rect x="212" y="293" width="16" height="5" rx="2.5" fill="#7a7a78" opacity="0.65"/>
+            <rect x="332" y="293" width="16" height="5" rx="2.5" fill="#7a7a78" opacity="0.65"/>
+
+            <!-- 底部垫脚 -->
+            <rect x="152" y="332" width="40" height="5" rx="2.5" fill="#5d5d5b" opacity="0.45"/>
+            <rect x="368" y="332" width="40" height="5" rx="2.5" fill="#5d5d5b" opacity="0.45"/>
           </svg>
         </figure>
       </div>
