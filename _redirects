@@ -1,0 +1,22 @@
+# Cloudflare Pages 重定向规则
+# 文档：https://developers.cloudflare.com/pages/configuration/redirects/
+#
+# ⚠️ 绑定自己的域名后，把下面占位符替换掉，并取消注释。
+#    如果你只用 Cloudflare 分配的 xxx.pages.dev 子域名，保持注释即可。
+
+# --- www → 主域（如果你用 www 作为主域，把两条对调）---
+# https://www.你的域名.com/*  https://你的域名.com/:splat  301
+
+# --- 主域 → www ---
+# https://你的域名.com/*  https://www.你的域名.com/:splat  301
+
+# --- 常见路径别名 ---
+/order      /#order        301
+/pricing    /#pricing      301
+/faq        /#faq          301
+/terms      /terms.html    301
+/privacy    /terms.html    301
+/refund     /terms.html#s7 301
+
+# --- 旧的 GitHub Pages 地址 → 新域名（迁移后保留，避免外链失效）---
+# https://999lis.github.io/macbuild/*  https://你的域名.com/:splat  301

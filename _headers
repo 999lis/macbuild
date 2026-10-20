@@ -12,3 +12,6 @@
 
 /*.html
   Cache-Control: public, max-age=0, must-revalidate
+
+/404.html
+  Cache-Control: public, max-age=0, must-revalidate
