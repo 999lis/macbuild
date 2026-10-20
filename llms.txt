@@ -1,4 +1,4 @@
-﻿# MacBuild
+# MacBuild
 
 > MacBuild 提供位于马来西亚吉隆坡的整机独享 Mac mini M4 构建机托管服务。每台设备为一台实体 Mac mini，租期内只服务一位客户，不与他人共享硬件或虚拟机资源。预装 Xcode、Fastlane、Homebrew、CocoaPods，支持 SSH 与 VNC 接入。月付 ¥799 起，人民币计价，付款后 24 小时内交付，可开发票。
 

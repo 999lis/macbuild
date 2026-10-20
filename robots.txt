@@ -1,4 +1,4 @@
-﻿# MacBuild — robots.txt
+# MacBuild — robots.txt
 # 欢迎搜索引擎与 AI 爬虫索引本站
 
 User-agent: *
