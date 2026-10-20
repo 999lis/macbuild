@@ -960,3 +960,91 @@ p a:not(.btn),
 @media (max-width: 960px) {
   .line-compare { grid-template-columns: 1fr; }
 }
+
+
+/* ---------- 产品图区块（深色高级感） ---------- */
+.showroom {
+  background: linear-gradient(155deg, #161917 0%, #1f2a25 45%, #171a18 100%);
+  color: var(--paper);
+  padding: 110px 0;
+  border-top: 1px solid rgba(250,247,240,.08);
+  border-bottom: 1px solid rgba(250,247,240,.08);
+}
+.showroom .eyebrow { color: rgba(250,247,240,.5); }
+.showroom-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.05fr;
+  gap: 72px;
+  align-items: center;
+}
+.showroom-copy h2 {
+  font-size: clamp(30px, 3.8vw, 44px);
+  color: var(--paper);
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+.showroom-text {
+  font-size: 16.5px;
+  line-height: 1.85;
+  color: rgba(250,247,240,.68);
+  margin-bottom: 36px;
+  max-width: 32em;
+}
+.showroom-specs {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px 28px;
+  border-top: 1px solid rgba(250,247,240,.12);
+  padding-top: 28px;
+}
+.showroom-specs li { display: flex; flex-direction: column; gap: 3px; }
+.showroom-specs span {
+  font-size: 12px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: rgba(250,247,240,.42);
+}
+.showroom-specs b {
+  font-size: 15.5px;
+  font-weight: 500;
+  color: rgba(250,247,240,.92);
+}
+
+.showroom-art { margin: 0; }
+.macmini {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 30px 60px rgba(0,0,0,.45));
+}
+
+@media (max-width: 960px) {
+  .showroom { padding: 72px 0; }
+  .showroom-inner { grid-template-columns: 1fr; gap: 48px; }
+  .showroom-art { max-width: 480px; margin: 0 auto; }
+}
+@media (max-width: 720px) {
+  .showroom-specs { grid-template-columns: 1fr; gap: 14px; }
+}
+
+/* ---------- 首屏终端：Claude Code 版 ---------- */
+.term .cc-box {
+  color: #6ec09a;
+}
+.term .cc-prompt {
+  color: #8fd0b4;
+}
+.term .cc-ok { color: #6ec09a; }
+.term .cc-dim { color: #6b6d68; }
+.term .cc-bar {
+  display: inline-block;
+  height: 1px;
+  width: 100%;
+  background-image: linear-gradient(to right, #3a3d3a 60%, transparent 0);
+  background-size: 6px 1px;
+  background-repeat: repeat-x;
+  vertical-align: middle;
+}
