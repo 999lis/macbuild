@@ -42,7 +42,7 @@
 <meta name="theme-color" content="#faf7f0">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231e5a48'/><rect x='24' y='34' width='52' height='32' rx='4' fill='none' stroke='%23faf7f0' stroke-width='4'/><circle cx='50' cy='50' r='5' fill='%23faf7f0'/></svg>">
 <link rel="apple-touch-icon" href="og.png">
-<link rel="stylesheet" href="style.css?v=202610210321">
+<link rel="stylesheet" href="style.css?v=202610210328">
 </head>
 <body>
 
@@ -102,7 +102,7 @@
       </div>
 
       <div class="hero-status">
-        <a href="#pricing"><i aria-hidden="true"></i>首批 10 台 Mac mini M4 可开通</a>
+        <a href="#fleet"><i aria-hidden="true"></i>首批 10 台 Mac mini M4 可开通</a>
         <a href="#device"><i aria-hidden="true"></i>整机独享，不是虚拟机</a>
       </div>
 
@@ -434,6 +434,235 @@
   </section>
 
   <!-- ============ 价格 ============ -->
+  <!-- ============ 机位 ============ -->
+  <section class="section section-alt" id="fleet">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">机位</p>
+        <h2>10 台，每一台都能单独认领。</h2>
+        <p class="section-intro">
+          不是共享池，是一台一台编了号的物理 Mac mini。整机独享，你认领的那台只给你一个人用；看中哪台，直接预约这台。
+        </p>
+      </div>
+
+      <div class="fleet-bar">
+        <div class="seg" role="group" aria-label="按状态筛选">
+          <button type="button" class="on" data-state="">全部 <b data-count="all">10</b></button>
+          <button type="button" data-state="free">可预约 <b data-count="free">10</b></button>
+          <button type="button" data-state="rented">已租出 <b data-count="rented">0</b></button>
+        </div>
+        <p class="shown">显示 <b>10</b> 台</p>
+      </div>
+
+      <div class="fleet-grid">
+        <article class="machine" data-state="free" data-code="MY-01" data-reveal>
+          <div class="m-pic"><img src="mac-mini-m4.jpg" width="1280" height="918" alt="Mac mini M4 真机" loading="lazy" decoding="async"></div>
+          <div class="m-body">
+            <div class="m-row1">
+              <div class="m-code">MY-01</div>
+              <span class="m-state free"><span class="dot"></span>可预约</span>
+            </div>
+            <div class="m-model">Mac mini M4 · 16GB / 256GB</div>
+            <ul class="m-spec">
+              <li><span>位置</span>吉隆坡</li>
+              <li><span>网络</span>马来西亚本地线路</li>
+              <li><span>出口</span>共享 · 可加独立 +¥200</li>
+              <li><span>预装</span>Claude Code · Xcode</li>
+            </ul>
+            <div class="m-act">
+              <span class="m-price">¥799<small> / 月起</small></span>
+              <a class="m-rent" href="#order">预约这台</a>
+            </div>
+          </div>
+        </article>
+        <article class="machine" data-state="free" data-code="MY-02" data-reveal>
+          <div class="m-pic"><img src="mac-mini-m4.jpg" width="1280" height="918" alt="Mac mini M4 真机" loading="lazy" decoding="async"></div>
+          <div class="m-body">
+            <div class="m-row1">
+              <div class="m-code">MY-02</div>
+              <span class="m-state free"><span class="dot"></span>可预约</span>
+            </div>
+            <div class="m-model">Mac mini M4 · 16GB / 256GB</div>
+            <ul class="m-spec">
+              <li><span>位置</span>吉隆坡</li>
+              <li><span>网络</span>马来西亚本地线路</li>
+              <li><span>出口</span>共享 · 可加独立 +¥200</li>
+              <li><span>预装</span>Claude Code · Xcode</li>
+            </ul>
+            <div class="m-act">
+              <span class="m-price">¥799<small> / 月起</small></span>
+              <a class="m-rent" href="#order">预约这台</a>
+            </div>
+          </div>
+        </article>
+        <article class="machine" data-state="free" data-code="MY-03" data-reveal>
+          <div class="m-pic"><img src="mac-mini-m4.jpg" width="1280" height="918" alt="Mac mini M4 真机" loading="lazy" decoding="async"></div>
+          <div class="m-body">
+            <div class="m-row1">
+              <div class="m-code">MY-03</div>
+              <span class="m-state free"><span class="dot"></span>可预约</span>
+            </div>
+            <div class="m-model">Mac mini M4 · 16GB / 256GB</div>
+            <ul class="m-spec">
+              <li><span>位置</span>吉隆坡</li>
+              <li><span>网络</span>马来西亚本地线路</li>
+              <li><span>出口</span>共享 · 可加独立 +¥200</li>
+              <li><span>预装</span>Claude Code · Xcode</li>
+            </ul>
+            <div class="m-act">
+              <span class="m-price">¥799<small> / 月起</small></span>
+              <a class="m-rent" href="#order">预约这台</a>
+            </div>
+          </div>
+        </article>
+        <article class="machine" data-state="free" data-code="MY-04" data-reveal>
+          <div class="m-pic"><img src="mac-mini-m4.jpg" width="1280" height="918" alt="Mac mini M4 真机" loading="lazy" decoding="async"></div>
+          <div class="m-body">
+            <div class="m-row1">
+              <div class="m-code">MY-04</div>
+              <span class="m-state free"><span class="dot"></span>可预约</span>
+            </div>
+            <div class="m-model">Mac mini M4 · 16GB / 256GB</div>
+            <ul class="m-spec">
+              <li><span>位置</span>吉隆坡</li>
+              <li><span>网络</span>马来西亚本地线路</li>
+              <li><span>出口</span>共享 · 可加独立 +¥200</li>
+              <li><span>预装</span>Claude Code · Xcode</li>
+            </ul>
+            <div class="m-act">
+              <span class="m-price">¥799<small> / 月起</small></span>
+              <a class="m-rent" href="#order">预约这台</a>
+            </div>
+          </div>
+        </article>
+        <article class="machine" data-state="free" data-code="MY-05" data-reveal>
+          <div class="m-pic"><img src="mac-mini-m4.jpg" width="1280" height="918" alt="Mac mini M4 真机" loading="lazy" decoding="async"></div>
+          <div class="m-body">
+            <div class="m-row1">
+              <div class="m-code">MY-05</div>
+              <span class="m-state free"><span class="dot"></span>可预约</span>
+            </div>
+            <div class="m-model">Mac mini M4 · 16GB / 256GB</div>
+            <ul class="m-spec">
+              <li><span>位置</span>吉隆坡</li>
+              <li><span>网络</span>马来西亚本地线路</li>
+              <li><span>出口</span>共享 · 可加独立 +¥200</li>
+              <li><span>预装</span>Claude Code · Xcode</li>
+            </ul>
+            <div class="m-act">
+              <span class="m-price">¥799<small> / 月起</small></span>
+              <a class="m-rent" href="#order">预约这台</a>
+            </div>
+          </div>
+        </article>
+        <article class="machine" data-state="free" data-code="MY-06" data-reveal>
+          <div class="m-pic"><img src="mac-mini-m4.jpg" width="1280" height="918" alt="Mac mini M4 真机" loading="lazy" decoding="async"></div>
+          <div class="m-body">
+            <div class="m-row1">
+              <div class="m-code">MY-06</div>
+              <span class="m-state free"><span class="dot"></span>可预约</span>
+            </div>
+            <div class="m-model">Mac mini M4 · 16GB / 256GB</div>
+            <ul class="m-spec">
+              <li><span>位置</span>吉隆坡</li>
+              <li><span>网络</span>马来西亚本地线路</li>
+              <li><span>出口</span>共享 · 可加独立 +¥200</li>
+              <li><span>预装</span>Claude Code · Xcode</li>
+            </ul>
+            <div class="m-act">
+              <span class="m-price">¥799<small> / 月起</small></span>
+              <a class="m-rent" href="#order">预约这台</a>
+            </div>
+          </div>
+        </article>
+        <article class="machine" data-state="free" data-code="MY-07" data-reveal>
+          <div class="m-pic"><img src="mac-mini-m4.jpg" width="1280" height="918" alt="Mac mini M4 真机" loading="lazy" decoding="async"></div>
+          <div class="m-body">
+            <div class="m-row1">
+              <div class="m-code">MY-07</div>
+              <span class="m-state free"><span class="dot"></span>可预约</span>
+            </div>
+            <div class="m-model">Mac mini M4 · 16GB / 256GB</div>
+            <ul class="m-spec">
+              <li><span>位置</span>吉隆坡</li>
+              <li><span>网络</span>马来西亚本地线路</li>
+              <li><span>出口</span>共享 · 可加独立 +¥200</li>
+              <li><span>预装</span>Claude Code · Xcode</li>
+            </ul>
+            <div class="m-act">
+              <span class="m-price">¥799<small> / 月起</small></span>
+              <a class="m-rent" href="#order">预约这台</a>
+            </div>
+          </div>
+        </article>
+        <article class="machine" data-state="free" data-code="MY-08" data-reveal>
+          <div class="m-pic"><img src="mac-mini-m4.jpg" width="1280" height="918" alt="Mac mini M4 真机" loading="lazy" decoding="async"></div>
+          <div class="m-body">
+            <div class="m-row1">
+              <div class="m-code">MY-08</div>
+              <span class="m-state free"><span class="dot"></span>可预约</span>
+            </div>
+            <div class="m-model">Mac mini M4 · 16GB / 256GB</div>
+            <ul class="m-spec">
+              <li><span>位置</span>吉隆坡</li>
+              <li><span>网络</span>马来西亚本地线路</li>
+              <li><span>出口</span>共享 · 可加独立 +¥200</li>
+              <li><span>预装</span>Claude Code · Xcode</li>
+            </ul>
+            <div class="m-act">
+              <span class="m-price">¥799<small> / 月起</small></span>
+              <a class="m-rent" href="#order">预约这台</a>
+            </div>
+          </div>
+        </article>
+        <article class="machine" data-state="free" data-code="MY-09" data-reveal>
+          <div class="m-pic"><img src="mac-mini-m4.jpg" width="1280" height="918" alt="Mac mini M4 真机" loading="lazy" decoding="async"></div>
+          <div class="m-body">
+            <div class="m-row1">
+              <div class="m-code">MY-09</div>
+              <span class="m-state free"><span class="dot"></span>可预约</span>
+            </div>
+            <div class="m-model">Mac mini M4 · 16GB / 256GB</div>
+            <ul class="m-spec">
+              <li><span>位置</span>吉隆坡</li>
+              <li><span>网络</span>马来西亚本地线路</li>
+              <li><span>出口</span>共享 · 可加独立 +¥200</li>
+              <li><span>预装</span>Claude Code · Xcode</li>
+            </ul>
+            <div class="m-act">
+              <span class="m-price">¥799<small> / 月起</small></span>
+              <a class="m-rent" href="#order">预约这台</a>
+            </div>
+          </div>
+        </article>
+        <article class="machine" data-state="free" data-code="MY-10" data-reveal>
+          <div class="m-pic"><img src="mac-mini-m4.jpg" width="1280" height="918" alt="Mac mini M4 真机" loading="lazy" decoding="async"></div>
+          <div class="m-body">
+            <div class="m-row1">
+              <div class="m-code">MY-10</div>
+              <span class="m-state free"><span class="dot"></span>可预约</span>
+            </div>
+            <div class="m-model">Mac mini M4 · 16GB / 256GB</div>
+            <ul class="m-spec">
+              <li><span>位置</span>吉隆坡</li>
+              <li><span>网络</span>马来西亚本地线路</li>
+              <li><span>出口</span>共享 · 可加独立 +¥200</li>
+              <li><span>预装</span>Claude Code · Xcode</li>
+            </ul>
+            <div class="m-act">
+              <span class="m-price">¥799<small> / 月起</small></span>
+              <a class="m-rent" href="#order">预约这台</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <p class="fleet-note">
+        状态与台账同步。机器按批次上架，下单前请先确认当期是否可交付 —— 若当期容量已满，我们会告知预计开通时间。
+      </p>
+    </div>
+  </section>
+
   <section class="section" id="pricing">
     <div class="wrap">
       <div class="section-head">
@@ -1123,6 +1352,68 @@ document.querySelectorAll('.faq details').forEach(d => {
       btn.disabled = false;
     }
   });
+})();
+</script>
+
+<script>
+/* 机位筛选：纯原生，状态与计数都从 DOM 实时算 */
+(function () {
+  var grid = document.querySelector('.fleet-grid');
+  if (!grid) return;
+  var cards = [].slice.call(grid.querySelectorAll('.machine'));
+  var state = '';
+
+  function counts() {
+    var c = { all: cards.length, free: 0, rented: 0 };
+    cards.forEach(function (m) {
+      var s = m.getAttribute('data-state');
+      if (c[s] !== undefined) c[s]++;
+    });
+    document.querySelectorAll('#fleet [data-count]').forEach(function (el) {
+      var k = el.getAttribute('data-count');
+      el.textContent = c[k] !== undefined ? c[k] : 0;
+      var btn = el.closest('button');
+      if (btn && k !== 'all') btn.hidden = !c[k];
+    });
+  }
+
+  function apply() {
+    var shown = 0;
+    cards.forEach(function (m) {
+      var ok = (state === '' || m.getAttribute('data-state') === state);
+      m.classList.toggle('hide', !ok);
+      if (ok) { m.classList.add('in'); shown++; }
+    });
+    var sh = document.querySelector('#fleet .shown b');
+    if (sh) sh.textContent = shown;
+  }
+
+  document.querySelectorAll('#fleet .seg button').forEach(function (b) {
+    b.addEventListener('click', function () {
+      document.querySelectorAll('#fleet .seg button').forEach(function (x) {
+        x.classList.toggle('on', x === b);
+      });
+      state = b.getAttribute('data-state') || '';
+      apply();
+    });
+  });
+
+  counts();
+  apply();
+
+  /* 滚动淡入 */
+  var items = [].slice.call(document.querySelectorAll('#fleet [data-reveal]'));
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) {
+    items.forEach(function (el) { el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
+    items.forEach(function (el) { io.observe(el); });
+  }
 })();
 </script>
 </body>
