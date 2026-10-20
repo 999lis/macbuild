@@ -1073,3 +1073,10 @@ p a:not(.btn),
 @media (max-width: 720px) {
   .hero-sub { padding: 64px 0 48px; }
 }
+/* 子页面 hero：单列，不要继承首页的两列 grid */
+.hero-sub .wrap {
+  display: block;
+  max-width: var(--wrap-narrow);
+}
+.hero-sub .hero-actions { margin-top: 28px; }
+.hero-sub .hero-price { margin: 26px 0 0; }
