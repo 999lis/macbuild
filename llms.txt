@@ -77,10 +77,10 @@
 
 ## 链接
 
-- 首页：https://999lis.github.io/macbuild/
-- 服务条款：https://999lis.github.io/macbuild/terms.html
-- 退款政策：https://999lis.github.io/macbuild/terms.html#s7
-- 申请表单：https://999lis.github.io/macbuild/#order
+- 首页：https://getmacbuild.com/
+- 服务条款：https://getmacbuild.com/terms.html
+- 退款政策：https://getmacbuild.com/terms.html#s7
+- 申请表单：https://getmacbuild.com/#order
 
 ## 联系方式
 

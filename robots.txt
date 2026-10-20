@@ -73,4 +73,4 @@ User-agent: meta-externalagent
 Allow: /
 
 # ---------- 站点地图 ----------
-Sitemap: https://999lis.github.io/macbuild/sitemap.xml
+Sitemap: https://getmacbuild.com/sitemap.xml

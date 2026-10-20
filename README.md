@@ -6,4 +6,4 @@
 - 整机独享、SSH/VNC 接入、预装 Xcode 与 Fastlane
 - 零时差、中文支持、可开发票
 
-站点：[https://999lis.github.io/macbuild/](https://999lis.github.io/macbuild/)
+站点：[https://getmacbuild.com/](https://getmacbuild.com/)
