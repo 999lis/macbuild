@@ -86,8 +86,8 @@
 ## 链接
 
 - [首页](https://getmacbuild.com/)：服务介绍、设备规格、价格与申请表单
-- [服务条款](https://getmacbuild.com/terms.html)：完整服务条款、使用规则与责任限制
-- [退款政策](https://getmacbuild.com/terms.html#s7)：四种退款情形与计算公式
+- [服务条款](https://getmacbuild.com/terms)：完整服务条款、使用规则与责任限制
+- [退款政策](https://getmacbuild.com/terms#s7)：四种退款情形与计算公式
 - [申请开通](https://getmacbuild.com/#order)：在线提交申请，24 小时内回复
 - [常见问题](https://getmacbuild.com/#faq)：常见问题解答
 
