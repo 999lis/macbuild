@@ -42,7 +42,7 @@
 <meta name="theme-color" content="#faf7f0">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231e5a48'/><rect x='24' y='34' width='52' height='32' rx='4' fill='none' stroke='%23faf7f0' stroke-width='4'/><circle cx='50' cy='50' r='5' fill='%23faf7f0'/></svg>">
 <link rel="apple-touch-icon" href="og.png">
-<link rel="stylesheet" href="style.css?v=202610210358">
+<link rel="stylesheet" href="style.css?v=202610210427">
 </head>
 <body>
 
@@ -62,6 +62,8 @@
     <nav class="nav" id="nav" aria-label="主导航">
       <a href="#fleet">机位</a>
       <a href="#device">设备</a>
+      <a href="#malaysia">马来西亚</a>
+      <a href="#why">为什么选我们</a>
       <a href="#security">安全</a>
       <a href="#pricing">价格</a>
       <a href="#process">流程</a>
@@ -1313,8 +1315,11 @@ document.querySelectorAll('.faq details').forEach(d => {
     e.preventDefault();
 
     if (!configured) {
-      status.textContent = '表单尚未接通。请直接加微信 Mondbinch 或 Telegram @Mondbinch 联系我们。';
+      // 未接通时直接拉起咨询抽屉，别让用户对着一个不会响应的表单
+      status.textContent = '表单尚未接通 —— 已为你打开微信入口。';
       status.className = 'form-status err';
+      var trigger = document.querySelector('[data-open-contact]');
+      if (trigger) trigger.click();
       return;
     }
 

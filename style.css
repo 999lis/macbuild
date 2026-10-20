@@ -649,7 +649,19 @@ p { margin: 0; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
 }
 
-@media (max-width: 720px) {
+/* ---------- 导航：≤1024px 收成下拉菜单（9 项在中等宽度放不下） ---------- */
+@media (max-width: 1024px) {
+}
+
+/* ---------- 导航：1025–1240px 压缩间距，保证 9 项单行 ---------- */
+@media (min-width: 1025px) and (max-width: 1240px) {
+  .nav { gap: 16px; font-size: 13.5px; }
+  .nav-cta .btn { padding: 8px 14px; font-size: 13.5px; }
+}
+
+/* ---------- 布局：≤720px ---------- */
+/* ---------- 导航：≤1024px 收成下拉菜单（9 项在中等宽度放不下） ---------- */
+@media (max-width: 1024px) {
   .nav-toggle { display: block; }
   .nav {
     position: fixed;
@@ -678,6 +690,16 @@ p { margin: 0; }
     align-items: stretch;
   }
   .nav-cta .btn { width: 100%; padding: 12px; }
+}
+
+/* ---------- 导航：1025–1240px 压缩间距，保证 9 项单行 ---------- */
+@media (min-width: 1025px) and (max-width: 1240px) {
+  .nav { gap: 16px; font-size: 13.5px; }
+  .nav-cta .btn { padding: 8px 14px; font-size: 13.5px; }
+}
+
+/* ---------- 布局：≤720px ---------- */
+@media (max-width: 720px) {
 
   .hero { padding: 48px 0 64px; }
   .hero-offer { flex-direction: column; align-items: flex-start; gap: 18px; }
