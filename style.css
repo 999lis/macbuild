@@ -1048,3 +1048,28 @@ p a:not(.btn),
   background-repeat: repeat-x;
   vertical-align: middle;
 }
+
+/* ---------- 子页面 ---------- */
+.hero-sub { padding: 96px 0 72px; }
+.hero-sub h1 { font-size: clamp(28px, 3.6vw, 44px); margin-bottom: 20px; line-height: 1.28; }
+.hero-sub .lead { max-width: 44em; }
+.brand-mark {
+  display: inline-block;
+  width: 26px; height: 26px;
+  border-radius: 6px;
+  background: var(--accent);
+  position: relative;
+  flex: none;
+}
+.brand-mark::after {
+  content: "";
+  position: absolute;
+  inset: 7px 5px;
+  border: 2px solid var(--paper);
+  border-radius: 3px;
+}
+.brand { display: inline-flex; align-items: center; gap: 10px; }
+
+@media (max-width: 720px) {
+  .hero-sub { padding: 64px 0 48px; }
+}
