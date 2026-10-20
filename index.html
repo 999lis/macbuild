@@ -42,7 +42,7 @@
 <meta name="theme-color" content="#faf7f0">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231e5a48'/><rect x='24' y='34' width='52' height='32' rx='4' fill='none' stroke='%23faf7f0' stroke-width='4'/><circle cx='50' cy='50' r='5' fill='%23faf7f0'/></svg>">
 <link rel="apple-touch-icon" href="og.png">
-<link rel="stylesheet" href="style.css?v=202610210427">
+<link rel="stylesheet" href="style.css?v=202610210455">
 </head>
 <body>
 
@@ -918,7 +918,7 @@
       </div>
 
       <form class="order-form" id="orderForm"
-            action="https://formspree.io/f/FORMSPREE_ID"
+            action="/api/order"
             method="POST">
         <input type="hidden" name="_subject" value="MacBuild 新申请">
         <input type="hidden" name="来源" value="macbuild-site">
@@ -1307,9 +1307,9 @@ document.querySelectorAll('.faq details').forEach(d => {
   const btn = document.getElementById('orderSubmit');
   const status = document.getElementById('formStatus');
 
-  // 未配置 Formspree 时给出提示，不假装成功
+  // 端点未就绪时给出提示并拉起咨询抽屉，不假装成功
   const action = form.getAttribute('action') || '';
-  const configured = !action.includes('FORMSPREE_ID');
+  const configured = !!action && !action.includes('FORMSPREE_ID');
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -1349,6 +1349,11 @@ document.querySelectorAll('.faq details').forEach(d => {
         status.className = 'form-status err';
         btn.textContent = original;
         btn.disabled = false;
+        // 服务端不可用时，别让用户卡住：自动拉起微信入口
+        if (res.status === 502 || res.status === 503) {
+          const t = document.querySelector('[data-open-contact]');
+          if (t) t.click();
+        }
       }
     } catch (err) {
       status.textContent = '网络异常，请稍后重试，或直接加微信 Mondbinch 联系我们。';
