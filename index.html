@@ -312,65 +312,66 @@
         </div>
 
         <figure class="showroom-art">
-                              <svg viewBox="0 0 560 430" role="img" aria-label="Mac mini M4 产品示意图" class="macmini">
+                                        <svg viewBox="0 0 560 450" role="img" aria-label="Mac mini M4 产品示意图" class="macmini">
             <defs>
-              <linearGradient id="mmSide" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#c9c9c7"/>
-                <stop offset="0.35" stop-color="#adadab"/>
-                <stop offset="1" stop-color="#8e8e8c"/>
-              </linearGradient>
-              <linearGradient id="mmTop" x1="0.15" y1="0" x2="0.85" y2="1">
+              <clipPath id="mmBody">
+                <rect x="110" y="112" width="340" height="238" rx="30"/>
+              </clipPath>
+              <linearGradient id="mmTop" x1="0.15" y1="0" x2="0.8" y2="1">
                 <stop offset="0" stop-color="#ffffff"/>
-                <stop offset="0.22" stop-color="#f4f4f2"/>
-                <stop offset="0.55" stop-color="#e6e6e4"/>
-                <stop offset="0.85" stop-color="#d6d6d4"/>
-                <stop offset="1" stop-color="#cbcbc9"/>
+                <stop offset="0.3" stop-color="#f5f5f3"/>
+                <stop offset="0.65" stop-color="#e8e8e6"/>
+                <stop offset="1" stop-color="#d5d5d3"/>
+              </linearGradient>
+              <linearGradient id="mmFace" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#cacac8"/>
+                <stop offset="0.18" stop-color="#b4b4b2"/>
+                <stop offset="0.7" stop-color="#9c9c9a"/>
+                <stop offset="1" stop-color="#8b8b89"/>
+              </linearGradient>
+              <linearGradient id="mmSheen" x1="0.1" y1="0" x2="0.5" y2="1">
+                <stop offset="0" stop-color="#ffffff" stop-opacity="0.6"/>
+                <stop offset="0.45" stop-color="#ffffff" stop-opacity="0.06"/>
+                <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
               </linearGradient>
               <linearGradient id="mmSeam" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0" stop-color="#8f8f8d" stop-opacity="0.55"/>
-                <stop offset="1" stop-color="#8f8f8d" stop-opacity="0"/>
+                <stop offset="0" stop-color="#000000" stop-opacity="0.22"/>
+                <stop offset="1" stop-color="#000000" stop-opacity="0"/>
               </linearGradient>
               <radialGradient id="mmShadow" cx="0.5" cy="0.5" r="0.5">
-                <stop offset="0" stop-color="#000000" stop-opacity="0.45"/>
-                <stop offset="0.45" stop-color="#000000" stop-opacity="0.18"/>
+                <stop offset="0" stop-color="#000000" stop-opacity="0.5"/>
+                <stop offset="0.42" stop-color="#000000" stop-opacity="0.2"/>
                 <stop offset="1" stop-color="#000000" stop-opacity="0"/>
               </radialGradient>
-              <radialGradient id="mmGlow" cx="0.5" cy="0.42" r="0.58">
-                <stop offset="0" stop-color="#40937a" stop-opacity="0.20"/>
-                <stop offset="1" stop-color="#40937a" stop-opacity="0"/>
+              <radialGradient id="mmGlow" cx="0.5" cy="0.4" r="0.6">
+                <stop offset="0" stop-color="#41957c" stop-opacity="0.22"/>
+                <stop offset="1" stop-color="#41957c" stop-opacity="0"/>
               </radialGradient>
             </defs>
 
-            <!-- 背后光晕 -->
-            <ellipse cx="280" cy="225" rx="248" ry="168" fill="url(#mmGlow)"/>
+            <ellipse cx="280" cy="225" rx="250" ry="175" fill="url(#mmGlow)"/>
+            <ellipse cx="280" cy="392" rx="178" ry="24" fill="url(#mmShadow)"/>
 
-            <!-- 落地投影 -->
-            <ellipse cx="280" cy="356" rx="172" ry="22" fill="url(#mmShadow)"/>
+            <!-- 机身：整体轮廓裁切，顶面 + 前脸无缝拼接 -->
+            <g clip-path="url(#mmBody)">
+              <rect x="110" y="112" width="340" height="238" fill="url(#mmTop)"/>
+              <rect x="110" y="274" width="340" height="76" fill="url(#mmFace)"/>
+              <rect x="110" y="274" width="340" height="12" fill="url(#mmSeam)"/>
+              <rect x="110" y="112" width="340" height="238" fill="url(#mmSheen)"/>
+            </g>
+            <!-- 轮廓描边 -->
+            <rect x="110" y="112" width="340" height="238" rx="30" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.65"/>
+            <!-- 前脸底缘暗边 -->
+            <path d="M110 320 h340 v0 a30 30 0 0 1 -30 30 h-280 a30 30 0 0 1 -30 -30 z" fill="#000000" opacity="0.14"/>
 
-            <!-- 机身侧面（厚度） -->
-            <rect x="110" y="148" width="340" height="184" rx="30" fill="url(#mmSide)"/>
-            <!-- 前脸底部反光 -->
-            <rect x="110" y="300" width="340" height="32" rx="0" fill="#6f6f6d" opacity="0.32"/>
-            <!-- 前脸底缘圆角补正 -->
-            <path d="M110 300 h340 v2 a30 30 0 0 1 -30 30 h-280 a30 30 0 0 1 -30 -30 z" fill="#5f5f5d" opacity="0.4"/>
+            <!-- 前脸细节：指示灯 + 端口 -->
+            <circle cx="280" cy="312" r="3.6" fill="#41957c"/>
+            <rect x="204" y="308" width="20" height="7" rx="3.5" fill="#6e6e70" opacity="0.45"/>
+            <rect x="336" y="308" width="20" height="7" rx="3.5" fill="#6e6e70" opacity="0.45"/>
 
-            <!-- 顶面（覆盖侧面大部分，露出 30px 前脸）-->
-            <rect x="110" y="118" width="340" height="184" rx="30" fill="url(#mmTop)"/>
-            <!-- 顶面左上柔光 -->
-            <ellipse cx="205" cy="175" rx="120" ry="62" fill="#ffffff" opacity="0.55"/>
-            <!-- 顶面细描边 -->
-            <rect x="110" y="118" width="340" height="184" rx="30" fill="none" stroke="#ffffff" stroke-width="1.2" opacity="0.75"/>
-            <!-- 顶面与前脸的接缝阴影 -->
-            <rect x="110" y="294" width="340" height="10" fill="url(#mmSeam)"/>
-
-            <!-- 前脸：指示灯 + 端口 -->
-            <circle cx="280" cy="316" r="3.5" fill="#40937a"/>
-            <rect x="206" y="313" width="18" height="6" rx="3" fill="#77777a" opacity="0.5"/>
-            <rect x="336" y="313" width="18" height="6" rx="3" fill="#77777a" opacity="0.5"/>
-
-            <!-- 底部垫脚 -->
-            <rect x="156" y="336" width="42" height="5" rx="2.5" fill="#4f4f4d" opacity="0.4"/>
-            <rect x="362" y="336" width="42" height="5" rx="2.5" fill="#4f4f4d" opacity="0.4"/>
+            <!-- 垫脚 -->
+            <rect x="158" y="348" width="44" height="6" rx="3" fill="#4a4a48" opacity="0.35"/>
+            <rect x="358" y="348" width="44" height="6" rx="3" fill="#4a4a48" opacity="0.35"/>
           </svg>
         </figure>
       </div>
