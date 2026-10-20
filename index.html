@@ -914,8 +914,8 @@ document.querySelectorAll('.faq details').forEach(d => {
       "@id": "https://getmacbuild.com/#product",
       "name": "Mac mini M4 构建机托管",
       "description": "专属 Mac mini（Apple Silicon M4，16GB 统一内存，256GB SSD），部署于马来西亚。马来西亚本地独立线路，预装 Claude 桌面端、Claude Code、Xcode 与 Fastlane。可选仅租 Mac，或含 Claude Max 5x / 20x 账号。",
+      "image": ["https://getmacbuild.com/og.png"],
       "brand": { "@type": "Brand", "name": "Apple" },
-      "category": "云主机托管服务",
       "offers": [
         {
           "@type": "Offer",
@@ -925,7 +925,23 @@ document.querySelectorAll('.faq details').forEach(d => {
           "priceCurrency": "CNY",
           "availability": "https://schema.org/InStock",
           "url": "https://getmacbuild.com/#order",
-          "priceSpecification": { "@type": "UnitPriceSpecification", "price": "799", "priceCurrency": "CNY", "unitCode": "MON" }
+          "priceSpecification": { "@type": "UnitPriceSpecification", "price": "799", "priceCurrency": "CNY", "unitCode": "MON" },
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "CNY" },
+            "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "MY" },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY" },
+              "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" }
+            }
+          },
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "MY",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 30
+          }
         },
         {
           "@type": "Offer",
@@ -935,7 +951,23 @@ document.querySelectorAll('.faq details').forEach(d => {
           "priceCurrency": "CNY",
           "availability": "https://schema.org/InStock",
           "url": "https://getmacbuild.com/#order",
-          "priceSpecification": { "@type": "UnitPriceSpecification", "price": "1599", "priceCurrency": "CNY", "unitCode": "MON" }
+          "priceSpecification": { "@type": "UnitPriceSpecification", "price": "1599", "priceCurrency": "CNY", "unitCode": "MON" },
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "CNY" },
+            "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "MY" },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY" },
+              "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" }
+            }
+          },
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "MY",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 30
+          }
         },
         {
           "@type": "Offer",
@@ -945,7 +977,23 @@ document.querySelectorAll('.faq details').forEach(d => {
           "priceCurrency": "CNY",
           "availability": "https://schema.org/InStock",
           "url": "https://getmacbuild.com/#order",
-          "priceSpecification": { "@type": "UnitPriceSpecification", "price": "2949", "priceCurrency": "CNY", "unitCode": "MON" }
+          "priceSpecification": { "@type": "UnitPriceSpecification", "price": "2949", "priceCurrency": "CNY", "unitCode": "MON" },
+          "shippingDetails": {
+            "@type": "OfferShippingDetails",
+            "shippingRate": { "@type": "MonetaryAmount", "value": "0", "currency": "CNY" },
+            "shippingDestination": { "@type": "DefinedRegion", "addressCountry": "MY" },
+            "deliveryTime": {
+              "@type": "ShippingDeliveryTime",
+              "handlingTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 1, "unitCode": "DAY" },
+              "transitTime": { "@type": "QuantitativeValue", "minValue": 0, "maxValue": 0, "unitCode": "DAY" }
+            }
+          },
+          "hasMerchantReturnPolicy": {
+            "@type": "MerchantReturnPolicy",
+            "applicableCountry": "MY",
+            "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+            "merchantReturnDays": 30
+          }
         }
       ]
     },
