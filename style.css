@@ -1510,4 +1510,182 @@ p a:not(.btn),
 @media (prefers-reduced-motion: reduce) {
   .machine { opacity: 1; transform: none; transition: none; }
 }
+/* ============================================================
+   咨询抽屉 + 侧边浮标
+   ============================================================ */
+body.locked { overflow: hidden; }
+
+.drawer-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  background: rgba(12, 18, 15, .48);
+  opacity: 0;
+  transition: opacity .22s ease;
+}
+.drawer-overlay.show { opacity: 1; }
+.drawer-overlay[hidden] { display: none; }
+
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 91;
+  width: min(420px, 94vw);
+  display: flex;
+  flex-direction: column;
+  background: var(--paper);
+  border-left: 1px solid var(--line);
+  box-shadow: -24px 0 60px rgba(12, 18, 15, .2);
+  transform: translateX(100%);
+  transition: transform .28s cubic-bezier(.22, .7, .3, 1);
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.drawer.open { transform: none; }
+
+.drawer-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 20px 22px 16px;
+  border-bottom: 1px solid var(--line);
+  position: sticky;
+  top: 0;
+  background: var(--paper);
+  z-index: 1;
+}
+.drawer-head h2 {
+  margin: 0;
+  font-size: 19px;
+  font-weight: 700;
+  color: var(--ink);
+}
+.drawer-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  color: var(--ink-soft);
+  background: transparent;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background .16s, color .16s;
+}
+.drawer-close:hover { background: var(--paper-alt); color: var(--ink); }
+
+.drawer-body { padding: 20px 22px 28px; }
+
+.drawer-lead {
+  margin: 0 0 16px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.d-card {
+  padding: 16px 18px 18px;
+  background: var(--paper-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  margin-bottom: 16px;
+}
+.d-label {
+  margin: 0 0 6px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.d-id {
+  margin: 0 0 14px;
+  font-family: var(--serif);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: .01em;
+  color: var(--ink);
+  word-break: break-all;
+}
+.d-copy {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 18px;
+  font: inherit;
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--paper);
+  background: var(--accent);
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background .16s;
+}
+.d-copy:hover { background: #17493a; }
+.d-tip {
+  margin: 8px 0 0;
+  font-size: 12.5px;
+  color: #2e8b57;
+  min-height: 1em;
+}
+
+.d-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 13px 2px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+  color: var(--muted);
+}
+.d-row a {
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+}
+.d-row a:hover { text-decoration: underline; }
+
+.drawer-note {
+  margin: 18px 0 0;
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--muted);
+}
+
+/* 侧边浮标 */
+.side-contact {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  z-index: 80;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 11px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--paper);
+  background: var(--accent);
+  border-radius: 999px 0 0 999px;
+  text-decoration: none;
+  transform: translate(100%, -50%);
+  transition: transform .26s ease, background .16s;
+  box-shadow: -4px 0 18px rgba(12, 18, 15, .16);
+}
+.side-contact.show { transform: translate(0, -50%); }
+.side-contact:hover { background: #17493a; }
+
+@media (max-width: 640px) {
+  .drawer { width: 100vw; border-left: 0; }
+  .drawer-head { padding: 16px 18px 14px; }
+  .drawer-body { padding: 16px 18px 24px; }
+  .d-id { font-size: 25px; }
+  .side-contact { padding: 10px 12px; font-size: 12.5px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .drawer, .drawer-overlay, .side-contact { transition: none; }
+}
 

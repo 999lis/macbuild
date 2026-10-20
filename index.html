@@ -42,7 +42,7 @@
 <meta name="theme-color" content="#faf7f0">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231e5a48'/><rect x='24' y='34' width='52' height='32' rx='4' fill='none' stroke='%23faf7f0' stroke-width='4'/><circle cx='50' cy='50' r='5' fill='%23faf7f0'/></svg>">
 <link rel="apple-touch-icon" href="og.png">
-<link rel="stylesheet" href="style.css?v=202610210340">
+<link rel="stylesheet" href="style.css?v=202610210358">
 </head>
 <body>
 
@@ -97,7 +97,7 @@
       <div class="hero-cta">
         <a class="btn-hero btn-hero-primary" href="#pricing">查看价格</a>
         <a class="btn-hero btn-hero-ghost" href="#device">看设备配置</a>
-        <a class="btn-hero btn-hero-contact" href="#order">加微信 Mondbinch</a>
+        <a class="btn-hero btn-hero-contact" href="#order" data-open-contact>加微信 Mondbinch</a>
         <a class="btn-hero btn-hero-ghost" href="https://t.me/Mondbinch">Telegram</a>
       </div>
 
@@ -592,7 +592,7 @@
   </section>
 
 <!-- ============ 安全 ============ -->
-  <section class="section" id="security">
+  <section class="section section-alt" id="security">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">安全保障</p>
@@ -634,7 +634,7 @@
   </section>
 
   <!-- ============ 适用场景 ============ -->
-  <section class="section section-alt" id="usecase">
+  <section class="section" id="usecase">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">适用场景</p>
@@ -663,7 +663,7 @@
   </section>
 
   <!-- ============ 价格 ============ -->
-  <section class="section" id="pricing">
+  <section class="section section-alt" id="pricing">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">方案与费用</p>
@@ -777,7 +777,7 @@
   </section>
 
   <!-- ============ 流程 ============ -->
-  <section class="section section-alt" id="process">
+  <section class="section" id="process">
     <div class="wrap">
       <div class="section-head">
         <p class="eyebrow">流程</p>
@@ -810,7 +810,7 @@
   </section>
 
   <!-- ============ FAQ ============ -->
-  <section class="section" id="faq">
+  <section class="section section-alt" id="faq">
     <div class="wrap wrap-narrow">
       <div class="section-head">
         <p class="eyebrow">常见问题</p>
@@ -1414,6 +1414,144 @@ document.querySelectorAll('.faq details').forEach(d => {
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
     items.forEach(function (el) { io.observe(el); });
   }
+})();
+</script>
+
+<!-- ==================== 咨询抽屉 ==================== -->
+<a class="side-contact" href="#order" data-open-contact aria-label="加微信咨询">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.4 9.4 0 0 1-3.8-.8L3 21l1.9-4.6A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>
+  <span>咨询</span>
+</a>
+
+<div class="drawer-overlay" id="drawer-overlay" hidden></div>
+
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+  <div class="drawer-head">
+    <h2 id="drawer-title">咨询与预约</h2>
+    <button type="button" class="drawer-close" data-close aria-label="关闭">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+  <div class="drawer-body">
+    <p class="drawer-lead" id="drawer-context">直接加微信最快。告诉我们用途和期望期限，我们会回你哪台能最快开通。</p>
+
+    <div class="d-card">
+      <p class="d-label">微信（最快）</p>
+      <p class="d-id" id="d-wechat">Mondbinch</p>
+      <button type="button" class="d-copy" data-copy="Mondbinch" data-copy-target="d-wechat">复制微信号</button>
+      <p class="d-tip" aria-live="polite"></p>
+    </div>
+
+    <div class="d-row">
+      <span>Telegram</span>
+      <a href="https://t.me/Mondbinch">@Mondbinch</a>
+    </div>
+
+    <p class="drawer-note">
+      加好友时备注「Mac mini」。价格、开票和开通时间都在微信里确认 —— 本站不走在线支付。
+    </p>
+  </div>
+</aside>
+
+<script>
+/* 咨询抽屉：微信复制 + 机位编号透传 + 侧边浮标 */
+(function () {
+  var drawer = document.getElementById('drawer');
+  var overlay = document.getElementById('drawer-overlay');
+  var tab = document.querySelector('.side-contact');
+  if (!drawer || !overlay) return;
+
+  var ctx = document.getElementById('drawer-context');
+  var ctxDefault = ctx ? ctx.textContent : '';
+  var lastFocus = null;
+
+  function open(code) {
+    lastFocus = document.activeElement;
+    if (ctx) {
+      ctx.textContent = code
+        ? '你正在预约 ' + code + '。加微信后把编号发给我们，这台先为你留 24 小时。'
+        : ctxDefault;
+    }
+    drawer.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    overlay.hidden = false;
+    requestAnimationFrame(function () { overlay.classList.add('show'); });
+    document.body.classList.add('locked');
+    var b = drawer.querySelector('[data-close]');
+    if (b) b.focus();
+  }
+
+  function close() {
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    overlay.classList.remove('show');
+    setTimeout(function () { overlay.hidden = true; }, 240);
+    document.body.classList.remove('locked');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  /* 入口：带 data-open-contact 的元素 */
+  document.querySelectorAll('[data-open-contact]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      open(el.getAttribute('data-book') || '');
+    });
+  });
+
+  /* 机位卡片：点「预约这台」带上编号 */
+  document.querySelectorAll('.m-rent').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var card = a.closest('.machine');
+      open(card ? card.getAttribute('data-code') || '' : '');
+    });
+  });
+
+  document.querySelectorAll('[data-close]').forEach(function (el) {
+    el.addEventListener('click', function (e) { e.preventDefault(); close(); });
+  });
+  overlay.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) close();
+  });
+
+  /* 复制微信号 */
+  document.querySelectorAll('.d-copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var text = b.getAttribute('data-copy');
+      var tip = b.parentNode.querySelector('.d-tip');
+      function say(m) { if (tip) tip.textContent = m; }
+      function fallback() {
+        var t = document.getElementById(b.getAttribute('data-copy-target'));
+        var ok = false;
+        if (t) {
+          var r = document.createRange();
+          r.selectNodeContents(t);
+          var s = getSelection();
+          s.removeAllRanges();
+          s.addRange(r);
+          try { ok = document.execCommand('copy'); } catch (err) {}
+        }
+        say(ok ? '已复制，去微信粘贴' : '请手动选中上面的微信号');
+      }
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function () { say('已复制，去微信粘贴'); }, fallback);
+      } else {
+        fallback();
+      }
+    });
+  });
+
+  /* 侧边浮标：滚过首屏才出现 */
+  var hero = document.querySelector('.hero');
+  function onScroll() {
+    if (!tab) return;
+    var past = hero ? window.scrollY > hero.offsetHeight * 0.8 : window.scrollY > 400;
+    tab.classList.toggle('show', past);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 })();
 </script>
 </body>
