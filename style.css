@@ -1005,7 +1005,7 @@ p a:not(.btn),
   font-size: 12px;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: rgba(250,247,240,.42);
+  color: rgba(250,247,240,.62);
 }
 .showroom-specs b {
   font-size: 15.5px;
