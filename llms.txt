@@ -1,13 +1,13 @@
 # MacBuild
 
-> MacBuild 出租放在马来西亚的专属 Mac mini（Apple Silicon M4）。整机独享，接当地家庭宽带、独立 IP，不与其他客户共用出口。Claude 桌面端与 Claude Code 已预装，可用自己的账号，也可由服务方代开 Claude Max。仅租 Mac ¥799/月，含 Claude Max 5x ¥1,599/月，含 Claude Max 20x ¥2,949/月。人民币计价，付款后 24 小时内交付，可开发票。
+> MacBuild 出租放在马来西亚的专属 Mac mini（Apple Silicon M4）。整机独享，走马来西亚本地独立线路。Claude 桌面端与 Claude Code 已预装，可用自己的账号，也可由服务方代开 Claude Max。仅租 Mac ¥799/月，含 Claude Max 5x ¥1,599/月，含 Claude Max 20x ¥2,949/月。人民币计价，付款后 24 小时内交付，可开发票。
 
 ## 服务概览
 
 - 产品名称：MacBuild 海外专属 Mac 托管
 - 设备：Mac mini（Apple Silicon M4），10 核 CPU / 10 核 GPU，16 GB 统一内存，256 GB SSD，千兆以太网
 - 部署位置：马来西亚
-- 网络：当地家庭宽带，独立 IP，不与其他客户共用出口，非机房 IP
+- 网络：马来西亚本地独立线路，非机房 IP
 - 接入方式：UU 远程、ToDesk、RustDesk、Tailscale + SSH
 - 预装环境：Claude 桌面端、Claude Code、Xcode、Command Line Tools、Homebrew、Fastlane、CocoaPods、SwiftLint、Git
 - 归属：整机独享，1 台设备 = 1 位使用者
@@ -18,13 +18,15 @@
 
 ### 三档套餐（月付）
 
-| 套餐 | 价格 | 说明 |
-| --- | --- | --- |
-| 仅租 Mac | ¥799/月 | 专属 Mac mini + 独立 IP，Claude Code 已预装，用你自己的 Claude 账号 |
-| Mac + Claude Max 5x | ¥1,599/月 | 含 Claude Max 5x 账号（约为 Pro 的 5 倍额度），以本人身份官方渠道订阅 |
-| Mac + Claude Max 20x | ¥2,949/月 | 含 Claude Max 20x 账号（约为 Pro 的 20 倍额度），含 KYC 协助 |
+| 套餐 | 独立线路 | 共享线路 | 说明 |
+| --- | --- | --- | --- |
+| 仅租 Mac | ¥999/月 | ¥799/月 | 专属 Mac mini，Claude Code 已预装，用你自己的 Claude 账号 |
+| Mac + Claude Max 5x | ¥1,799/月 | ¥1,599/月 | 含 Claude Max 5x 账号（约为 Pro 的 5 倍额度），以本人身份官方渠道订阅 |
+| Mac + Claude Max 20x | ¥3,149/月 | ¥2,949/月 | 含 Claude Max 20x 账号（约为 Pro 的 20 倍额度），含 KYC 协助 |
 
-### 付款周期（按「仅租 Mac」计价）
+独立线路 = 一台机器一条独立出口，不与其他客户共用；共享线路 = 多台机器共用一条出口，价格更低。两者都是马来西亚本地线路，都不是机房 IP、不是机场节点、不是共享代理池。独立线路按批次开通，下单前需确认当期是否可交付。
+
+### 付款周期（按「仅租 Mac · 共享线路」计价）
 
 | 周期 | 金额 | 等效月价 |
 | --- | --- | --- |
@@ -33,7 +35,7 @@
 | 半年付（8.5 折） | ¥4,075 | ¥679/月 |
 | 年付（8 折） | ¥7,670 | ¥639/月 |
 
-多台设备按数量相乘。含 Claude 账号的套餐按台数和周期另议。
+独立线路每月加 ¥200，同周期折扣同样适用。多台设备按数量相乘。含 Claude 账号的套餐按台数和周期另议。
 
 ## 关于 Claude 账号
 
@@ -54,7 +56,7 @@
 
 - 零时差：马来西亚与 UTC+8 时区一致，与中国大陆作息完全对齐，沟通无需等待
 - 中文语境：马来西亚华人占比高，下单、沟通、技术支持全程中文
-- IP 归属地：马来西亚在 Anthropic、OpenAI 等主流 AI 服务的支持地区列表内。设备走当地家庭宽带，独立 IP，不是机房 IP、不是机场节点、也不是共享代理池
+- IP 归属地：马来西亚在 Anthropic、OpenAI 等主流 AI 服务的支持地区列表内。设备走马来西亚本地独立线路，不是机房 IP、不是机场节点、也不是共享代理池
 
 ## 适用场景
 
@@ -76,7 +78,7 @@
 
 ### 账号会被封吗？
 
-IP 层面是干净的：设备走马来西亚本地家庭宽带，独立 IP，不与其他客户共用出口。但服务方不保证任何账号不被停用——账号状态取决于 Anthropic 的判定与客户自身使用行为（如共享、转售、反代、批量抓取等）。请遵守 Anthropic 的使用政策。
+IP 层面是干净的：设备走马来西亚本地独立线路，不是机房 IP。但服务方不保证任何账号不被停用——账号状态取决于 Anthropic 的判定与客户自身使用行为（如共享、转售、反代、批量抓取等）。请遵守 Anthropic 的使用政策。
 
 ### 设备是物理机还是虚拟机？
 
@@ -127,5 +129,5 @@ Claude 是 Anthropic 的商标。MacBuild 是独立服务商，与 Anthropic 无
 ## 联系方式
 
 - [在线申请表单](https://getmacbuild.com/#order)
-- [Telegram](https://t.me/你的telegram)
-- [发送邮件](mailto:你的邮箱)
+- [Telegram](https://t.me/Mondbinch)
+- 微信：Mondbinch
