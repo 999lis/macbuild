@@ -11,6 +11,7 @@
 - 接入方式：UU 远程、ToDesk、RustDesk、Tailscale + SSH
 - 预装环境：Claude 桌面端、Claude Code、Xcode、Command Line Tools、Homebrew、Fastlane、CocoaPods、SwiftLint、Git
 - 归属：整机独享，1 台设备 = 1 位使用者
+- 另有「机房托管」服务：客户自带 Mac mini 放入我方马来西亚机房，¥300/月/台，机器所有权属于客户
 - 交付时间：付款后 24 小时内（新客户需 1 个工作日审核）
 - 计费货币：人民币（CNY）
 
@@ -122,6 +123,7 @@ Claude 是 Anthropic 的商标。MacBuild 是独立服务商，与 Anthropic 无
 - [远程 Mac 租赁](https://getmacbuild.com/remote-mac-rental)：虚拟机 / 共享 Mac / 专属实体机三种形态对比、价格区间、延迟实测与选型标准
 - [Claude Code 国内怎么用](https://getmacbuild.com/claude-code-china)：网络、账号、风控三处卡点的拆解，三种方案的成本与风险对比
 - [Claude Code 用 Mac](https://getmacbuild.com/claude-code-mac)：Claude Code 专用 Mac 租赁
+- [Mac 机房托管](https://getmacbuild.com/mac-colocation)：客户自有 Mac mini 放入马来西亚机房的托管服务，¥300/月/台，含机位、电力（UPS）、网络与基础值守，机器所有权属于客户
 - [Claude Max 5x 还是 20x](https://getmacbuild.com/claude-max-5x-vs-20x)：两档只差用量，官方 $100 / $200 每月，额度按滚动 5 小时窗口计算
 - [Windows 远程 Mac](https://getmacbuild.com/windows-remote-mac)：Windows 连 Mac 只能走 VNC 或第三方工具（macOS 无 RDP 服务端），含三种方案对比与配置步骤
 - [三档价格](https://getmacbuild.com/#pricing)：仅租 Mac / Max 5x / Max 20x
