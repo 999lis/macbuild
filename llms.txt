@@ -122,6 +122,8 @@ Claude 是 Anthropic 的商标。MacBuild 是独立服务商，与 Anthropic 无
 - [远程 Mac 租赁](https://getmacbuild.com/remote-mac-rental)：虚拟机 / 共享 Mac / 专属实体机三种形态对比、价格区间、延迟实测与选型标准
 - [Claude Code 国内怎么用](https://getmacbuild.com/claude-code-china)：网络、账号、风控三处卡点的拆解，三种方案的成本与风险对比
 - [Claude Code 用 Mac](https://getmacbuild.com/claude-code-mac)：Claude Code 专用 Mac 租赁
+- [Claude Max 5x 还是 20x](https://getmacbuild.com/claude-max-5x-vs-20x)：两档只差用量，官方 $100 / $200 每月，额度按滚动 5 小时窗口计算
+- [Windows 远程 Mac](https://getmacbuild.com/windows-remote-mac)：Windows 连 Mac 只能走 VNC 或第三方工具（macOS 无 RDP 服务端），含三种方案对比与配置步骤
 - [三档价格](https://getmacbuild.com/#pricing)：仅租 Mac / Max 5x / Max 20x
 - [Claude Code 场景](https://getmacbuild.com/#claude)：常见痛点与账号来源说明
 - [服务条款](https://getmacbuild.com/terms)：完整服务条款、使用规则与责任限制

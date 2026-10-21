@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="applicable-device" content="pc,mobile">
+<title>Windows 远程 Mac | 在 Windows 上用 Xcode 与 macOS — MacBuild</title>
+<meta name="description" content="Windows 连不上 Mac 的 RDP，只能走 VNC 或第三方工具。三种远程方案的实测对比、能做什么不能做什么、完整配置步骤，以及在 Windows 上用 Xcode 的真实体验。">
+<meta name="keywords" content="windows 远程 mac,windows 连接 mac,windows 远程 mac 桌面,windows 用 xcode,windows 连 mac 桌面,windows 远程 mac 推荐,mac 远程桌面 windows">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://getmacbuild.com/windows-remote-mac">
+
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="MacBuild">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="Windows 远程 Mac | 在 Windows 上用 Xcode 与 macOS">
+<meta property="og:description" content="三种远程方案实测对比、能做什么不能做什么、完整配置步骤。">
+<meta property="og:url" content="https://getmacbuild.com/windows-remote-mac">
+<meta property="og:image" content="https://getmacbuild.com/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Windows 远程 Mac | 用 Xcode 与 macOS">
+<meta name="twitter:description" content="三种远程方案实测对比与完整配置步骤。">
+<meta name="twitter:image" content="https://getmacbuild.com/og.png">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231e5a48'/%3E%3Crect x='8' y='10' width='16' height='12' rx='3' fill='none' stroke='%23faf7f0' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23faf7f0'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css?v=202610210933">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://getmacbuild.com/windows-remote-mac#page",
+      "url": "https://getmacbuild.com/windows-remote-mac",
+      "name": "Windows 远程 Mac | 在 Windows 上用 Xcode 与 macOS",
+      "description": "Windows 连不上 Mac 的 RDP，只能走 VNC 或第三方工具。三种远程方案的实测对比、能做什么不能做什么、完整配置步骤。",
+      "inLanguage": "zh-CN",
+      "isPartOf": { "@id": "https://getmacbuild.com/#website" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://getmacbuild.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Windows 远程 Mac", "item": "https://getmacbuild.com/windows-remote-mac" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Windows 能用自带的远程桌面连 Mac 吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "不能。微软的远程桌面（RDP）需要目标机器运行 RDP 服务端，而 macOS 没有内置 RDP 服务端。Mac 原生支持的是 VNC 协议（系统设置里的「屏幕共享」）。所以要么用 VNC 客户端，要么用 RustDesk、ToDesk、UU 远程这类第三方工具，它们自带跨平台协议。" }
+        },
+        {
+          "@type": "Question",
+          "name": "在 Windows 上用远程 Mac 能跑 Xcode 吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "能。Xcode 是在远程 Mac 上运行的，你的 Windows 只是显示画面和发送键鼠输入。所以编译、签名、打包、上架 App Store 全都能做。但 iOS 模拟器的实时交互在 200ms 延迟下会有明显卡顿，适合看结果和点按，不适合做交互调试。" }
+        },
+        {
+          "@type": "Question",
+          "name": "远程 Mac 的延迟大概多少？",
+          "acceptedAnswer": { "@type": "Answer", "text": "取决于机器位置。中国大陆境内 20–50ms，香港/新加坡 40–80ms，日本/韩国 60–120ms，马来西亚 180–220ms，欧美 200–350ms。SSH 命令行和编译操作对延迟不敏感；拖窗口、滚网页、操作模拟器会明显感觉到。" }
+        },
+        {
+          "@type": "Question",
+          "name": "远程 Mac 有声音和麦克风吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "VNC 协议不带音频，所以系统自带的屏幕共享只有画面，没有声音，剪贴板同步也不可靠。ToDesk、UU 远程、RustDesk 支持音频和剪贴板。如果需要完整的多媒体支持（音频 + 麦克风 + 剪贴板），NoMachine 是社区里口碑比较好的选择。" }
+        },
+        {
+          "@type": "Question",
+          "name": "远程 Mac 上能传文件吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "能，有几种方式。图形工具（ToDesk、RustDesk）通常内置文件传输；命令行可以用 scp 或 rsync；更省事的做法是用 iCloud Drive、坚果云之类的同步盘。如果只是传代码，直接用 Git 推拉最方便。" }
+        },
+        {
+          "@type": "Question",
+          "name": "用 Windows 连远程 Mac 做 iOS 开发靠谱吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "取决于你的工作方式。如果以写代码 + 命令行构建为主，只在需要时看模拟器，完全靠谱。如果重度依赖 Xcode 的图形调试器、Interface Builder 拖控件、Instruments 分析，延迟会明显影响效率，这种情况建议机器放近一点（香港或新加坡），或者直接用本地 Mac。" }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>MacBuild</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="主导航">
+      <a href="/#claude">Claude Code</a>
+      <a href="/#pricing">价格</a>
+      <a href="/#faq">常见问题</a>
+      <a href="/terms">服务条款</a>
+      <div class="nav-cta">
+        <a class="btn" href="/#order">立即订购</a>
+      </div>
+    </nav>
+    <button class="nav-toggle" type="button" aria-controls="nav" aria-expanded="false" aria-label="打开菜单"><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero hero-sub">
+    <div class="wrap">
+      <p class="eyebrow">Windows × macOS</p>
+      <h1>Windows 远程 Mac：怎么连、能做什么、什么做不到</h1>
+      <p class="lead">
+        先说一个很多人不知道的事实：<strong>微软的远程桌面连不上 Mac</strong>。
+        macOS 没有 RDP 服务端。这篇讲清楚三种能用的方案、各自的实际体验，
+        以及在 Windows 上用 Xcode 到底是什么感觉。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-lg" href="/#pricing">看看套餐 <span aria-hidden="true">→</span></a>
+        <a class="btn btn-text btn-lg" href="/remote-mac-rental">远程 Mac 租赁怎么选</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap-narrow">
+      <h2>为什么 Windows 用户需要一台 Mac</h2>
+      <p>
+        Windows 在大部分开发场景下完全够用。但有几件事是 macOS 独占的，没有替代方案：
+      </p>
+      <ul>
+        <li><strong>Xcode</strong>——只能在 macOS 上运行，没有 Windows 版</li>
+        <li><strong>iOS 模拟器</strong>——只有 macOS 有</li>
+        <li><strong>iOS / macOS App 签名与上架</strong>——codesign、Transporter 都是 macOS 工具</li>
+        <li><strong>Swift / Objective-C 编译</strong>——工具链只在 macOS 上</li>
+        <li><strong>部分 CI 工具</strong>——Fastlane 的某些 action 依赖 xcodebuild</li>
+        <li><strong>Safari 真机测试</strong>——Safari for Windows 2012 年就停了</li>
+      </ul>
+      <p>
+        过去的选择是「再买一台 Mac」。现在的选择多了：可以远程连一台别人维护的 Mac，
+        按需付费，不用一次性投入几千块。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap wrap-narrow">
+      <h2>三种能用的远程方案</h2>
+
+      <h3>方案一：VNC（Mac 自带屏幕共享）</h3>
+      <p>
+        macOS 系统设置里有个「屏幕共享」，本质是 VNC 协议。Windows 端装个 VNC 客户端
+        （TightVNC、RealVNC、UltraVNC）就能连。
+      </p>
+      <p><strong>优点</strong>：不需要在 Mac 上装任何东西，系统自带。</p>
+      <p>
+        <strong>缺点</strong>：
+      </p>
+      <ul>
+        <li>没有声音、没有麦克风</li>
+        <li>剪贴板同步不可靠</li>
+        <li>弱网下画面容易糊</li>
+        <li>需要自己处理内网穿透（如果 Mac 不在同一局域网）</li>
+      </ul>
+      <p><strong>适合</strong>：临时看一下画面，或者你已经有 VPN 能把两台机器打通。</p>
+
+      <h3>方案二：第三方远程工具（推荐）</h3>
+      <p>
+        主流的有 <strong>RustDesk</strong>（开源，可自建服务器）、<strong>ToDesk</strong>、
+        <strong>UU 远程</strong>、<strong>Parsec</strong>（低延迟，偏游戏优化）。
+      </p>
+      <p><strong>优点</strong>：</p>
+      <ul>
+        <li>不需要配置网络，装好输入设备码就能连</li>
+        <li>支持声音、剪贴板、文件传输</li>
+        <li>有画面压缩优化，弱网下比 VNC 好很多</li>
+      </ul>
+      <p>
+        <strong>缺点</strong>：
+      </p>
+      <ul>
+        <li>需要两端都装客户端</li>
+        <li>免费版通常有限速或时长限制</li>
+        <li>走厂商中继服务器，数据经过第三方（RustDesk 可自建规避）</li>
+      </ul>
+      <p><strong>适合</strong>：绝大多数人的日常使用。</p>
+
+      <h3>方案三：Tailscale + SSH / VNC</h3>
+      <p>
+        Tailscale 是一个基于 WireGuard 的虚拟内网工具。两端装上并登录同一账号后，
+        会拿到固定的内网 IP，之后不管在什么网络下都能直连。
+      </p>
+      <p><strong>优点</strong>：</p>
+      <ul>
+        <li>一旦配好，任何网络环境都能连（不需要公网 IP）</li>
+        <li>点对点直连，不经过第三方中继（能打洞成功时）</li>
+        <li>命令行用 SSH，图形界面再套 VNC，两个都能用</li>
+      </ul>
+      <p>
+        <strong>缺点</strong>：
+      </p>
+      <ul>
+        <li>初次配置比第三方工具麻烦</li>
+        <li>需要两端都装、都登录</li>
+      </ul>
+      <p><strong>适合</strong>：长期使用、在意稳定性和隐私的人。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap-narrow">
+      <h2>方案对比表</h2>
+      <table class="cycle-table">
+        <thead>
+          <tr><th>方案</th><th>声音</th><th>剪贴板</th><th>传文件</th><th>配置难度</th><th>推荐度</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>VNC（系统自带）</th><td>❌</td><td>不稳</td><td>需另配</td><td>中</td><td>⭐⭐</td></tr>
+          <tr><th>RustDesk</th><td>✅</td><td>✅</td><td>✅</td><td>低</td><td>⭐⭐⭐⭐⭐</td></tr>
+          <tr><th>ToDesk / UU 远程</th><td>✅</td><td>✅</td><td>✅</td><td>低</td><td>⭐⭐⭐⭐</td></tr>
+          <tr><th>Parsec</th><td>✅</td><td>✅</td><td>有限</td><td>低</td><td>⭐⭐⭐⭐（低延迟）</td></tr>
+          <tr><th>Tailscale + SSH</th><td>—</td><td>终端内</td><td>scp/rsync</td><td>中高</td><td>⭐⭐⭐⭐⭐（命令行为主）</td></tr>
+          <tr><th>NoMachine</th><td>✅</td><td>✅</td><td>✅</td><td>中</td><td>⭐⭐⭐⭐（多媒体场景）</td></tr>
+        </tbody>
+      </table>
+      <p class="note">
+        如果你只需要命令行，<strong>Tailscale + SSH 是最稳的组合</strong>，延迟最低、占用最少。
+        需要图形界面时再叠一层远程桌面工具。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap wrap-narrow">
+      <h2>能做什么，不能做什么</h2>
+      <p>这一节说实话，避免你踩坑。</p>
+
+      <h3>✅ 完全能做的</h3>
+      <ul>
+        <li>写代码（任何编辑器都行，包括 Xcode）</li>
+        <li>命令行编译、构建、打包（这些在远端执行，延迟无关）</li>
+        <li>Git 操作、CI 触发</li>
+        <li>iOS App 签名、上架 App Store</li>
+        <li>跑 Claude Code 长任务</li>
+        <li>看模拟器运行结果、点按操作</li>
+      </ul>
+
+      <h3>⚠️ 能做但体验打折的</h3>
+      <ul>
+        <li><strong>模拟器交互调试</strong>——200ms 延迟下拖拽、多点触控会卡顿</li>
+        <li><strong>Interface Builder 拖控件</strong>——精度受影响</li>
+        <li><strong>滚动长文档或网页</strong>——有明显拖影</li>
+      </ul>
+
+      <h3>❌ 不适合的</h3>
+      <ul>
+        <li>视频剪辑、3D 渲染这类需要实时预览的工作</li>
+        <li>在线会议（摄像头 + 麦克风链路太长）</li>
+        <li>需要精确时间感的操作（音频编辑、游戏）</li>
+        <li>把远程 Mac 当主力机做全天图形界面工作</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap-narrow">
+      <h2>配置步骤（以 RustDesk + Tailscale 为例）</h2>
+
+      <h3>第一步：在 Mac 上允许远程访问</h3>
+      <p>
+        系统设置 → 通用 → 共享 → 打开「屏幕共享」和「远程登录」。
+      </p>
+      <p class="note">
+        「远程登录」就是 SSH 服务。打开后你才能用命令行连。
+      </p>
+
+      <h3>第二步：装 Tailscale 组虚拟内网</h3>
+      <p>Mac 和 Windows 两端都装 Tailscale，登录同一账号：</p>
+      <pre><code># macOS
+brew install --cask tailscale
+
+# Windows
+winget install Tailscale.Tailscale</code></pre>
+      <p>装好后在 Tailscale 后台能看到两台设备的 100.x.x.x 内网 IP。</p>
+
+      <h3>第三步：Windows 端 SSH 连过去</h3>
+      <pre><code>ssh 用户名@100.x.x.x</code></pre>
+      <p>
+        建议配 SSH 免密和连接复用，减少握手开销：
+      </p>
+      <pre><code># ~/.ssh/config
+Host mac
+    HostName 100.x.x.x
+    User 用户名
+    ControlMaster auto
+    ControlPath ~/.ssh/cm-%r@%h:%p
+    ControlPersist 10m
+    ServerAliveInterval 30</code></pre>
+
+      <h3>第四步：需要图形界面时开远程桌面</h3>
+      <p>
+        装 RustDesk（或 ToDesk），在 Mac 上打开，记下设备 ID 和密码，
+        Windows 端输入即可连。
+      </p>
+
+      <h3>第五步：长任务用 tmux 保活</h3>
+      <pre><code>tmux new -s work
+# 在里面跑任务
+# Ctrl+B 然后按 D 断开，任务继续跑
+# 下次 tmux attach -t work</code></pre>
+      <p class="note">
+        这一步比什么都重要。不用 tmux 直接跑，SSH 一断进程就死了。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap wrap-narrow">
+      <h2>延迟对体验的实际影响</h2>
+      <p>不同位置的机器，体验差别很大：</p>
+      <table class="cycle-table">
+        <thead>
+          <tr><th>机器位置</th><th>RTT</th><th>命令行</th><th>图形界面</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>中国大陆境内</th><td>20–50ms</td><td>无感</td><td>接近本地</td></tr>
+          <tr><th>香港 / 新加坡</th><td>40–80ms</td><td>无感</td><td>轻微延迟</td></tr>
+          <tr><th>日本 / 韩国</th><td>60–120ms</td><td>无感</td><td>可感知</td></tr>
+          <tr><th>马来西亚</th><td>180–220ms</td><td>无感</td><td>明显延迟</td></tr>
+          <tr><th>欧美</th><td>200–350ms</td><td>轻微</td><td>卡顿明显</td></tr>
+        </tbody>
+      </table>
+      <p>
+        <strong>判断标准</strong>：如果你 90% 的时间在终端里，200ms 完全没影响；
+        如果你 90% 的时间在图形界面，选 80ms 以内的机器。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap-narrow">
+      <h2>MacBuild 的方案</h2>
+      <p>
+        我们出租马来西亚的专属 Mac mini M4，Windows 用户可以远程连上去用。
+      </p>
+      <ul>
+        <li>Mac mini M4 / 16GB / 256GB，整机独享，不是虚拟机</li>
+        <li>Claude Code、Xcode、Homebrew、Fastlane 已预装</li>
+        <li>交付时提供连接信息，RustDesk / ToDesk / UU 远程 / Tailscale + SSH 都支持</li>
+        <li>仅租 Mac <strong>¥799/月起</strong>，包月不限时</li>
+      </ul>
+      <p class="note">
+        <strong>说实话</strong>：马来西亚到国内约 180–220ms，图形界面有明显延迟感，命令行无感。
+        如果你的工作以 Xcode 图形调试为主，这个延迟会影响效率——建议考虑更近的机器，或者直接用本地 Mac。
+        如果你的工作以写代码 + 命令行构建为主，只在需要时看模拟器，这个方案完全够用。
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-lg" href="/#order">告诉我你的用法，我帮你判断 <span aria-hidden="true">→</span></a>
+        <a class="btn btn-text btn-lg" href="/#fleet">看看机器</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="faq">
+    <div class="wrap wrap-narrow">
+      <h2>常见问题</h2>
+
+      <details>
+        <summary>Windows 能用自带的远程桌面连 Mac 吗？<i aria-hidden="true"></i></summary>
+        <p>不能。微软的远程桌面（RDP）需要目标机器运行 RDP 服务端，而 macOS 没有内置 RDP 服务端。Mac 原生支持的是 VNC 协议（系统设置里的「屏幕共享」）。所以要么用 VNC 客户端，要么用 RustDesk、ToDesk、UU 远程这类第三方工具。</p>
+      </details>
+
+      <details>
+        <summary>在 Windows 上用远程 Mac 能跑 Xcode 吗？<i aria-hidden="true"></i></summary>
+        <p>能。Xcode 是在远程 Mac 上运行的，你的 Windows 只是显示画面和发送键鼠输入。编译、签名、打包、上架 App Store 全都能做。但 iOS 模拟器的实时交互在 200ms 延迟下会卡顿，适合看结果和点按，不适合做交互调试。</p>
+      </details>
+
+      <details>
+        <summary>延迟大概多少？<i aria-hidden="true"></i></summary>
+        <p>中国大陆境内 20–50ms，香港/新加坡 40–80ms，日本/韩国 60–120ms，马来西亚 180–220ms，欧美 200–350ms。SSH 和编译对延迟不敏感；拖窗口、滚网页、操作模拟器会明显感觉到。</p>
+      </details>
+
+      <details>
+        <summary>有声音和麦克风吗？<i aria-hidden="true"></i></summary>
+        <p>VNC 协议不带音频，所以系统自带的屏幕共享只有画面，没有声音，剪贴板同步也不可靠。ToDesk、UU 远程、RustDesk 支持音频和剪贴板。需要完整多媒体支持（音频 + 麦克风 + 剪贴板），NoMachine 是社区口碑比较好的选择。</p>
+      </details>
+
+      <details>
+        <summary>能传文件吗？<i aria-hidden="true"></i></summary>
+        <p>能。图形工具通常内置文件传输；命令行可以用 scp 或 rsync；也可以挂同步盘。如果只是传代码，直接用 Git 推拉最方便。</p>
+      </details>
+
+      <details>
+        <summary>用 Windows 连远程 Mac 做 iOS 开发靠谱吗？<i aria-hidden="true"></i></summary>
+        <p>取决于工作方式。以写代码 + 命令行构建为主、只在需要时看模拟器，完全靠谱。重度依赖 Xcode 图形调试器、Interface Builder、Instruments 的话，延迟会明显影响效率，建议机器放近一点或直接用本地 Mac。</p>
+      </details>
+
+      <details>
+        <summary>怎么联系你们？<i aria-hidden="true"></i></summary>
+        <p>微信 <b>Mondbinch</b>，或 Telegram <a href="https://t.me/Mondbinch">@Mondbinch</a>。也可以直接<a href="/#order">在线提交申请</a>。</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap-narrow">
+      <h2>相关页面</h2>
+      <ul>
+        <li><a href="/">MacBuild 首页 — 马来西亚专属 Mac 托管</a></li>
+        <li><a href="/remote-mac-rental">远程 Mac 租赁：三种形态与价格</a></li>
+        <li><a href="/claude-code-china">Claude Code 国内怎么用</a></li>
+        <li><a href="/claude-max-5x-vs-20x">Claude Max 5x 还是 20x</a></li>
+        <li><a href="/claude-code-mac">Claude Code 用 Mac 租赁</a></li>
+        <li><a href="/mac-rental-guide">海外 Mac 租用怎么选</a></li>
+        <li><a href="/#fleet">机位与库存</a></li>
+        <li><a href="/terms">服务条款</a></li>
+      </ul>
+      <p class="note">
+        Claude 是 Anthropic 的商标。MacBuild 是独立服务商，与 Anthropic 无关联，亦未获其背书。
+        文中协议与工具说明基于公开信息，具体表现取决于版本与网络环境。
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-contact">
+      微信 <a href="#order" data-open-contact><b>Mondbinch</b></a> ·
+      Telegram <a href="https://t.me/Mondbinch">@Mondbinch</a>
+    </p>
+    <p class="footer-bottom">© 2026 MacBuild · 设备位于马来西亚 · 价格以人民币（CNY）计价</p>
+    <p class="footer-legal">Claude 是 Anthropic 的商标。MacBuild 是独立服务商，与 Anthropic 无关联，亦未获其背书。</p>
+  </div>
+</footer>
+
+<script>
+const toggle = document.querySelector('.nav-toggle');
+const nav = document.getElementById('nav');
+if (toggle) {
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+}
+</script>
+
+
+<!-- ==================== 咨询抽屉 ==================== -->
+<a class="side-contact" href="#order" data-open-contact aria-label="加微信咨询">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.4 9.4 0 0 1-3.8-.8L3 21l1.9-4.6A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>
+  <span>咨询</span>
+</a>
+
+<div class="drawer-overlay" id="drawer-overlay" hidden></div>
+
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+  <div class="drawer-head">
+    <h2 id="drawer-title">咨询与预约</h2>
+    <button type="button" class="drawer-close" data-close aria-label="关闭">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+  <div class="drawer-body">
+    <p class="drawer-lead" id="drawer-context">直接加微信最快。告诉我们用途和期望期限，我们会回你哪台能最快开通。</p>
+
+    <div class="d-card">
+      <p class="d-label">微信（最快）</p>
+      <p class="d-id" id="d-wechat">Mondbinch</p>
+      <button type="button" class="d-copy" data-copy="Mondbinch" data-copy-target="d-wechat">复制微信号</button>
+      <p class="d-tip" aria-live="polite"></p>
+    </div>
+
+    <div class="d-row">
+      <span>Telegram</span>
+      <a href="https://t.me/Mondbinch">@Mondbinch</a>
+    </div>
+
+    <p class="drawer-note">
+      加好友时备注「Mac mini」。价格、开票和开通时间都在微信里确认 —— 本站不走在线支付。
+    </p>
+  </div>
+</aside>
+
+<script>
+/* 咨询抽屉：微信复制 + 机位编号透传 + 侧边浮标 */
+(function () {
+  var drawer = document.getElementById('drawer');
+  var overlay = document.getElementById('drawer-overlay');
+  var tab = document.querySelector('.side-contact');
+  if (!drawer || !overlay) return;
+
+  var ctx = document.getElementById('drawer-context');
+  var ctxDefault = ctx ? ctx.textContent : '';
+  var lastFocus = null;
+
+  function open(code) {
+    lastFocus = document.activeElement;
+    if (ctx) {
+      ctx.textContent = code
+        ? '你正在预约 ' + code + '。加微信后把编号发给我们，这台先为你留 24 小时。'
+        : ctxDefault;
+    }
+    drawer.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    overlay.hidden = false;
+    requestAnimationFrame(function () { overlay.classList.add('show'); });
+    document.body.classList.add('locked');
+    var b = drawer.querySelector('[data-close]');
+    if (b) b.focus();
+  }
+
+  function close() {
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    overlay.classList.remove('show');
+    setTimeout(function () { overlay.hidden = true; }, 240);
+    document.body.classList.remove('locked');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  /* 入口：带 data-open-contact 的元素 */
+  document.querySelectorAll('[data-open-contact]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      open(el.getAttribute('data-book') || '');
+    });
+  });
+
+  /* 机位卡片：点「预约这台」带上编号 */
+  document.querySelectorAll('.m-rent').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      var card = a.closest('.machine');
+      open(card ? card.getAttribute('data-code') || '' : '');
+    });
+  });
+
+  document.querySelectorAll('[data-close]').forEach(function (el) {
+    el.addEventListener('click', function (e) { e.preventDefault(); close(); });
+  });
+  overlay.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && drawer.classList.contains('open')) close();
+  });
+
+  /* 复制微信号 */
+  document.querySelectorAll('.d-copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var text = b.getAttribute('data-copy');
+      var tip = b.parentNode.querySelector('.d-tip');
+      function say(m) { if (tip) tip.textContent = m; }
+      function fallback() {
+        var t = document.getElementById(b.getAttribute('data-copy-target'));
+        var ok = false;
+        if (t) {
+          var r = document.createRange();
+          r.selectNodeContents(t);
+          var s = getSelection();
+          s.removeAllRanges();
+          s.addRange(r);
+          try { ok = document.execCommand('copy'); } catch (err) {}
+        }
+        say(ok ? '已复制，去微信粘贴' : '请手动选中上面的微信号');
+      }
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function () { say('已复制，去微信粘贴'); }, fallback);
+      } else {
+        fallback();
+      }
+    });
+  });
+
+  /* 侧边浮标：滚过首屏才出现 */
+  var hero = document.querySelector('.hero');
+  function onScroll() {
+    if (!tab) return;
+    var past = hero ? window.scrollY > hero.offsetHeight * 0.8 : window.scrollY > 400;
+    tab.classList.toggle('show', past);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+</script>
+
+</body>
+</html>
