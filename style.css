@@ -1710,4 +1710,16 @@ body.locked { overflow: hidden; }
 @media (prefers-reduced-motion: reduce) {
   .drawer, .drawer-overlay, .side-contact { transition: none; }
 }
+/* 页脚联系方式 */
+.footer-contact {
+  margin: 0 0 10px;
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+.footer-contact a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+}
+.footer-contact a:hover { text-decoration: underline; }
 
