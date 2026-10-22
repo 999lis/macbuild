@@ -43,7 +43,7 @@
 <meta name="theme-color" content="#faf7f0">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231e5a48'/><rect x='24' y='34' width='52' height='32' rx='4' fill='none' stroke='%23faf7f0' stroke-width='4'/><circle cx='50' cy='50' r='5' fill='%23faf7f0'/></svg>">
 <link rel="apple-touch-icon" href="og.png">
-<link rel="stylesheet" href="style.css?v=202610221137">
+<link rel="stylesheet" href="style.css?v=202610221213">
 </head>
 <body>
 
@@ -689,6 +689,16 @@
           <span class="promo-sub">福利按台计、每台只能用一次：这台机器用掉之后，再续租按 ¥799 / 月。</span><br>
           一次性付季付 / 半年 / 年付的，<strong>整个周期按 ¥699 为基数打折</strong>，不受「用一次」限制。
         </p>
+
+        <div class="cycle-bar">
+          <span class="cycle-bar-label">付款周期</span>
+          <div class="cycle-switch" role="group" aria-label="选择付款周期">
+            <button type="button" class="cycle-btn on" data-cycle="m" aria-pressed="true">月付</button>
+            <button type="button" class="cycle-btn" data-cycle="q" aria-pressed="false">季付<em>9 折</em></button>
+            <button type="button" class="cycle-btn" data-cycle="h" aria-pressed="false">半年<em>8.5 折</em></button>
+            <button type="button" class="cycle-btn" data-cycle="y" aria-pressed="false">年付<em>8 折</em></button>
+          </div>
+        </div>
       </div>
 
       <div class="line-compare">
@@ -708,15 +718,14 @@
           <div class="tier-lines">
             <div class="tier-line tier-line-dedicated">
               <span class="line-tag">独立线路</span>
-              <span class="line-price"><del>¥999</del> <b>首月 ¥899</b></span>
+              <span class="line-price" data-price="dedicated"><del>¥999</del> <b>首月 ¥899</b></span>
             </div>
             <div class="tier-line">
               <span class="line-tag">共享线路</span>
-              <span class="line-price"><del>¥799</del> <b>首月 ¥699</b></span>
+              <span class="line-price" data-price="shared"><del>¥799</del> <b>首月 ¥699</b></span>
             </div>
           </div>
-          <p class="tier-desc">已有 Claude 订阅，只租机器和线路。限前 10 台享首月特价，续租按原价。</p>
-          <ul class="check-list">
+          <p class="tier-desc" data-cycle-desc>已有 Claude 订阅，只租机器和线路。限前 10 台享首月特价，续租按原价。</p>          <ul class="check-list">
             <li>专属 Mac mini M4（16G / 256G）</li>
             <li>德国本地线路</li>
             <li>Claude 桌面端 + Claude Code 预装</li>
@@ -739,6 +748,7 @@
             </div>
           </div>
           <p class="tier-desc">日常用 Claude Code 写代码。</p>
+          <p class="cycle-note" hidden>含账号 / 托管套餐按月计费，长周期可另议</p>
           <ul class="check-list">
             <li>上面全部内容</li>
             <li><b>Claude Max 5x</b>（约为 Pro 的 5 倍额度）</li>
@@ -761,6 +771,7 @@
             </div>
           </div>
           <p class="tier-desc">每天长时间跑 Claude Code。</p>
+          <p class="cycle-note" hidden>含账号 / 托管套餐按月计费，长周期可另议</p>
           <ul class="check-list">
             <li>上面全部内容</li>
             <li><b>Claude Max 20x</b>（约为 Pro 的 20 倍额度）</li>
@@ -779,6 +790,7 @@
             </div>
           </div>
           <p class="tier-desc">你已经有 Mac？放到我们的机房，不用再买一台。</p>
+          <p class="cycle-note" hidden>托管按台按月计费，长周期可另议</p>
           <ul class="check-list">
             <li>机位 + 机架固定</li>
             <li>电力（含 UPS）+ 网络接入</li>
@@ -1471,6 +1483,80 @@ document.querySelectorAll('.faq details').forEach(d => {
     }, { rootMargin: '0px 0px -6% 0px', threshold: 0.06 });
     items.forEach(function (el) { io.observe(el); });
   }
+})();
+</script>
+
+<script>
+/* 付款周期切换：月付 / 季付 / 半年 / 年付 */
+(function () {
+  var bar = document.querySelector('.cycle-switch');
+  if (!bar) return;
+
+  /* 价格常量：只改这里 */
+  var P = {
+    base: 699,          // 前 10 台特价基数（每月）
+    lineDelta: 200,     // 独立线路每月加价
+    origShared: 799,    // 共享原价
+    origDedicated: 999, // 独立原价
+    months: { m: 1, q: 3, h: 6, y: 12 },
+    rate:   { m: 1, q: 0.9, h: 0.85, y: 0.8 },
+    unit:   { m: '月', q: '季', h: '半年', y: '年' },
+    payTxt: { m: '', q: '一季', h: '半年', y: '一年' }
+  };
+
+  var elShared = document.querySelector('[data-price="shared"]');
+  var elDedicated = document.querySelector('[data-price="dedicated"]');
+  var elDesc = document.querySelector('[data-cycle-desc]');
+  var notes = document.querySelectorAll('.cycle-note');
+
+  function money(n) { return '¥' + n.toLocaleString('en-US'); }
+
+  function render(cycle) {
+    var m = P.months[cycle];
+    var rate = P.rate[cycle];
+
+    if (cycle === 'm') {
+      /* 月付：显示首月特价 + 划线原价 */
+      if (elDedicated) elDedicated.innerHTML =
+        '<del>' + money(P.origDedicated) + '</del> <b>首月 ' + money(P.base + P.lineDelta) + '</b>';
+      if (elShared) elShared.innerHTML =
+        '<del>' + money(P.origShared) + '</del> <b>首月 ' + money(P.base) + '</b>';
+      if (elDesc) elDesc.textContent =
+        '已有 Claude 订阅，只租机器和线路。限前 10 台享首月特价，续租按原价。';
+    } else {
+      var totalShared = Math.round(P.base * m * rate);
+      var totalDedicated = Math.round((P.base + P.lineDelta) * m * rate);
+      var perShared = Math.round(totalShared / m);
+      var perDedicated = Math.round(totalDedicated / m);
+
+      if (elDedicated) elDedicated.innerHTML =
+        '<b>' + money(totalDedicated) + '</b> / ' + P.unit[cycle] +
+        ' <small>等效 ' + money(perDedicated) + ' / 月</small>';
+      if (elShared) elShared.innerHTML =
+        '<b>' + money(totalShared) + '</b> / ' + P.unit[cycle] +
+        ' <small>等效 ' + money(perShared) + ' / 月</small>';
+      if (elDesc) elDesc.textContent =
+        '一次性付清' + P.payTxt[cycle] + '，整个周期锁定 ' + money(P.base) + ' 基数，平均 ' +
+        money(perShared) + ' / 月起。独立线路每月加 ' + money(P.lineDelta) + '，折扣同样适用。';
+    }
+
+    /* 含账号 / 托管套餐不参与周期折扣，提示按月计费 */
+    var showNote = cycle !== 'm';
+    Array.prototype.forEach.call(notes, function (n) { n.hidden = !showNote; });
+  }
+
+  bar.addEventListener('click', function (e) {
+    var btn = e.target.closest('.cycle-btn');
+    if (!btn) return;
+    Array.prototype.forEach.call(bar.querySelectorAll('.cycle-btn'), function (b) {
+      var on = b === btn;
+      b.classList.toggle('on', on);
+      b.setAttribute('aria-pressed', String(on));
+    });
+    render(btn.getAttribute('data-cycle'));
+  });
+
+  render('m');
 })();
 </script>
 
