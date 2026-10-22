@@ -251,6 +251,100 @@
 
 <section class="section section-alt"><div class="wrap wrap-narrow"><h2>长任务要放进持久会话</h2><p>SSH 连接断开时，任务是否继续取决于进程的运行方式。让机器保持开机，并不自动保证所有终端任务在断线后继续运行。可用 tmux 等持久终端会话管理任务，重新连接后回到会话查看进度。</p><ol><li>登录交付的 Mac，确认项目依赖、目录与账号均已准备好。</li><li>在持久会话内启动任务，避免依赖本地窗口持续连接。</li><li>保存日志与代码变更，重要数据另行备份。</li></ol><p>图形界面与命令行如何配合，见<a href="/windows-remote-mac">Windows 连接 Mac 指南</a>。</p></div></section>
 
+
+<section class="section section-alt"><div class="wrap wrap-narrow"><h2>一台 Mac mini 能同时跑几个 Claude Code</h2>
+<p>这是被问得最多的问题之一，答案是<strong>取决于你的任务类型</strong>，不是一个固定数字。</p>
+
+<h3>技术上：可以开多个会话</h3>
+<p>Claude Code 本身不限制同时运行的实例数。你可以在同一个终端里开多个会话、用不同目录、或者用 tmux 分屏。机器是整机独享的，没有别人抢你的 CPU 和内存。</p>
+
+<h3>实际上：受三个因素限制</h3>
+<table class="cycle-table">
+<thead><tr><th scope="col">限制</th><th scope="col">影响</th></tr></thead>
+<tbody>
+<tr><th scope="row">账号额度（不是机器性能）</th><td><strong>最主要的限制。</strong>多个会话同时跑，额度消耗成倍增加，撞限额更快</td></tr>
+<tr><th scope="row">统一内存（16GB）</th><td>每个 Claude Code 实例本身很轻，但同时跑 Xcode 编译、模拟器、浏览器会自动吃满</td></tr>
+<tr><th scope="row">文件冲突</th><td>多个会话改同一个仓库容易互相覆盖。要么分目录，要么用 Git 分支隔离</td></tr>
+</tbody>
+</table>
+
+<h3>实操建议</h3>
+<ul>
+<li><b>两到三个会话是舒适区</b>——一个跑重构、一个查问题、一个做零散修改，额度还可控</li>
+<li><b>五个以上要谨慎</b>——不是机器扛不住，是额度会在你反应过来之前用完</li>
+<li><b>重任务不要并行</b>——两个 Opus 长会话同时跑，半小时就能吃掉一天的额度</li>
+</ul>
+<p class="note">如果你的场景确实需要同时跑很多个，说明用量已经超出订阅制的适用范围，应该考虑 API 按量计费。</p>
+</div></section>
+
+<section class="section"><div class="wrap wrap-narrow"><h2>上手要做的四件事</h2>
+<p>收到机器后，按这个顺序做，能避免大部分新手问题。全部加起来大约 20 分钟。</p>
+
+<h3>① 先测连接，别急着写代码</h3>
+<p>用 SSH 连上去，跑 <code>top</code> 看负载、<code>df -h</code> 看磁盘、<code>sw_vers</code> 确认系统版本。确认这台机器是干净的、可用的，再开始配置。</p>
+
+<h3>② 装 tmux，并养成习惯</h3>
+<p><strong>这是最重要的一步。</strong> 不加 tmux 直接跑 Claude Code，SSH 一断进程就收到 SIGHUP 被杀，跑到一半的重构直接丢。</p>
+<pre><code>tmux new -s work      # 新建会话
+# 在里面跑 claude
+# 断线后用 tmux attach -t work 恢复</code></pre>
+<p>这一条几乎零成本，但大多数人第一次都栽在这里。</p>
+
+<h3>③ 配好 Git 远端</h3>
+<p>机器上的代码必须有远端备份。不要只靠本机文件——机器出问题、换机器、误删目录，都会让你回到原点。第一次 <code>git clone</code> 之后，养成每天 push 的习惯。</p>
+
+<h3>④ 确认 Claude Code 能正常调用</h3>
+<p>跑一个最小的真实任务（比如「给这个函数加一个单元测试」），确认模型能响应、工具能调用、文件能写入。别等到赶工时才发现环境有问题。</p>
+</div></section>
+
+<section class="section section-alt"><div class="wrap wrap-narrow"><h2>和本地跑 Claude Code 的真实差别</h2>
+<p>不吹不黑，逐项对比。</p>
+
+<table class="cycle-table">
+<thead><tr><th scope="col">场景</th><th scope="col">本地</th><th scope="col">远程 Mac</th></tr></thead>
+<tbody>
+<tr><th scope="row">短任务（改一个函数）</th><td>更快，无需切换</td><td>要连上去，多一步操作</td></tr>
+<tr><th scope="row">长任务（重构、批量处理）</th><td><strong>合盖就断</strong>，需要用 tmux 或保持开机</td><td><strong>优势明显</strong>，断线不影响，可以关电脑回家</td></tr>
+<tr><th scope="row">电脑同时做别的事</th><td>抢 CPU，风扇狂转，发热</td><td><strong>完全隔离</strong>，本地只负责显示</td></tr>
+<tr><th scope="row">环境干净度</th><td>容易和日常软件冲突</td><td><strong>独占环境</strong>，随意装依赖不怕弄乱主力机</td></tr>
+<tr><th scope="row">图形界面操作</th><td>流畅</td><td>有延迟感，重度图形工作不适合</td></tr>
+<tr><th scope="row">首次配置</th><td>已就绪</td><td>要花 20 分钟按上面的清单配一遍</td></tr>
+</tbody>
+</table>
+
+<p><strong>一句话总结</strong>：短任务本地更顺手，长任务远程碾压。如果你经常跑「让它自己改半小时」这种任务，远程的价值立刻体现；如果你只是偶尔问几句，本地就够。</p>
+</div></section>
+
+<section class="section"><div class="wrap wrap-narrow"><h2>哪些人其实不需要</h2>
+<p>这一节是为了让你少花冤枉钱。如果你符合下面任意一条，先别买。</p>
+
+<ul>
+<li><b>你每天的用量不到一小时</b>——Pro 订阅 + 本地电脑就够了，远程机器解决的是「长任务中断」，你没有长任务</li>
+<li><b>你手边就有 Mac 且不常合盖</b>——自己的机器跑 tmux 效果一样，只是少了环境隔离</li>
+<li><b>你的工作以图形界面为主</b>——视频剪辑、UI 设计、频繁预览，远程延迟会让你难受</li>
+<li><b>你还没确认自己的 Claude 使用资格</b>——机器解决环境，不解决资格，别为用不上的订阅预付机器费</li>
+<li><b>你只是「想试试」</b>——先按月租一个月验证工作流，别直接上年付</li>
+</ul>
+
+<p>如果你符合其中两条以上，<a href="/remote-mac-rental">三种远程 Mac 形态的对比</a>可能更有帮助；或者直接<a href="/#order">告诉我们用途</a>，我们会说实话——包括劝你不要买的情况。</p>
+</div></section>
+
+<section class="section section-alt"><div class="wrap wrap-narrow"><h2>常见的工作流搭配</h2>
+<p>不同的人用法差别很大。下面是三种典型搭配，可以对照自己的情况。</p>
+
+<h3>① 本地写，远程跑</h3>
+<p>在本地编辑器写代码、看 diff，把「跑任务」这件事丢给远程机器。适合有自己熟悉的编辑器、不想换工作方式的人。</p>
+<p>做法：本地 Git 提交 → 远程 <code>git pull</code> → 远程跑 Claude Code → 结果 push 回本地。</p>
+
+<h3>② 全远程，本地只当终端</h3>
+<p>所有开发都在远程机器上完成，本地只开一个终端窗口。适合用 Vim / Neovim 或 VS Code Remote 的人。</p>
+<p>好处是环境完全一致，换电脑不用重配；坏处是断网就没法工作。</p>
+
+<h3>③ 远程跑长任务，本地做其他事</h3>
+<p>最典型的用法。挂一个长重构在远程，本地照常干别的活，隔一会儿连上去看进度。这是远程机器相对本地最大的优势。</p>
+<p>关键是要用 tmux——否则你连上去看进度的动作，本身就有断线风险。</p>
+</div></section>
+
   <!-- related-links -->
   <section class="section section-alt related-links">
     <div class="wrap wrap-narrow">
