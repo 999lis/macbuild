@@ -43,7 +43,7 @@
 <meta name="theme-color" content="#faf7f0">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231e5a48'/><rect x='24' y='34' width='52' height='32' rx='4' fill='none' stroke='%23faf7f0' stroke-width='4'/><circle cx='50' cy='50' r='5' fill='%23faf7f0'/></svg>">
 <link rel="apple-touch-icon" href="og.png">
-<link rel="stylesheet" href="style.css?v=202610221213">
+<link rel="stylesheet" href="style.css?v=202610221233">
 </head>
 <body>
 
@@ -740,11 +740,11 @@
           <div class="tier-lines">
             <div class="tier-line tier-line-dedicated">
               <span class="line-tag">独立线路</span>
-              <span class="line-price"><b>¥1,799</b> / 月</span>
+              <span class="line-price"><b>¥1,799</b><i>/ 月</i></span>
             </div>
             <div class="tier-line">
               <span class="line-tag">共享线路</span>
-              <span class="line-price"><b>¥1,599</b> / 月</span>
+              <span class="line-price"><b>¥1,599</b><i>/ 月</i></span>
             </div>
           </div>
           <p class="tier-desc">日常用 Claude Code 写代码。</p>
@@ -763,11 +763,11 @@
           <div class="tier-lines">
             <div class="tier-line tier-line-dedicated">
               <span class="line-tag">独立线路</span>
-              <span class="line-price"><b>¥3,000</b> / 月</span>
+              <span class="line-price"><b>¥3,000</b><i>/ 月</i></span>
             </div>
             <div class="tier-line">
               <span class="line-tag">共享线路</span>
-              <span class="line-price"><b>¥2,800</b> / 月</span>
+              <span class="line-price"><b>¥2,800</b><i>/ 月</i></span>
             </div>
           </div>
           <p class="tier-desc">每天长时间跑 Claude Code。</p>
@@ -786,7 +786,7 @@
           <div class="tier-lines">
             <div class="tier-line">
               <span class="line-tag">按台计费</span>
-              <span class="line-price"><b>¥300</b> / 月 / 台</span>
+              <span class="line-price"><b>¥300</b><i>/ 月 / 台</i></span>
             </div>
           </div>
           <p class="tier-desc">你已经有 Mac？放到我们的机房，不用再买一台。</p>
@@ -1516,13 +1516,15 @@ document.querySelectorAll('.faq details').forEach(d => {
     var rate = P.rate[cycle];
 
     if (cycle === 'm') {
-      /* 月付：显示首月特价 + 划线原价 */
+      /* 月付：原价划线在上，首月价在下，单位用「首月」与周期视图一致 */
       if (elDedicated) elDedicated.innerHTML =
-        '<del>' + money(P.origDedicated) + '</del> <b>首月 ' + money(P.base + P.lineDelta) + '</b>';
+        '<del>原价 ' + money(P.origDedicated) + '</del>' +
+        '<b>' + money(P.base + P.lineDelta) + '</b><i>/ 首月</i>';
       if (elShared) elShared.innerHTML =
-        '<del>' + money(P.origShared) + '</del> <b>首月 ' + money(P.base) + '</b>';
+        '<del>原价 ' + money(P.origShared) + '</del>' +
+        '<b>' + money(P.base) + '</b><i>/ 首月</i>';
       if (elDesc) elDesc.textContent =
-        '已有 Claude 订阅，只租机器和线路。限前 10 台享首月特价，续租按原价。';
+        '已有 Claude 订阅，只租机器和线路。首月按特价，之后续租按原价 ¥799 / 月（独立线路 ¥999 / 月）。';
     } else {
       var totalShared = Math.round(P.base * m * rate);
       var totalDedicated = Math.round((P.base + P.lineDelta) * m * rate);
@@ -1530,14 +1532,14 @@ document.querySelectorAll('.faq details').forEach(d => {
       var perDedicated = Math.round(totalDedicated / m);
 
       if (elDedicated) elDedicated.innerHTML =
-        '<b>' + money(totalDedicated) + '</b> / ' + P.unit[cycle] +
-        ' <small>等效 ' + money(perDedicated) + ' / 月</small>';
+        '<b>' + money(totalDedicated) + '</b><i>/ ' + P.unit[cycle] + '</i>' +
+        '<small>折合 ' + money(perDedicated) + ' / 月</small>';
       if (elShared) elShared.innerHTML =
-        '<b>' + money(totalShared) + '</b> / ' + P.unit[cycle] +
-        ' <small>等效 ' + money(perShared) + ' / 月</small>';
+        '<b>' + money(totalShared) + '</b><i>/ ' + P.unit[cycle] + '</i>' +
+        '<small>折合 ' + money(perShared) + ' / 月</small>';
       if (elDesc) elDesc.textContent =
-        '一次性付清' + P.payTxt[cycle] + '，整个周期锁定 ' + money(P.base) + ' 基数，平均 ' +
-        money(perShared) + ' / 月起。独立线路每月加 ' + money(P.lineDelta) + '，折扣同样适用。';
+        '一次性付清' + P.payTxt[cycle] + '，整个周期锁定 ' + money(P.base) + ' 基数。' +
+        '折合每月：共享 ' + money(perShared) + '，独立 ' + money(perDedicated) + '。';
     }
 
     /* 含账号 / 托管套餐不参与周期折扣，提示按月计费 */
