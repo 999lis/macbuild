@@ -64,8 +64,8 @@ async function handleOrder({ request, env }) {
 
   const name = get('称呼').slice(0, MAX.name);
   const contact = get('联系方式').slice(0, MAX.contact);
-  const qty = get('台数').slice(0, MAX.qty) || '未填';
-  const cycle = get('周期').slice(0, MAX.cycle) || '未填';
+  const qty = get('台数').slice(0, MAX.qty);          // 抽屉表单没有这个字段，可能为空
+  const cycle = get('周期').slice(0, MAX.cycle);
   const msg = get('留言').slice(0, MAX.msg) || '（无）';
   const source = get('来源').slice(0, 60) || 'macbuild-site';
 
@@ -73,17 +73,14 @@ async function handleOrder({ request, env }) {
     return fail('请填写称呼和联系方式。');
   }
 
-  // ---- 组装邮件 ----
-  const rows = [
-    ['称呼', name],
-    ['联系方式', contact],
-    ['需要几台', qty],
-    ['期望周期', cycle],
-    ['用途与期望时间', msg],
-    ['来源', source],
-  ];
+  // ---- 组装邮件（只列出有值的字段，抽屉表单字段较少） ----
+  const rows = [['称呼', name], ['联系方式', contact]];
+  if (qty) rows.push(['需要几台', qty]);
+  if (cycle) rows.push(['期望周期', cycle]);
+  rows.push(['用途与期望时间', msg], ['来源', source]);
 
-  const subject = `[MacBuild] 新申请 · ${name} · ${qty}`;
+  // 主题：没有台数时省略，避免出现「未填」
+  const subject = `[MacBuild] 新申请 · ${name}` + (qty ? ` · ${qty}` : '');
 
   const text = rows.map(([k, v]) => `${k}：${v}`).join('\n') +
     `\n\n提交时间：${new Date().toISOString()}`;
