@@ -78,7 +78,7 @@ for path in ROOT.glob('*.mjs'):
 for name,(text,page) in pages.items():
     bars=[a for tag,a in page.tags if tag=='nav' and a.get('class')=='mobile-contact']
     check(len(bars)==1,f'{name}: mobile contact bar missing or duplicated')
-    check('style.css?v=20261022service2' in text,f'{name}: old CSS version')
+    check('style.css?v=20261022ui1' not in text,f'{name}: pre-contact-bar CSS version remains')
 check('__' not in pages['terms.html'][0],'Unfilled terms placeholder')
 check('QuHn0AD6ER3RVNrzNeMpHS3IiZXI2J0_Fb33i250fK0' in pages['index.html'][0],'GSC ownership token missing')
 for filename in ['functions/api/order.js','_redirects','_routes.json','d457c96f62b51b4586bdcf2402b3140d.txt']:

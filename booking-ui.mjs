@@ -5,6 +5,12 @@ const form=$('orderForm');
 let inventory=null;
 let state=selectionFromSearch(location.search);
 let rental={plan:'rental',line:'shared',cycle:'m',machine:''};
+const entryHash=location.hash;
+let entryInteracted=false;
+const entryEvents=new AbortController();
+for(const type of ['wheel','touchstart','pointerdown','keydown']) {
+  window.addEventListener(type,()=>{entryInteracted=true;},{passive:true,signal:entryEvents.signal});
+}
 const setText=(id,text)=>{$(id).textContent=text;};
 
 function renderRental() {
@@ -107,3 +113,9 @@ try {
   inventory=parseInventory(await response.json());
 } catch {inventory=null;}
 renderInventory();syncForm();renderRental();
+// Loading the inventory inserts cards above the application form. Restore the
+// original anchor only if the visitor has not started interacting with the page.
+if(!entryInteracted && entryHash && location.hash===entryHash) {
+  document.getElementById(entryHash.slice(1))?.scrollIntoView({behavior:'instant',block:'start'});
+}
+entryEvents.abort();
