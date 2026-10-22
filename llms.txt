@@ -43,6 +43,8 @@ Mac + Max 套餐按月计费，包含机器、线路和对应官方订阅费，�
 
 ## 页面索引
 
+- [Claude 账号为什么会被封](https://getmacbuild.com/claude-account-banned)：常见封号原因（地区、付款、共享、滥用）、风险行为对照、申诉流程，以及服务方在账号问题上的责任边界
+
 - [方案、费用与申请](https://getmacbuild.com/)
 - [Claude Code 远程工作流](https://getmacbuild.com/claude-code-mac)
 - [地区与账号要求](https://getmacbuild.com/claude-code-china)

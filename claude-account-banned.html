@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="applicable-device" content="pc,mobile">
+<title>Claude 账号为什么会被封：原因、风险行为与申诉流程 - MacBuild</title>
+<meta name="description" content="Claude 账号被停用的常见原因：地区限制、付款方式异常、共享账号、自动化滥用。哪些行为风险最高、怎么降低、被封后如何申诉，以及我方在账号问题上的责任边界。">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://getmacbuild.com/claude-account-banned">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MacBuild">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="Claude 账号为什么会被封：原因、风险行为与申诉流程">
+<meta property="og:description" content="地区限制、付款异常、共享账号、自动化滥用——哪些行为风险最高，怎么降低，被封后怎么办。">
+<meta property="og:url" content="https://getmacbuild.com/claude-account-banned">
+<meta property="og:image" content="https://getmacbuild.com/og.png?v=20261022ui1">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Claude 账号为什么会被封">
+<meta name="twitter:description" content="常见封号原因、高风险行为、申诉流程与责任边界。">
+<meta name="twitter:image" content="https://getmacbuild.com/og.png?v=20261022ui1">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=202610221900">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://getmacbuild.com/claude-account-banned#page",
+      "url": "https://getmacbuild.com/claude-account-banned",
+      "name": "Claude 账号为什么会被封：原因、风险行为与申诉流程",
+      "description": "Claude 账号被停用的常见原因、高风险行为、降低风险的做法、申诉流程，以及服务方的责任边界。",
+      "inLanguage": "zh-CN",
+      "isPartOf": { "@id": "https://getmacbuild.com/#website" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://getmacbuild.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Claude 账号为什么会被封", "item": "https://getmacbuild.com/claude-account-banned" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "用海外机器登录 Claude，会被封号吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "机器位置本身不是封号的直接原因。Anthropic 判断的是账号的地区、身份、付款方式和实际使用行为是否一致。用德国的机器登录一个以你本人身份、正规渠道订阅的账号，本身不构成违规；但如果账号的注册地、付款方式与使用环境长期矛盾，被复核的概率就会上升。" }
+        },
+        {
+          "@type": "Question",
+          "name": "多人共用一个 Claude 账号会怎样？",
+          "acceptedAnswer": { "@type": "Answer", "text": "这是风险最高的行为之一。同一账号在短时间内从多个地理位置、多个设备指纹登录，会被判定为账号共享或转售，属于违反服务条款的行为，通常导致直接停用且不予退款。我们的套餐一律一人一号，不提供共享账号。" }
+        },
+        {
+          "@type": "Question",
+          "name": "账号被封了，付的钱能退吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "Anthropic 对因违反服务条款导致的停用通常不退款。我们能处理的是我们收的服务费部分：如果是我们协助开通的账号在交付后短期内因非使用原因被停用，我们会协助申诉；申诉失败则按未使用天数退还服务费。官方订阅费部分由 Anthropic 决定，我们无法代为追回。" }
+        },
+        {
+          "@type": "Question",
+          "name": "怎么申诉？",
+          "acceptedAnswer": { "@type": "Answer", "text": "通过 Anthropic 官方支持渠道提交申诉，说明账号用途、订阅方式和使用场景，不要重复提交或换号重开。反复注册新号规避封禁会被识别为规避行为，导致关联账号一起停用。申诉期间保持原账号不动是成功率最高的做法。" }
+        },
+        {
+          "@type": "Question",
+          "name": "你们能保证账号不被封吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "不能，任何服务方都不能。账号状态由 Anthropic 判定，取决于你的具体使用行为。我们能保证的是：账号以你本人身份、通过官方渠道订阅、只给你自己使用、来源与归属清晰。这能降低因账号来源不明导致的停用，但不能消除因使用行为导致的停用。" }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>MacBuild</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="主导航">
+      <a href="/#fleet">机位</a>
+      <a href="/#pricing">价格</a>
+      <a href="/#faq">常见问题</a>
+      <a href="/terms">服务条款</a>
+      <div class="nav-cta">
+        <a class="btn" href="/#order">立即订购</a>
+      </div>
+    </nav>
+    <button class="nav-toggle" type="button" aria-controls="nav" aria-expanded="false" aria-label="打开菜单"><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero hero-sub">
+    <div class="wrap">
+      <p class="eyebrow">账号风险</p>
+      <h1>Claude 账号为什么会被封</h1>
+      <p class="lead">
+        这一页不讲「绝对安全」。<strong>任何服务方都无法保证账号不被停用</strong>——
+        账号状态由 Anthropic 判定。但封号有规律，大多数情况可以提前避开。
+      </p>
+      <p class="note" style="margin-top:18px">
+        本文只讨论可公开查证的因素与我们自己的服务边界，不构成对 Anthropic 政策的解释。
+        以 <a href="https://www.anthropic.com/legal/consumer-terms" rel="nofollow noopener" target="_blank">Anthropic 官方条款</a> 为准。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap-narrow">
+      <h2>先说结论</h2>
+      <p>
+        <strong>会封，而且封了通常不退官方订阅费。</strong>
+      </p>
+      <p>
+        这不是危言耸听。Anthropic 对违反使用政策的行为执行停用，条款里写得清楚。
+        任何告诉你「用我们的机器绝对不会被封」的服务方，要么不懂，要么在骗你。
+      </p>
+      <p>
+        但「会封」不等于「随机封」。实际发生的停用绝大多数能归到下面几类原因，
+        其中<strong>大部分是使用者自己可以控制的</strong>。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap wrap-narrow">
+      <h2>四类常见原因</h2>
+
+      <h3>01　地区与主体不一致</h3>
+      <p>
+        Anthropic 只在部分国家和地区提供服务。如果你的账号注册信息、付款方式、
+        常用登录环境长期指向一个不在服务范围内的地区，被复核的概率会上升。
+      </p>
+      <p>
+        <strong>注意</strong>：机器放在德国不等于账号自动合规。设备位置、
+        账号身份、付款方式三者一致才是最稳的组合。这也是我们做德国机器的原因之一——
+        它是一个在服务范围内的地区，不是一个用来「绕过」的跳板。
+      </p>
+
+      <h3>02　付款方式异常</h3>
+      <p>
+        虚拟卡、来路不明的代付、频繁更换付款方式、账单地址与卡归属国不符——
+        这些在支付风控层面就会被打标。账号因此进入人工复核，复核期间表现为「额度异常」或「无法使用」。
+      </p>
+
+      <h3>03　账号共享与转售</h3>
+      <p>
+        <strong>这是风险最高的一类。</strong>同一账号短时间内从多个地理位置、
+        多个设备指纹登录，会被判定为账号共享或转售，属于明确违反服务条款的行为，
+        通常直接停用，且不退款。
+      </p>
+      <p>
+        所以我们不做共享账号。一台机器一个账号，账号归属你自己。
+        这不是营销话术——共享账号被封是必然而不是概率。
+      </p>
+
+      <h3>04　自动化与滥用</h3>
+      <p>
+        高频请求、绕过速率限制、用脚本批量注册、把账号当 API 中转卖给别人使用。
+        这些行为在 Anthropic 的用量监控里非常显眼。
+      </p>
+      <p>
+        <strong>需要区分</strong>：正常使用 Claude Code 跑长任务是设计内行为，不算滥用。
+        但把订阅账号包装成 API 对外提供服务、或者用多个账号轮换规避限额，就属于滥用。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap-narrow">
+      <h2>风险行为对照表</h2>
+      <table class="cycle-table">
+        <thead>
+          <tr><th>行为</th><th>风险</th><th>说明</th></tr>
+        </thead>
+        <tbody>
+          <tr><th>一人一号，本人身份订阅</th><td><strong>低</strong></td><td>最稳的组合。账号、付款、使用三者一致</td></tr>
+          <tr><th>用境外机器登录自己的账号</th><td><strong>低</strong></td><td>机器位置本身不是违规，前提是账号本身合规</td></tr>
+          <tr><th>Claude Code 跑长任务</th><td><strong>低</strong></td><td>设计内用法。撞限额是额度问题，不是违规</td></tr>
+          <tr><th>频繁切换登录地区</th><td>中</td><td>会提高复核概率，但不必然停用</td></tr>
+          <tr><th>用虚拟卡 / 代付订阅</th><td>中高</td><td>支付层风控打标，可能进入人工复核</td></tr>
+          <tr><th>多人共用一个账号</th><td><strong>高</strong></td><td>明确违规，通常直接停用且不退款</td></tr>
+          <tr><th>把账号当 API 转卖</th><td><strong>高</strong></td><td>违反条款，且易被用量特征识别</td></tr>
+          <tr><th>被封后换号重开规避</th><td><strong>极高</strong></td><td>会被关联识别，导致新号一起停用</td></tr>
+        </tbody>
+      </table>
+      <p class="note">
+        这张表是基于公开条款与常见案例的归纳，不是 Anthropic 的官方判定标准。
+        实际判定以 Anthropic 为准。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap wrap-narrow">
+      <h2>怎么降低风险</h2>
+      <ol>
+        <li>
+          <strong>用本人身份订阅。</strong>账号信息、付款方式、使用环境三者尽量一致。
+          不要用别人的身份、不要买来路不明的账号。
+        </li>
+        <li>
+          <strong>一人一号，不共享。</strong>这是最有效的一条。
+          共享带来的成本节省，远小于被封后重开的代价。
+        </li>
+        <li>
+          <strong>付款方式保持稳定。</strong>选定一种正规付款方式后不要频繁更换。
+          虚拟卡、代付能省事，但也更容易被风控打标。
+        </li>
+        <li>
+          <strong>不要规避限额。</strong>撞限额就等窗口刷新，或者升档。
+          用多账号轮换、脚本绕过限制，是明确的违规信号。
+        </li>
+        <li>
+          <strong>被封后不要立刻重开。</strong>先申诉。换号重开会被关联识别，
+          代价比等申诉结果大得多。
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap-narrow">
+      <h2>被封了怎么办</h2>
+      <ol>
+        <li>
+          <strong>确认状态。</strong>先分清是「额度用尽」「请求被限流」还是「账号被停用」。
+          前两种是正常限额，不是封号，等窗口刷新就好。
+        </li>
+        <li>
+          <strong>走官方申诉。</strong>通过 Anthropic 的支持渠道提交，说明账号用途、
+          订阅方式、使用场景。态度诚恳、信息完整，比反复催促有效。
+        </li>
+        <li>
+          <strong>不要重复提交。</strong>多次提交会被视为骚扰，反而降低处理优先级。
+        </li>
+        <li>
+          <strong>不要换号规避。</strong>这是最糟的选择。关联识别后新号也会停用，
+          而且影响后续申诉的可信度。
+        </li>
+        <li>
+          <strong>如果是我们协助开通的，联系我们。</strong>我们会协助整理申诉材料。
+          具体责任划分见下一节。
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap wrap-narrow">
+      <h2>我们承担什么，不承担什么</h2>
+      <p>这一节写清楚，避免事后扯皮。</p>
+
+      <h3>我们负责的</h3>
+      <ul class="check-list">
+        <li>账号通过<strong>官方渠道</strong>订阅，不是来路不明的号</li>
+        <li>账号<strong>以你本人身份</strong>开通，归属清晰</li>
+        <li>账号<strong>只给你自己用</strong>，我们不做共享、不做转售</li>
+        <li>交付时已开通好，连上即用</li>
+        <li>因<strong>非使用原因</strong>（如我们的开通流程问题）导致的停用，协助申诉；
+            申诉失败按未使用天数退还<strong>我们收取的服务费</strong></li>
+      </ul>
+
+      <h3>我们不负责的</h3>
+      <ul class="check-list">
+        <li><strong>账号是否会被停用</strong>——由 Anthropic 判定，取决于你的使用行为</li>
+        <li><strong>官方订阅费</strong>——由 Anthropic 决定是否退还，我们无法代为追回</li>
+        <li>因<strong>违反服务条款</strong>（共享、转售、滥用、规避限额）导致的停用</li>
+        <li>账号停用造成的<strong>业务损失</strong>（项目延期、数据丢失等）</li>
+        <li>你自行修改账号信息、更换付款方式后的状态变化</li>
+      </ul>
+
+      <p class="note">
+        完整条款见 <a href="/terms">服务条款</a>。
+        如果你需要的是一份「保证不封号」的承诺，我们给不了——
+        市场上任何给出这个承诺的服务方，承诺本身都不成立。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap-narrow">
+      <h2>一个更根本的问题</h2>
+      <p>
+        如果你的业务<strong>不能承受账号中断</strong>，那么订阅制本身就是错的选择——
+        不管从谁那里买。
+      </p>
+      <p>
+        订阅账号适合「个人开发、有中断可接受、成本敏感」的场景。
+        如果你的场景是「生产环境、零容忍、必须可预期」，
+        应该考虑 <strong>API 按量计费</strong>——贵，但没有账号共享风险，
+        也不会因为用量特征被判定为滥用。
+      </p>
+      <p>
+        我们的 <a href="/claude-cost-calculator">成本计算器</a> 里可以对比这两种方式的月成本，
+        包括在什么用量下切换更划算。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt" id="faq">
+    <div class="wrap wrap-narrow">
+      <h2>常见问题</h2>
+
+      <details>
+        <summary>用海外机器登录 Claude，会被封号吗？<i aria-hidden="true"></i></summary>
+        <p>机器位置本身不是封号的直接原因。Anthropic 判断的是账号的地区、身份、付款方式和实际使用行为是否一致。用德国的机器登录一个以你本人身份、正规渠道订阅的账号，本身不构成违规；但如果账号的注册地、付款方式与使用环境长期矛盾，被复核的概率就会上升。</p>
+      </details>
+
+      <details>
+        <summary>多人共用一个 Claude 账号会怎样？<i aria-hidden="true"></i></summary>
+        <p>这是风险最高的行为之一。同一账号在短时间内从多个地理位置、多个设备指纹登录，会被判定为账号共享或转售，属于违反服务条款的行为，通常导致直接停用且不予退款。我们的套餐一律一人一号，不提供共享账号。</p>
+      </details>
+
+      <details>
+        <summary>账号被封了，付的钱能退吗？<i aria-hidden="true"></i></summary>
+        <p>Anthropic 对因违反服务条款导致的停用通常不退款。我们能处理的是我们收的服务费部分：如果是我们协助开通的账号在交付后短期内因非使用原因被停用，我们会协助申诉；申诉失败则按未使用天数退还服务费。官方订阅费部分由 Anthropic 决定，我们无法代为追回。</p>
+      </details>
+
+      <details>
+        <summary>怎么申诉？<i aria-hidden="true"></i></summary>
+        <p>通过 Anthropic 官方支持渠道提交申诉，说明账号用途、订阅方式和使用场景，不要重复提交或换号重开。反复注册新号规避封禁会被识别为规避行为，导致关联账号一起停用。申诉期间保持原账号不动是成功率最高的做法。</p>
+      </details>
+
+      <details>
+        <summary>你们能保证账号不被封吗？<i aria-hidden="true"></i></summary>
+        <p>不能，任何服务方都不能。账号状态由 Anthropic 判定，取决于你的具体使用行为。我们能保证的是：账号以你本人身份、通过官方渠道订阅、只给你自己使用、来源与归属清晰。这能降低因账号来源不明导致的停用，但不能消除因使用行为导致的停用。</p>
+      </details>
+
+      <details>
+        <summary>怎么联系你们？<i aria-hidden="true"></i></summary>
+        <p>微信 <b>Mondbinch</b>，或 Telegram <a href="https://t.me/Mondbinch">@Mondbinch</a>。也可以直接<a href="/#order">在线提交申请</a>。</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- related-links -->
+  <section class="section section-alt related-links">
+    <div class="wrap wrap-narrow">
+      <h2>延伸阅读</h2>
+      <ul class="related-list">
+        <li><a href="/claude-code-china">Claude Code 国内怎么用</a></li>
+        <li><a href="/claude-max">Claude Max 订阅协助：开通流程与边界</a></li>
+        <li><a href="/claude-max-5x-vs-20x">Max 5x 还是 20x</a></li>
+        <li><a href="/claude-cost-calculator">成本计算器：订阅 vs API vs 租 Mac</a></li>
+        <li><a href="/remote-mac-rental">远程 Mac 租赁：三种形态</a></li>
+        <li><a href="/terms">服务条款</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-contact">
+      微信 <a href="#order" data-open-contact><b>Mondbinch</b></a> ·
+      Telegram <a href="https://t.me/Mondbinch">@Mondbinch</a>
+    </p>
+    <p class="footer-bottom">© 2026 MacBuild · 设备位于德国 · 价格以人民币（CNY）计价</p>
+    <p class="footer-legal">Claude 是 Anthropic 的商标。MacBuild 是独立服务商，与 Anthropic 无关联，亦未获其背书。本页内容为风险说明，不构成法律意见，亦不代表 Anthropic 的官方立场。</p>
+  </div>
+</footer>
+
+<script>
+const toggle = document.querySelector('.nav-toggle');
+const nav = document.getElementById('nav');
+if (toggle) {
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+}
+</script>
+
+
+<!-- ==================== 咨询抽屉 ==================== -->
+<a class="side-contact" href="#order" data-open-contact aria-label="加微信咨询">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.4 9.4 0 0 1-3.8-.8L3 21l1.9-4.6A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>
+  <span>咨询</span>
+</a>
+
+<nav class="mobile-contact" aria-label="快捷联系"><a href="/#order" data-open-contact>微信咨询</a><a href="https://t.me/Mondbinch">Telegram</a></nav>
+
+<div class="drawer-overlay" id="drawer-overlay" hidden></div>
+
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true" inert>
+  <div class="drawer-head">
+    <h2 id="drawer-title">咨询与预约</h2>
+    <button type="button" class="drawer-close" data-close aria-label="关闭">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+  <div class="drawer-body">
+    <p class="drawer-lead" id="drawer-context">直接加微信最快。告诉我们用途和期望期限，我们会回你哪台能最快开通。</p>
+
+    <div class="d-card">
+      <p class="d-label">微信（最快）</p>
+      <p class="d-id" id="d-wechat">Mondbinch</p>
+      <button type="button" class="d-copy" data-copy="Mondbinch" data-copy-target="d-wechat">复制微信号</button>
+      <p class="d-tip" aria-live="polite"></p>
+    </div>
+
+    <div class="d-row">
+      <span>Telegram</span>
+      <a href="https://t.me/Mondbinch">@Mondbinch</a>
+    </div>
+
+    <p class="drawer-note">
+      加好友时备注「Mac mini」。价格、开票和开通时间都在微信里确认 —— 本站不走在线支付。
+    </p>
+
+    <div class="d-form-wrap">
+      <p class="d-form-title">或者留言，我们来找你</p>
+      <p class="d-form-sub">留个联系方式，24 小时内回复。</p>
+      <form class="d-form" id="drawerForm" action="/api/order" method="POST">
+        <input type="hidden" name="来源" value="macbuild-drawer">
+        <input type="hidden" name="周期" id="drawer-selection" value="">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <label class="d-sr" for="df-name">怎么称呼你</label>
+        <input id="df-name" type="text" name="称呼" placeholder="怎么称呼你" required>
+        <label class="d-sr" for="df-contact">联系方式</label>
+        <input id="df-contact" type="text" name="联系方式" placeholder="微信 / Telegram / 邮箱" required>
+        <label class="d-sr" for="df-msg">用途</label>
+        <textarea id="df-msg" name="留言" rows="2" placeholder="用法与期望开通时间（可留空）"></textarea>
+        <button type="submit" class="d-submit">提交留言</button>
+        <p class="d-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</aside>
+
+<script>
+/* 咨询抽屉：微信复制 + 机位编号透传 + 侧边浮标 */
+(function () {
+  var drawer = document.getElementById('drawer');
+  var overlay = document.getElementById('drawer-overlay');
+  var tab = document.querySelector('.side-contact');
+  if (!drawer || !overlay) return;
+
+  var ctx = document.getElementById('drawer-context');
+  var selectedMachine = document.getElementById('drawer-selection');
+  var ctxDefault = ctx ? ctx.textContent : '';
+  var lastFocus = null;
+
+  function open(code) {
+    lastFocus = document.activeElement;
+    var summary = document.getElementById('orderForm').dataset.bookingSummary || '服务方案待确认';
+    selectedMachine.value = selectedMachine.defaultValue = summary;
+    if (ctx) {
+      ctx.textContent = code
+        ? '你正在咨询 ' + code + '。加微信后告知这个编号，具体库存与交付时间以回复为准。'
+        : summary + '。告诉我们用途与期望时间，我们会确认库存和报价。';
+    }
+    drawer.inert = false;
+    drawer.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    overlay.hidden = false;
+    requestAnimationFrame(function () { overlay.classList.add('show'); });
+    document.body.classList.add('locked');
+    var b = drawer.querySelector('[data-close]');
+    if (b) b.focus();
+  }
+
+  function close() {
+    drawer.inert = true;
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    overlay.classList.remove('show');
+    setTimeout(function () { overlay.hidden = true; }, 240);
+    document.body.classList.remove('locked');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  /* 入口：带 data-open-contact 的元素 */
+  document.querySelectorAll('[data-open-contact]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      open(el.getAttribute('data-book') || '');
+    });
+  });
+
+  document.addEventListener('open-booking-contact', function () { open(''); });
+
+  document.querySelectorAll('[data-close]').forEach(function (el) {
+    el.addEventListener('click', function (e) { e.preventDefault(); close(); });
+  });
+  overlay.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) {
+    if (!drawer.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'Tab') {
+      var items = Array.from(drawer.querySelectorAll('a[href], button, input, textarea, select')).filter(function (el) { return !el.disabled && el.getClientRects().length; });
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* 复制微信号 */
+  document.querySelectorAll('.d-copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var text = b.getAttribute('data-copy');
+      var tip = b.parentNode.querySelector('.d-tip');
+      function say(m) { if (tip) tip.textContent = m; }
+      function fallback() {
+        var t = document.getElementById(b.getAttribute('data-copy-target'));
+        var ok = false;
+        if (t) {
+          var r = document.createRange();
+          r.selectNodeContents(t);
+          var s = getSelection();
+          s.removeAllRanges();
+          s.addRange(r);
+          try { ok = document.execCommand('copy'); } catch (err) {}
+        }
+        say(ok ? '已复制，去微信粘贴' : '请手动选中上面的微信号');
+      }
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function () { say('已复制，去微信粘贴'); }, fallback);
+      } else {
+        fallback();
+      }
+    });
+  });
+
+  /* 侧边浮标：滚过首屏才出现 */
+  var hero = document.querySelector('.hero');
+  function onScroll() {
+    if (!tab) return;
+    var past = hero ? window.scrollY > hero.offsetHeight * 0.8 : window.scrollY > 400;
+    tab.classList.toggle('show', past);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* 抽屉内留言表单 */
+  var dForm = document.getElementById('drawerForm');
+  if (dForm) {
+    var dStatus = dForm.querySelector('.d-status');
+    var dBtn = dForm.querySelector('.d-submit');
+    dForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      dStatus.textContent = '';
+      dStatus.className = 'd-status';
+      dBtn.disabled = true;
+      var orig = dBtn.textContent;
+      dBtn.textContent = '提交中…';
+      fetch(dForm.getAttribute('action'), {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(dForm)
+      }).then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          return { ok: res.ok, data: data };
+        });
+      }).then(function (r) {
+        if (r.ok) {
+          dStatus.textContent = '已收到，我们 24 小时内联系你。';
+          dStatus.className = 'd-status ok';
+          dForm.reset();
+          dBtn.textContent = '已提交';
+          setTimeout(function () { dBtn.textContent = orig; dBtn.disabled = false; }, 4000);
+        } else {
+          var msg = (r.data && r.data.errors && r.data.errors.map(function (x) { return x.message; }).join('；')) || '提交失败，请稍后重试。';
+          dStatus.textContent = msg + ' 也可以直接加微信 Mondbinch。';
+          dStatus.className = 'd-status err';
+          dBtn.textContent = orig;
+          dBtn.disabled = false;
+        }
+      }).catch(function () {
+        dStatus.textContent = '网络异常，请直接加微信 Mondbinch。';
+        dStatus.className = 'd-status err';
+        dBtn.textContent = orig;
+        dBtn.disabled = false;
+      });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
