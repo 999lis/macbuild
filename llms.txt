@@ -43,6 +43,7 @@ Mac + Max 套餐按月计费，包含机器、线路和对应官方订阅费，�
 
 ## 页面索引
 
+- [企业方案](https://getmacbuild.com/enterprise)：面向多人团队的企业级 Mac 基础设施 —— 硬件、德国机房、网络、环境部署与运维，按台数采购，可签合同、可开国内发票。账号不在服务范围内
 - [团队方案](https://getmacbuild.com/for-teams)：面向开发团队的 Mac 构建机与 GitHub Actions 自建 runner，含 macOS runner 成本对比计算器、批量采购、合同与开票说明
 - [Claude 账号为什么会被封](https://getmacbuild.com/claude-account-banned)：常见封号原因（地区、付款、共享、滥用）、风险行为对照、申诉流程，以及服务方在账号问题上的责任边界
 
