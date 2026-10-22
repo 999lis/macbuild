@@ -4,26 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="applicable-device" content="pc,mobile">
-<title>Claude 成本计算器 | Max 5x / 20x / API 哪个划算 — MacBuild</title>
-<meta name="description" content="输入每天用 Claude Code 的时长，算出你该买 Pro、Max 5x 还是 Max 20x，并对比四种获取方式的真实月成本：官方订阅、只租 Mac、租 Mac 含账号、自购 Mac 加机房托管。">
-<meta name="keywords" content="claude 成本计算器,claude max 5x 20x 哪个划算,claude max 够用吗,claude api 费用,claude 订阅多少钱,claude code 成本">
+<title>Claude 订阅与远程 Mac 成本计算器 - MacBuild</title>
+<meta name="description" content="选择 Pro、Max 5x 或 Max 20x，估算订阅、租 Mac、自有设备托管与新购 Mac 的参考月成本。区分首月福利、续租费用和购机摊销，公开汇率及购机预算假设。">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://getmacbuild.com/claude-cost-calculator">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MacBuild">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:title" content="Claude 成本计算器 | Max 5x / 20x / API 哪个划算">
-<meta property="og:description" content="算出你该买哪档，并对比四种获取方式的真实月成本。">
+<meta property="og:title" content="Claude 订阅与远程 Mac 成本计算器 - MacBuild">
+<meta property="og:description" content="选择 Pro、Max 5x 或 Max 20x，估算订阅、租 Mac、自有设备托管与新购 Mac 的参考月成本。区分首月福利、续租费用和购机摊销，公开汇率及购机预算假设。">
 <meta property="og:url" content="https://getmacbuild.com/claude-cost-calculator">
-<meta property="og:image" content="https://getmacbuild.com/og.png">
+<meta property="og:image" content="https://getmacbuild.com/og.png?v=20261022ui1">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Claude 成本计算器">
-<meta name="twitter:description" content="算出你该买哪档订阅，并对比四种获取方式的月成本。">
-<meta name="twitter:image" content="https://getmacbuild.com/og.png">
+<meta name="twitter:title" content="Claude 订阅与远程 Mac 成本计算器 - MacBuild">
+<meta name="twitter:description" content="选择 Pro、Max 5x 或 Max 20x，估算订阅、租 Mac、自有设备托管与新购 Mac 的参考月成本。区分首月福利、续租费用和购机摊销，公开汇率及购机预算假设。">
+<meta name="twitter:image" content="https://getmacbuild.com/og.png?v=20261022ui1">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231e5a48'/%3E%3Crect x='8' y='10' width='16' height='12' rx='3' fill='none' stroke='%23faf7f0' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23faf7f0'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="style.css?v=202610221233">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=20261022ui1">
 
 <style>
 /* ---- 计算器 ---- */
@@ -88,46 +87,37 @@
       "@type": "WebPage",
       "@id": "https://getmacbuild.com/claude-cost-calculator#page",
       "url": "https://getmacbuild.com/claude-cost-calculator",
-      "name": "Claude 成本计算器 | Max 5x / 20x / API 哪个划算",
-      "description": "输入每天使用时长，算出该买 Pro、Max 5x 还是 Max 20x，并对比四种获取方式的真实月成本。",
+      "name": "Claude 订阅与远程 Mac 成本计算器 - MacBuild",
+      "description": "选择 Pro、Max 5x 或 Max 20x，估算订阅、租 Mac、自有设备托管与新购 Mac 的参考月成本。区分首月福利、续租费用和购机摊销，公开汇率及购机预算假设。",
       "inLanguage": "zh-CN",
-      "isPartOf": { "@id": "https://getmacbuild.com/#website" }
+      "isPartOf": {
+        "@id": "https://getmacbuild.com/#website"
+      }
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://getmacbuild.com/" },
-        { "@type": "ListItem", "position": 2, "name": "Claude 成本计算器", "item": "https://getmacbuild.com/claude-cost-calculator" }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
         {
-          "@type": "Question",
-          "name": "Claude Max 5x 和 20x 除了价格还有什么区别？",
-          "acceptedAnswer": { "@type": "Answer", "text": "只有用量。两档的模型、功能、优先访问、Claude Code 支持完全一样。20x 比 5x 多付的钱全部用在更高的用量配额上。额度按滚动 5 小时窗口计算，不是按天或按月。" }
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首页",
+          "item": "https://getmacbuild.com/"
         },
         {
-          "@type": "Question",
-          "name": "API 按量付费和订阅哪个划算？",
-          "acceptedAnswer": { "@type": "Answer", "text": "看你的月消耗。Max 5x 是每月 100 美元，Max 20x 是每月 200 美元。如果你估算自己每月的 API 账单低于 100 美元，用 API 更省钱；超过 100 美元就考虑 Max 5x；长期超过 200 美元且仍然不够用，才需要 Max 20x。Claude Code 的长任务会消耗大量 token，重度使用者通常订阅更划算且可预测。" }
-        },
-        {
-          "@type": "Question",
-          "name": "自己买 Mac 加机房托管，比直接租 Mac 便宜吗？",
-          "acceptedAnswer": { "@type": "Answer", "text": "按月成本算通常便宜：Mac mini 按 3 年折旧约 125 元每月，加机房托管 300 元每月，合计约 425 元，比租 Mac 的 699 到 799 元低。但需要一次性投入约 4500 元买机器，而且网络线路、账号订阅、环境配置都要自己解决。计划用满一年以上、并且有能力自己搞定这些的人，自购更划算。" }
-        },
-        {
-          "@type": "Question",
-          "name": "本页的价格数据多久更新一次？",
-          "acceptedAnswer": { "@type": "Answer", "text": "官方订阅价与 API 单价以 Anthropic 官网为准，本页数据更新于 2026 年 10 月。Anthropic 可能调整价格，如果你发现数字对不上，请以官网为准，也欢迎告诉我们更新。" }
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Claude 成本计算器",
+          "item": "https://getmacbuild.com/claude-cost-calculator"
         }
       ]
     }
   ]
 }
 </script>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MacBuild 德国 Mac mini M4 租赁与托管">
 </head>
 <body>
 
@@ -138,12 +128,12 @@
       <span>MacBuild</span>
     </a>
     <nav class="nav" id="nav" aria-label="主导航">
-      <a href="/#claude">Claude Code</a>
+      <a href="/claude-code-mac">Claude Code</a>
       <a href="/#pricing">价格</a>
       <a href="/#faq">常见问题</a>
       <a href="/terms">服务条款</a>
       <div class="nav-cta">
-        <a class="btn" href="/#order">立即订购</a>
+        <a class="btn" href="/#order">咨询开通</a>
       </div>
     </nav>
     <button class="nav-toggle" type="button" aria-controls="nav" aria-expanded="false" aria-label="打开菜单"><span></span></button>
@@ -151,190 +141,31 @@
 </header>
 
 <main id="main">
-
-  <section class="hero hero-sub">
-    <div class="wrap">
-      <p class="eyebrow">成本计算器</p>
-      <h1>Claude 成本计算器：你该买哪档，怎么最省</h1>
-      <p class="lead">
-        两个问题一次算清：<strong>该买 Pro、Max 5x 还是 Max 20x</strong>，
-        以及<strong>用哪种方式拿到它最便宜</strong>。
-        这个工具会在「你其实不该租」的时候直接告诉你。
-      </p>
+<nav class="breadcrumb wrap" aria-label="面包屑导航"><a href="/">首页</a><span aria-hidden="true">/</span><span aria-current="page">成本计算器</span></nav>
+  <section class="hero hero-sub"><div class="wrap"><p class="eyebrow">成本计算器</p><h1>Claude 订阅与远程 Mac，每月花多少？</h1><p class="lead">先选择订阅档位，再比较租机、已有机器托管和自购设备的预算。使用时长不能直接换算成可用额度。</p></div></section>
+  <section class="section"><div class="wrap"><div class="calc">
+    <div class="calc-inputs">
+      <div class="calc-field"><div class="calc-label"><span>你要估算哪个订阅档位</span></div><div class="calc-seg" id="seg-tier" role="group" aria-label="订阅档位"><button type="button" data-tier="pro" aria-pressed="false">Pro</button><button type="button" data-tier="max5x" class="on" aria-pressed="true">Max 5x</button><button type="button" data-tier="max20x" aria-pressed="false">Max 20x</button></div><p class="calc-hint">按实际任务与使用限额选择。<a href="/claude-max-5x-vs-20x">了解档位差异</a>。</p></div>
+      <div class="calc-field"><div class="calc-label"><span>你已经有 Mac 了吗</span></div><div class="calc-seg" id="seg-mac" role="group" aria-label="是否已有 Mac"><button type="button" data-mac="no" class="on" aria-pressed="true">还没有</button><button type="button" data-mac="yes" aria-pressed="false">已经有</button></div><p class="calc-hint">已有机器按托管费计算；新购设备另外列出购机投入与摊销假设。</p></div>
+      <div class="calc-field"><div class="calc-label"><span>租机月费按哪种情况估算</span></div><div class="calc-seg" id="seg-month" role="group" aria-label="租机计费阶段"><button type="button" data-month="first" class="on" aria-pressed="true">符合首月福利</button><button type="button" data-month="renew" aria-pressed="false">续租月份</button></div><p class="calc-hint">仅租 Mac 的前 10 台机器首月 ¥699，按台计且每台只能用一次；续租 ¥799。这里按共享线路、月付估算。</p></div>
     </div>
-  </section>
-
-  <section class="section">
-    <div class="wrap">
-      <div class="calc">
-
-        <!-- 输入 -->
-        <div class="calc-inputs">
-          <div class="calc-field">
-            <div class="calc-label">
-              <span>每天用 Claude Code 多久</span>
-              <b id="out-hours">2 小时</b>
-            </div>
-            <input class="calc-range" type="range" id="in-hours" min="0.5" max="12" step="0.5" value="2">
-            <p class="calc-hint">指实际在用的时间，不是机器开着的时间。挂长任务也算消耗。</p>
-          </div>
-
-          <div class="calc-field">
-            <div class="calc-label"><span>你已经有 Mac 了吗</span></div>
-            <div class="calc-seg" id="seg-mac">
-              <button type="button" data-mac="no" class="on">没有，需要一台</button>
-              <button type="button" data-mac="yes">有，只差网络环境</button>
-            </div>
-            <p class="calc-hint">有 Mac 的话可以只租线路环境，或者干脆把机器放到机房里。</p>
-          </div>
-
-          <div class="calc-field">
-            <div class="calc-label"><span>打算用多久</span></div>
-            <div class="calc-seg" id="seg-term">
-              <button type="button" data-term="1" class="on">1–3 个月</button>
-              <button type="button" data-term="6">半年</button>
-              <button type="button" data-term="12">一年以上</button>
-            </div>
-            <p class="calc-hint">用满一年以上，自己买机器通常更划算——下面会算给你看。</p>
-          </div>
-        </div>
-
-        <!-- 结果 -->
-        <div class="calc-result">
-          <div class="calc-rec">
-            <p class="calc-rec-label">建议档位</p>
-            <p class="calc-rec-tier" id="rec-tier">Max 5x</p>
-            <p class="calc-rec-price">官方定价 <b id="rec-price">$100</b> / 月　≈ <b id="rec-cny">¥720</b> / 月</p>
-            <p class="calc-rec-why" id="rec-why"></p>
-          </div>
-
-          <table class="calc-table">
-            <thead>
-              <tr><th>获取方式</th><th>月成本</th></tr>
-            </thead>
-            <tbody id="calc-rows"></tbody>
-          </table>
-
-          <p class="calc-note" id="calc-verdict"></p>
-
-          <div class="calc-cta">
-            <a class="btn" href="/#order">按这个方案咨询</a>
-            <a class="btn btn-text" href="/claude-max-5x-vs-20x">看档位详细对比</a>
-          </div>
-
-          <p class="calc-note">
-            官方订阅价与 API 单价以 Anthropic 官网为准，本页数据更新于 2026 年 10 月。
-            汇率按 1 USD = 7.2 CNY 估算，仅作参考。自购 Mac 按 ¥4,500、3 年折旧计算。
-          </p>
-        </div>
-
-      </div>
+    <div class="calc-result" aria-live="polite">
+      <div class="calc-rec"><p class="calc-rec-label">所选订阅档位</p><p class="calc-rec-tier" id="rec-tier">Max 5x</p><p class="calc-rec-price">网页月订阅参考价 <b id="rec-price">$100</b> ≈ <b id="rec-cny">¥720</b> / 月</p></div>
+      <table class="calc-table"><thead><tr><th scope="col">方案与费用范围</th><th scope="col">参考月成本</th></tr></thead><tbody id="calc-rows"><tr><td>只付 Max 5x 订阅费<small>不含 Mac 硬件或托管</small></td><td>¥720</td></tr><tr><td>租 Mac + 自己订阅<small>共享线路，符合首月福利</small></td><td>¥1,419</td></tr><tr><td>Mac + Max 5x 套餐<small>共享线路，按月计费</small></td><td>¥1,599</td></tr><tr><td>新购 Mac + 托管 + 订阅<small>含购机摊销，非每月实际付款额</small></td><td>¥1,145</td></tr></tbody></table>
+      <p class="calc-note" id="calc-verdict">新购机器需另准备约 ¥4,500 的一次性购机预算；摊销仅用于比较长期成本。</p>
+      <div class="calc-cta"><a class="btn" href="/#pricing">查看租赁方案</a><a class="btn btn-text" href="/mac-colocation">了解自有 Mac 托管</a></div>
+      <p class="calc-note">假设：1 USD = 7.2 CNY；新 Mac 预算 ¥4,500，按 3 年摊销。以上不是实时汇率或购机报价，不含税费、跨境寄送、维修与额外用量费用。每个方案的费用范围不同，请结合已有设备比较。</p>
     </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="wrap wrap-narrow">
-      <h2>这个计算器怎么算的</h2>
-      <p>把逻辑写出来，你可以自己核。</p>
-
-      <h3>第一步：定档位</h3>
-      <p>按每天实际使用时长判断。Claude Code 的消耗是<strong>突发型</strong>——一个重构任务可能在 20 分钟内烧掉大量额度，然后你去看结果。所以时长阈值比「月总量」更能反映真实体验：</p>
-      <table class="cycle-table">
-        <thead><tr><th>每天时长</th><th>建议</th><th>原因</th></tr></thead>
-        <tbody>
-          <tr><th>不到 1 小时</th><td>Pro（$20）</td><td>偶尔问问题、写点小脚本，Pro 就够</td></tr>
-          <tr><th>1–3 小时</th><td>Max 5x（$100）</td><td>日常写代码，5x 一般撑得住</td></tr>
-          <tr><th>3 小时以上</th><td>Max 20x（$200）</td><td>长任务多，5x 容易在下午撞限额</td></tr>
-        </tbody>
-      </table>
-      <p class="note">额度按<strong>滚动 5 小时窗口</strong>计算，不是按天或按月。所以「上午用超了下午还能用」是正常的，但连续高强度使用会持续撞限额。</p>
-
-      <h3>第二步：算成本</h3>
-      <p>四种获取方式的月成本：</p>
-      <ul>
-        <li><strong>官方订阅</strong>——只有订阅费，前提是你自己有 Mac、并且网络环境合规</li>
-        <li><strong>只租 Mac</strong>——¥699 首月 / ¥799 续租，账号你自己已经有</li>
-        <li><strong>租 Mac + 代开账号</strong>——机器、线路、账号开通一起，¥1,599 起</li>
-        <li><strong>自购 Mac + 机房托管 + 自己订阅</strong>——机器折旧 ¥125 + 托管 ¥300 + 订阅费</li>
-      </ul>
-      <p class="note">
-        第四种按月成本通常最低，但要一次性投 ¥4,500 买机器，而且网络线路和账号订阅都得自己解决。
-        这个计算器不会替你隐藏这部分。
-      </p>
-
-      <h3>第三步：API 按量计费怎么比</h3>
-      <p>
-        不用 token 数反推，直接看盈亏平衡点更准：
-      </p>
-      <ul>
-        <li>你每月 API 账单 <strong>低于 $100</strong> → 用 API 更省</li>
-        <li>账单<strong>超过 $100</strong> → Max 5x 开始划算</li>
-        <li>账单<strong>超过 $200</strong> 且 20x 仍不够 → 那才是真的重度</li>
-      </ul>
-      <p class="note">
-        参考单价（2026 年 10 月）：Sonnet 5.5 输入 $2 / 输出 $10 每百万 token；Opus 5.5 输入 $4 / 输出 $20。
-        Claude Code 长任务消耗大，多数重度使用者订阅比 API 更可预测。
-      </p>
-    </div>
-  </section>
-
-  <section class="section" id="faq">
-    <div class="wrap wrap-narrow">
-      <h2>常见问题</h2>
-
-      <details>
-        <summary>5x 和 20x 除了价格还有什么区别？<i aria-hidden="true"></i></summary>
-        <p>只有用量。两档的模型、功能、优先访问、Claude Code 支持完全一样。20x 比 5x 多付的钱全部用在更高的用量配额上。额度按滚动 5 小时窗口计算。</p>
-      </details>
-
-      <details>
-        <summary>API 和订阅哪个划算？<i aria-hidden="true"></i></summary>
-        <p>看月消耗。Max 5x 每月 100 美元，Max 20x 每月 200 美元。每月 API 账单低于 100 美元用 API 更省；超过 100 美元考虑 Max 5x；长期超过 200 美元且仍不够用才需要 20x。Claude Code 长任务消耗大，重度使用者通常订阅更划算且可预测。</p>
-      </details>
-
-      <details>
-        <summary>自己买 Mac 加托管，比租便宜吗？<i aria-hidden="true"></i></summary>
-        <p>按月成本算通常便宜：Mac mini 按 3 年折旧约 125 元每月，加机房托管 300 元每月，合计约 425 元，比租 Mac 的 699 到 799 元低。但要一次性投入约 4500 元买机器，而且网络、账号、环境都要自己解决。计划用满一年以上、并且有能力自己搞定这些的人，自购更划算。</p>
-      </details>
-
-      <details>
-        <summary>价格数据多久更新？<i aria-hidden="true"></i></summary>
-        <p>官方订阅价与 API 单价以 Anthropic 官网为准，本页数据更新于 2026 年 10 月。如果数字对不上，请以官网为准，也欢迎告诉我们更新。</p>
-      </details>
-
-      <details>
-        <summary>怎么联系你们？<i aria-hidden="true"></i></summary>
-        <p>微信 <b>Mondbinch</b>，或 Telegram <a href="https://t.me/Mondbinch">@Mondbinch</a>。也可以直接<a href="/#order">在线提交申请</a>。</p>
-      </details>
-    </div>
-  </section>
-
-  <section class="section section-alt">
-    <div class="wrap wrap-narrow">
-      <h2>相关页面</h2>
-      <ul>
-        <li><a href="/">MacBuild 首页 — 德国专属 Mac 托管</a></li>
-        <li><a href="/claude-max-5x-vs-20x">Claude Max 5x 还是 20x：额度与判断标准</a></li>
-        <li><a href="/mac-colocation">Mac 机房托管：自有 Mac 放德国机房</a></li>
-        <li><a href="/remote-mac-rental">远程 Mac 租赁：三种形态与价格</a></li>
-        <li><a href="/claude-code-china">Claude Code 国内怎么用</a></li>
-        <li><a href="/windows-remote-mac">Windows 远程 Mac</a></li>
-        <li><a href="/claude-code-mac">Claude Code 用 Mac 租赁</a></li>
-        <li><a href="/#fleet">机位与库存</a></li>
-        <li><a href="/terms">服务条款</a></li>
-      </ul>
-      <p class="note">
-        Claude 是 Anthropic 的商标。MacBuild 是独立服务商，与 Anthropic 无关联，亦未获其背书。
-      </p>
-    </div>
-  </section>
-
+  </div></div></section>
+  <section class="section section-alt"><div class="wrap wrap-narrow"><h2>计算口径与资料来源</h2><p>自己订阅的方案在机器费用之外加上所选订阅费；Mac + Max 套餐已经包含对应订阅，不重复加算。已有 Mac 托管按 ¥300/月/台计算；新购设备再加 ¥4,500 ÷ 36 ≈ ¥125/月的摊销。</p><p>长周期租赁请用<a href="/#pricing">首页报价区</a>计算，这里只比较月付场景。不能直接用 API 账单金额推断哪档订阅足够用，二者的计费和用量限制不同。</p><p class="note">订阅参考价核对于 2026-10-22：<a href="https://claude.com/pricing">Claude 官方价格</a>、<a href="https://support.claude.com/en/articles/11049741-what-is-the-max-plan">Max 计划说明</a>。实际地区价格、税费、包含权益与用量限制以服务商和账号页面为准。</p></div></section>
+  <section class="section"><div class="wrap wrap-narrow"><h2>继续比较</h2><ul><li><a href="/claude-max-5x-vs-20x">Max 5x 与 20x：按使用限制选择档位</a></li><li><a href="/blog-claude-code-rental-term">月付与长周期租赁的费用区别</a></li><li><a href="/mac-colocation">自有 Mac 托管包含什么</a></li></ul></div></section>
 </main>
+
 
 <footer class="site-footer">
   <div class="wrap">
     <p class="footer-contact">
-      微信 <a href="#order" data-open-contact><b>Mondbinch</b></a> ·
+      微信 <a href="/#order" data-open-contact><b>Mondbinch</b></a> ·
       Telegram <a href="https://t.me/Mondbinch">@Mondbinch</a>
     </p>
     <p class="footer-bottom">© 2026 MacBuild · 设备位于德国 · 价格以人民币（CNY）计价</p>
@@ -361,147 +192,42 @@ const PRICE = {
   macYears: 3           // 折旧年限
 };
 
-const state = { hours: 2, hasMac: false, term: 1 };
-
+const state = { tier: 'max5x', hasMac: false, month: 'first' };
 const $ = id => document.getElementById(id);
-const usd2cny = usd => Math.round(usd * PRICE.usdCny);
 const fmt = n => '¥' + n.toLocaleString('zh-CN');
-
-function pickTier(h) {
-  if (h < 1)  return { key: 'pro',    name: 'Pro',     usd: PRICE.pro,
-    why: '每天不到 1 小时，Pro 的额度通常够。除非你经常跑长任务，否则不用上 Max。' };
-  if (h <= 3) return { key: 'max5x',  name: 'Max 5x',  usd: PRICE.max5x,
-    why: '每天 1–3 小时是 Max 5x 的典型区间。如果发现每周撞三次以上限额，再升 20x。' };
-  return           { key: 'max20x', name: 'Max 20x', usd: PRICE.max20x,
-    why: '每天 3 小时以上、长任务多，5x 很容易在下午撞限额。直接上 20x 更省心。' };
-}
-
-function buildRows(tier) {
-  const acct = usd2cny(tier.usd);                                    // 账号月费（必付，无论怎么买）
-  const dep = Math.round(PRICE.macPrice / (PRICE.macYears * 12));     // 机器折旧
-  const firstMonth = state.term <= 1;
-  const rent = firstMonth ? PRICE.rentMacFirst : PRICE.rentMacRenew;  // 仅租 Mac 的租金
-
-  // 打包价：机器 + 线路 + 代开账号
-  const bundle = tier.key === 'max20x' ? PRICE.rentMac20x
-    : tier.key === 'max5x' ? PRICE.rentMac5x
-    : PRICE.rentMacRenew;
-
-  const rows = [];
-
-  if (state.hasMac) {
-    /* ---- 已有 Mac ---- */
-    rows.push({
-      name: '官方订阅（自己解决网络）',
-      note: `只付账号 ${fmt(acct)}；网络与境外付款自己搞定`,
-      cost: acct
-    });
-    rows.push({
-      name: '托管自己的 Mac + 自己订阅',
-      note: `托管 ${fmt(PRICE.colo)} + 账号 ${fmt(acct)}；机器所有权是你的`,
-      cost: PRICE.colo + acct
-    });
-    if (tier.key !== 'pro') {
-      rows.push({
-        name: '租 Mac + 代开账号',
-        note: `机位 + 线路 + ${tier.name} 账号一次到位（不想自己折腾时选这个）`,
-        cost: bundle
-      });
-    }
-  } else {
-    /* ---- 没有 Mac ---- */
-    if (tier.key !== 'pro') {
-      rows.push({
-        name: '租 Mac + 代开账号',
-        note: `机位 + 线路 + ${tier.name} 账号，一次到位`,
-        cost: bundle
-      });
-    }
-    rows.push({
-      name: '只租 Mac（账号自己订）',
-      note: `机器 ${fmt(rent)} + 账号 ${fmt(acct)}；账号要自己解决境外付款与网络`,
-      cost: rent + acct
-    });
-    if (state.term >= 12) {
-      rows.push({
-        name: '自购 Mac + 托管 + 自己订阅',
-        note: `折旧 ${fmt(dep)} + 托管 ${fmt(PRICE.colo)} + 账号 ${fmt(acct)}；需一次性 ${fmt(PRICE.macPrice)}`,
-        cost: dep + PRICE.colo + acct
-      });
-    }
-  }
-
-  rows.sort((a, b) => a.cost - b.cost);
-  if (rows.length) rows[0].best = true;
-  return rows;
-}
-
+const tierNames = {pro:'Pro',max5x:'Max 5x',max20x:'Max 20x'};
 function render() {
-  const tier = pickTier(state.hours);
-
-  $('out-hours').textContent = state.hours + ' 小时';
-  $('rec-tier').textContent = tier.name;
-  $('rec-price').textContent = '$' + tier.usd;
-  $('rec-cny').textContent = fmt(usd2cny(tier.usd));
-  $('rec-why').textContent = tier.why;
-
-  const rows = buildRows(tier);
-  $('calc-rows').innerHTML = rows.map(r => `
-    <tr class="${r.best ? 'best' : ''}">
-      <td>${r.name}<small>${r.note}</small></td>
-      <td>${fmt(r.cost)}</td>
-    </tr>`).join('');
-
-  // 结论
-  let verdict = '';
-  const acct = usd2cny(tier.usd);
-  const rent = state.term <= 1 ? PRICE.rentMacFirst : PRICE.rentMacRenew;
-  const bundle = tier.key === 'max20x' ? PRICE.rentMac20x
-    : tier.key === 'max5x' ? PRICE.rentMac5x : PRICE.rentMacRenew;
-  const gap = bundle - (rent + acct);
-
-  if (state.hasMac) {
-    verdict = '你已经有 Mac。如果境外付款和网络能自己解决，<b>官方订阅最省</b>；'
-      + '解决不了，把机器放进我们机房（托管 ' + fmt(PRICE.colo) + ' + 订阅 ' + fmt(acct) + ' = '
-      + fmt(PRICE.colo + acct) + '）比重租一台便宜得多。';
-  } else if (state.term >= 12) {
-    verdict = '你打算用一年以上——<b>自购 Mac 加机房托管按月成本最低</b>'
-      + '（折旧 ' + fmt(Math.round(PRICE.macPrice / 36)) + ' + 托管 ' + fmt(PRICE.colo) + ' + 账号 ' + fmt(acct)
-      + '），但要一次性投 ' + fmt(PRICE.macPrice) + '，且网络与账号都得自己搞定。';
-  } else if (tier.key === 'pro') {
-    verdict = '你的用量用 Pro 就够。这种情况其实不需要租 Mac——'
-      + '除非你的电脑跑长任务会被打断，那才值得为「一台不关机的机器」付费。';
-  } else {
-    verdict = '「只租 Mac + 自己订账号」（' + fmt(rent + acct) + '）比打包（' + fmt(bundle) + '）'
-      + '每月省 <b>' + fmt(gap) + '</b>，前提是你能自己搞定<b>境外付款、KYC 和网络线路</b>。'
-      + '搞不定这些，打包的 ' + fmt(gap) + ' 买的就是「不用自己折腾」——多数人最后都选这个。';
-  }
-  $('calc-verdict').innerHTML = verdict;
+  const acct = Math.round(PRICE[state.tier] * PRICE.usdCny);
+  const rent = state.month === 'first' ? PRICE.rentMacFirst : PRICE.rentMacRenew;
+  const depreciation = Math.round(PRICE.macPrice / (PRICE.macYears * 12));
+  $('rec-tier').textContent = tierNames[state.tier];
+  $('rec-price').textContent = '$' + PRICE[state.tier];
+  $('rec-cny').textContent = fmt(acct);
+  const rows = [
+    {name:'只付 ' + tierNames[state.tier] + ' 订阅费',note:'不含 Mac 硬件或托管，使用现有设备与符合要求的环境',cost:acct},
+    {name:'租 Mac + 自己订阅',note:'共享线路：机器 ' + fmt(rent) + ' + 订阅 ' + fmt(acct),cost:rent+acct}
+  ];
+  if(state.tier !== 'pro') rows.push({name:'Mac + ' + tierNames[state.tier] + ' 套餐',note:'共享线路，已含所选 Max 订阅，按月计费',cost:state.tier==='max5x'?PRICE.rentMac5x:PRICE.rentMac20x});
+  rows.push(state.hasMac
+    ? {name:'已有 Mac 托管 + 自己订阅',note:'托管 ' + fmt(PRICE.colo) + ' + 订阅 ' + fmt(acct) + '；不计已有设备的沉没成本',cost:PRICE.colo+acct}
+    : {name:'新购 Mac + 托管 + 自己订阅',note:'含购机摊销 ' + fmt(depreciation) + '，非每月实际付款额',cost:depreciation+PRICE.colo+acct});
+  $('calc-rows').innerHTML = rows.map(r=>'<tr><td>'+r.name+'<small>'+r.note+'</small></td><td>'+fmt(r.cost)+'</td></tr>').join('');
+  $('calc-verdict').textContent = state.hasMac ? '托管参考月费：' + fmt(PRICE.colo) + '；自己的订阅另外计费。寄送、维修与其他未包含费用需单独确认。' : '新购机器需另准备约 ' + fmt(PRICE.macPrice) + ' 的一次性购机预算；摊销仅用于比较长期成本。';
 }
-
-/* ---- 事件 ---- */
-$('in-hours').addEventListener('input', e => {
-  state.hours = parseFloat(e.target.value);
-  render();
-});
-
-$('seg-mac').addEventListener('click', e => {
-  const b = e.target.closest('button');
-  if (!b) return;
-  [...$('seg-mac').children].forEach(x => x.classList.toggle('on', x === b));
-  state.hasMac = b.dataset.mac === 'yes';
-  render();
-});
-
-$('seg-term').addEventListener('click', e => {
-  const b = e.target.closest('button');
-  if (!b) return;
-  [...$('seg-term').children].forEach(x => x.classList.toggle('on', x === b));
-  state.term = parseInt(b.dataset.term, 10);
-  render();
-});
-
+function bindGroup(id, attr, change) {
+  $(id).addEventListener('click', e=>{
+    const button=e.target.closest('button');
+    if(!button || !$(id).contains(button))return;
+    change(button.dataset[attr]);
+    $(id).querySelectorAll('button').forEach(b=>{b.classList.toggle('on',b===button);b.setAttribute('aria-pressed',String(b===button));});
+    render();
+  });
+}
+bindGroup('seg-tier','tier',v=>state.tier=v);
+bindGroup('seg-mac','mac',v=>state.hasMac=v==='yes');
+bindGroup('seg-month','month',v=>state.month=v);
 render();
+
 </script>
 
 <script>
@@ -517,14 +243,14 @@ if (toggle) {
 
 
 <!-- ==================== 咨询抽屉 ==================== -->
-<a class="side-contact" href="#order" data-open-contact aria-label="加微信咨询">
+<a class="side-contact" href="/#order" data-open-contact aria-label="加微信咨询">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.4 9.4 0 0 1-3.8-.8L3 21l1.9-4.6A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>
   <span>咨询</span>
 </a>
 
 <div class="drawer-overlay" id="drawer-overlay" hidden></div>
 
-<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true" inert>
   <div class="drawer-head">
     <h2 id="drawer-title">咨询与预约</h2>
     <button type="button" class="drawer-close" data-close aria-label="关闭">
@@ -586,9 +312,10 @@ if (toggle) {
     lastFocus = document.activeElement;
     if (ctx) {
       ctx.textContent = code
-        ? '你正在预约 ' + code + '。加微信后把编号发给我们，这台先为你留 24 小时。'
+        ? '你正在咨询 ' + code + '。加微信后告知这个编号，具体库存与交付时间以回复为准。'
         : ctxDefault;
     }
+    drawer.inert = false;
     drawer.classList.add('open');
     drawer.setAttribute('aria-hidden', 'false');
     overlay.hidden = false;
@@ -599,6 +326,7 @@ if (toggle) {
   }
 
   function close() {
+    drawer.inert = true;
     drawer.classList.remove('open');
     drawer.setAttribute('aria-hidden', 'true');
     overlay.classList.remove('show');
@@ -629,7 +357,14 @@ if (toggle) {
   });
   overlay.addEventListener('click', close);
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && drawer.classList.contains('open')) close();
+    if (!drawer.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'Tab') {
+      var items = Array.from(drawer.querySelectorAll('a[href], button, input, textarea, select')).filter(function (el) { return !el.disabled && el.getClientRects().length; });
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
   });
 
   /* 复制微信号 */

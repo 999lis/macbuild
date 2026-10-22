@@ -7,8 +7,8 @@
 <title>页面不存在 · MacBuild</title>
 <meta name="robots" content="noindex, follow">
 <meta name="theme-color" content="#faf7f0">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%231e5a48'/><rect x='24' y='34' width='52' height='32' rx='4' fill='none' stroke='%23faf7f0' stroke-width='4'/><circle cx='50' cy='50' r='5' fill='%23faf7f0'/></svg>">
-<link rel="stylesheet" href="/style.css">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=20261022ui1">
 <style>
   .notfound {
     min-height: 72vh;
@@ -44,6 +44,7 @@
     flex-wrap: wrap;
   }
 </style>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 </head>
 <body>
 
@@ -62,7 +63,7 @@
       <a href="/#order">申请开通</a>
       <a href="/terms.html">服务条款</a>
       <div class="nav-cta">
-        <a class="btn" href="/#order">立即订购</a>
+        <a class="btn" href="/#order">咨询开通</a>
       </div>
     </nav>
   </div>
@@ -83,7 +84,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <p class="footer-contact">
-      微信 <a href="#order" data-open-contact><b>Mondbinch</b></a> ·
+      微信 <a href="/#order" data-open-contact><b>Mondbinch</b></a> ·
       Telegram <a href="https://t.me/Mondbinch">@Mondbinch</a>
     </p>
     <p class="footer-bottom">© 2026 MacBuild · 设备位于德国机房 · 价格以人民币（CNY）计价</p>
@@ -92,14 +93,14 @@
 
 
 <!-- ==================== 咨询抽屉 ==================== -->
-<a class="side-contact" href="#order" data-open-contact aria-label="加微信咨询">
+<a class="side-contact" href="/#order" data-open-contact aria-label="加微信咨询">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.4 9.4 0 0 1-3.8-.8L3 21l1.9-4.6A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>
   <span>咨询</span>
 </a>
 
 <div class="drawer-overlay" id="drawer-overlay" hidden></div>
 
-<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true" inert>
   <div class="drawer-head">
     <h2 id="drawer-title">咨询与预约</h2>
     <button type="button" class="drawer-close" data-close aria-label="关闭">
@@ -161,9 +162,10 @@
     lastFocus = document.activeElement;
     if (ctx) {
       ctx.textContent = code
-        ? '你正在预约 ' + code + '。加微信后把编号发给我们，这台先为你留 24 小时。'
+        ? '你正在咨询 ' + code + '。加微信后告知这个编号，具体库存与交付时间以回复为准。'
         : ctxDefault;
     }
+    drawer.inert = false;
     drawer.classList.add('open');
     drawer.setAttribute('aria-hidden', 'false');
     overlay.hidden = false;
@@ -174,6 +176,7 @@
   }
 
   function close() {
+    drawer.inert = true;
     drawer.classList.remove('open');
     drawer.setAttribute('aria-hidden', 'true');
     overlay.classList.remove('show');
@@ -204,7 +207,14 @@
   });
   overlay.addEventListener('click', close);
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && drawer.classList.contains('open')) close();
+    if (!drawer.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'Tab') {
+      var items = Array.from(drawer.querySelectorAll('a[href], button, input, textarea, select')).filter(function (el) { return !el.disabled && el.getClientRects().length; });
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
   });
 
   /* 复制微信号 */

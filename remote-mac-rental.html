@@ -4,26 +4,25 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="applicable-device" content="pc,mobile">
-<title>远程 Mac 租赁 | 远程 Mac mini 租用 · 三种形态与价格 — MacBuild</title>
-<meta name="description" content="远程 Mac 租赁的三种形态对比：虚拟机、共享 Mac、专属物理 Mac。价格区间、延迟实测、怎么挑，以及什么情况该租、什么情况该自己买。专属 Mac mini M4 首月 ¥699。">
-<meta name="keywords" content="远程mac,远程mac租赁,远程mac租用,远程mac电脑,远程mac mini,远程mac服务器,mac租赁,mac mini租赁,云mac,远程桌面mac,windows远程mac">
+<title>远程 Mac 租赁是什么？类型、用途与连接限制 - MacBuild</title>
+<meta name="description" content="了解共享桌面、虚拟化实例和专属物理 Mac 的区别，判断远程 Mac 是否适合 Xcode、iOS 构建和 CI。说明延迟对命令行与图形操作的不同影响，并提供选购与连接指南。">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://getmacbuild.com/remote-mac-rental">
 
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MacBuild">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:title" content="远程 Mac 租赁 | 远程 Mac mini 租用 · 三种形态与价格">
-<meta property="og:description" content="虚拟机、共享 Mac、专属物理 Mac 三种远程 Mac 的对比，含价格、延迟实测与选型标准。">
+<meta property="og:title" content="远程 Mac 租赁是什么？类型、用途与连接限制 - MacBuild">
+<meta property="og:description" content="了解共享桌面、虚拟化实例和专属物理 Mac 的区别，判断远程 Mac 是否适合 Xcode、iOS 构建和 CI。说明延迟对命令行与图形操作的不同影响，并提供选购与连接指南。">
 <meta property="og:url" content="https://getmacbuild.com/remote-mac-rental">
-<meta property="og:image" content="https://getmacbuild.com/og.png">
+<meta property="og:image" content="https://getmacbuild.com/og.png?v=20261022ui1">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="远程 Mac 租赁 | 三种形态与价格">
-<meta name="twitter:description" content="虚拟机、共享 Mac、专属物理 Mac 的对比，含价格与延迟实测。">
-<meta name="twitter:image" content="https://getmacbuild.com/og.png">
+<meta name="twitter:title" content="远程 Mac 租赁是什么？类型、用途与连接限制 - MacBuild">
+<meta name="twitter:description" content="了解共享桌面、虚拟化实例和专属物理 Mac 的区别，判断远程 Mac 是否适合 Xcode、iOS 构建和 CI。说明延迟对命令行与图形操作的不同影响，并提供选购与连接指南。">
+<meta name="twitter:image" content="https://getmacbuild.com/og.png?v=20261022ui1">
 
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231e5a48'/%3E%3Crect x='8' y='10' width='16' height='12' rx='3' fill='none' stroke='%23faf7f0' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23faf7f0'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="style.css?v=202610221233">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=20261022ui1">
 
 <script type="application/ld+json">
 {
@@ -33,56 +32,37 @@
       "@type": "WebPage",
       "@id": "https://getmacbuild.com/remote-mac-rental#page",
       "url": "https://getmacbuild.com/remote-mac-rental",
-      "name": "远程 Mac 租赁 | 远程 Mac mini 租用 · 三种形态与价格",
-      "description": "远程 Mac 租赁的三种形态对比：虚拟机、共享 Mac、专属物理 Mac。价格区间、延迟实测与选型标准。",
+      "name": "远程 Mac 租赁是什么？类型、用途与连接限制 - MacBuild",
+      "description": "了解共享桌面、虚拟化实例和专属物理 Mac 的区别，判断远程 Mac 是否适合 Xcode、iOS 构建和 CI。说明延迟对命令行与图形操作的不同影响，并提供选购与连接指南。",
       "inLanguage": "zh-CN",
-      "isPartOf": { "@id": "https://getmacbuild.com/#website" }
+      "isPartOf": {
+        "@id": "https://getmacbuild.com/#website"
+      }
     },
     {
       "@type": "BreadcrumbList",
       "itemListElement": [
-        { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://getmacbuild.com/" },
-        { "@type": "ListItem", "position": 2, "name": "远程 Mac 租赁", "item": "https://getmacbuild.com/remote-mac-rental" }
-      ]
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": [
         {
-          "@type": "Question",
-          "name": "远程 Mac 租赁和云服务器有什么区别？",
-          "acceptedAnswer": { "@type": "Answer", "text": "云服务器通常是 Linux，没有 Xcode、iOS 模拟器、Swift 工具链，也不能跑 codesign。远程 Mac 租赁给你的是真正的 macOS 环境，能跑完整的 Apple 开发工具链。如果你只跑 Node、Python、Go 这类后端项目，Linux 云服务器更便宜；一旦涉及 iOS 或 macOS 构建，就必须用 Mac。" }
+          "@type": "ListItem",
+          "position": 1,
+          "name": "首页",
+          "item": "https://getmacbuild.com/"
         },
         {
-          "@type": "Question",
-          "name": "远程 Mac 是虚拟机还是实体机？",
-          "acceptedAnswer": { "@type": "Answer", "text": "两种都有，价格和体验差别很大。虚拟机是多个用户共享同一台物理 Mac 的切片，便宜但性能不稳定；实体机是整台 Mac mini 只给你一个人用，性能和稳定性接近本地机器。下单前一定要问清楚是哪一种。" }
-        },
-        {
-          "@type": "Question",
-          "name": "远程 Mac 延迟多少？能用吗？",
-          "acceptedAnswer": { "@type": "Answer", "text": "从中国大陆连到德国，往返延迟通常在 250–350 毫秒。命令行操作（SSH、git、编译）完全无感；图形界面拖窗口、滚动网页会有明显延迟感。建议的用法是日常走 SSH，只在需要看模拟器时开远程桌面。" }
-        },
-        {
-          "@type": "Question",
-          "name": "远程 Mac 一个月多少钱？",
-          "acceptedAnswer": { "@type": "Answer", "text": "区间很大。共享型虚拟机每月几十到一两百元；按小时计费的云 Mac 折合每月 600–3000 元；专属实体 Mac mini 包月通常在 700–1500 元。注意按小时计费时你会主动关机省钱，反而失去远程 Mac 最大的价值——随时可连。" }
-        },
-        {
-          "@type": "Question",
-          "name": "什么情况应该自己买 Mac 而不是租？",
-          "acceptedAnswer": { "@type": "Answer", "text": "如果你计划用超过 12 个月、有固定办公地点、网络稳定，自己买一台 Mac mini 更划算——一次性 4500 元左右，折旧约 125 元/月。租用适合：不想一次性投入、只用一个季度到半年、需要异地或海外网络环境、需要随时能换机器的人。" }
-        },
-        {
-          "@type": "Question",
-          "name": "怎么连接远程 Mac？",
-          "acceptedAnswer": { "@type": "Answer", "text": "命令行用 SSH，配合 tmux 保持长任务不中断。图形界面用 VNC、RustDesk、ToDesk 或 UU 远程。更稳的做法是用 Tailscale 组虚拟内网，然后在任何网络下都能直连。MacBuild 交付时会提供连接地址、端口与账号。" }
+          "@type": "ListItem",
+          "position": 2,
+          "name": "远程 Mac 租赁",
+          "item": "https://getmacbuild.com/remote-mac-rental"
         }
       ]
     }
   ]
 }
 </script>
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="MacBuild 德国 Mac mini M4 租赁与托管">
 </head>
 <body>
 
@@ -93,12 +73,12 @@
       <span>MacBuild</span>
     </a>
     <nav class="nav" id="nav" aria-label="主导航">
-      <a href="/#claude">Claude Code</a>
+      <a href="/claude-code-mac">Claude Code</a>
       <a href="/#pricing">价格</a>
       <a href="/#faq">常见问题</a>
       <a href="/terms">服务条款</a>
       <div class="nav-cta">
-        <a class="btn" href="/#order">立即订购</a>
+        <a class="btn" href="/#order">咨询开通</a>
       </div>
     </nav>
     <button class="nav-toggle" type="button" aria-controls="nav" aria-expanded="false" aria-label="打开菜单"><span></span></button>
@@ -106,6 +86,7 @@
 </header>
 
 <main id="main">
+<nav class="breadcrumb wrap" aria-label="面包屑导航"><a href="/">首页</a><span aria-hidden="true">/</span><span aria-current="page">远程 Mac 租赁入门</span></nav>
 
   <section class="hero hero-sub">
     <div class="wrap">
@@ -228,7 +209,7 @@
       <p>
         远程 Mac 的体验瓶颈只有一个——你和机器之间的物理距离。这没法用软件优化绕过。
       </p>
-      <p>从中国大陆连到不同地区，实测往返延迟大致是：</p>
+      <p>地区距离只是影响因素之一。还需要考虑运营商路由、跨境拥塞、连接方式和你本地的网络；本站没有可复核的逐地区延迟测量数据。</p>
       <ul>
         <li><strong>中国大陆境内</strong>：20–50 ms</li>
         <li><strong>香港 / 新加坡</strong>：40–80 ms</li>
@@ -242,7 +223,7 @@
           <tr><th>操作</th><th>200ms 延迟下</th></tr>
         </thead>
         <tbody>
-          <tr><th>SSH 敲命令</th><td>完全无感</td></tr>
+          <tr><th>SSH 敲命令</th><td>对持续键入仍可能有延迟，编译主要在远端执行</td></tr>
           <tr><th>vim / nano 编辑</th><td>基本无感</td></tr>
           <tr><th>git / npm / 编译</th><td>无感（在远端执行）</td></tr>
           <tr><th>拖窗口、滚网页</th><td>明显延迟</td></tr>
@@ -358,7 +339,7 @@
 
       <details>
         <summary>延迟多少？能用吗？<i aria-hidden="true"></i></summary>
-        <p>从中国大陆连到德国，往返延迟通常在 250–350 毫秒。SSH 命令行、git、编译完全无感；拖窗口、滚网页有明显延迟。建议的用法是日常走 SSH，只在需要看模拟器时开远程桌面。</p>
+        <p>从中国大陆连接德国的往返延迟会随运营商与网络路径变化。SSH 命令行、git、编译对持续键入仍可能有延迟，编译主要在远端执行；拖窗口、滚网页有明显延迟。建议的用法是日常走 SSH，只在需要看模拟器时开远程桌面。</p>
       </details>
 
       <details>
@@ -390,21 +371,7 @@
 
   <section class="section">
     <div class="wrap wrap-narrow">
-      <h2>相关页面</h2>
-      <ul>        <li><a href="/claude-cost-calculator">Claude 成本计算器：你该买哪档</a></li>
-
-        <li><a href="/">MacBuild 首页 — 德国专属 Mac 托管</a></li>
-        <li><a href="/claude-code-mac">Claude Code 用 Mac 租赁</a></li>
-        <li><a href="/claude-code-china">Claude Code 国内怎么用</a></li>
-        <li><a href="/claude-max">Claude Max 代开</a></li>
-        <li><a href="/mac-rental-guide">海外 Mac 租用怎么选</a></li>
-        <li><a href="/blog-claude-code-rental-term">租多久合适</a></li>
-        <li><a href="/#fleet">机位与库存</a></li>
-        <li><a href="/terms">服务条款</a></li>
-              <li><a href="/claude-max-5x-vs-20x">Claude Max 5x 还是 20x</a></li>
-        <li><a href="/windows-remote-mac">Windows 远程 Mac</a></li>
-        <li><a href="/mac-colocation">Mac 机房托管：自有 Mac 放德国机房</a></li>
-</ul>
+      <h2>继续了解</h2><ul><li><a href="/mac-rental-guide">Mac 租赁选购清单</a></li><li><a href="/windows-remote-mac">Windows 连接 Mac</a></li><li><a href="/blog-claude-code-rental-term">租期与费用选择</a></li></ul>
       <p class="note">
         Claude 是 Anthropic 的商标。MacBuild 是独立服务商，与 Anthropic 无关联，亦未获其背书。
       </p>
@@ -416,7 +383,7 @@
 <footer class="site-footer">
   <div class="wrap">
     <p class="footer-contact">
-      微信 <a href="#order" data-open-contact><b>Mondbinch</b></a> ·
+      微信 <a href="/#order" data-open-contact><b>Mondbinch</b></a> ·
       Telegram <a href="https://t.me/Mondbinch">@Mondbinch</a>
     </p>
     <p class="footer-bottom">© 2026 MacBuild · 设备位于德国 · 价格以人民币（CNY）计价</p>
@@ -437,14 +404,14 @@ if (toggle) {
 
 
 <!-- ==================== 咨询抽屉 ==================== -->
-<a class="side-contact" href="#order" data-open-contact aria-label="加微信咨询">
+<a class="side-contact" href="/#order" data-open-contact aria-label="加微信咨询">
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.4 9.4 0 0 1-3.8-.8L3 21l1.9-4.6A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>
   <span>咨询</span>
 </a>
 
 <div class="drawer-overlay" id="drawer-overlay" hidden></div>
 
-<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true" inert>
   <div class="drawer-head">
     <h2 id="drawer-title">咨询与预约</h2>
     <button type="button" class="drawer-close" data-close aria-label="关闭">
@@ -506,9 +473,10 @@ if (toggle) {
     lastFocus = document.activeElement;
     if (ctx) {
       ctx.textContent = code
-        ? '你正在预约 ' + code + '。加微信后把编号发给我们，这台先为你留 24 小时。'
+        ? '你正在咨询 ' + code + '。加微信后告知这个编号，具体库存与交付时间以回复为准。'
         : ctxDefault;
     }
+    drawer.inert = false;
     drawer.classList.add('open');
     drawer.setAttribute('aria-hidden', 'false');
     overlay.hidden = false;
@@ -519,6 +487,7 @@ if (toggle) {
   }
 
   function close() {
+    drawer.inert = true;
     drawer.classList.remove('open');
     drawer.setAttribute('aria-hidden', 'true');
     overlay.classList.remove('show');
@@ -549,7 +518,14 @@ if (toggle) {
   });
   overlay.addEventListener('click', close);
   document.addEventListener('keydown', function (e) {
-    if (e.key === 'Escape' && drawer.classList.contains('open')) close();
+    if (!drawer.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'Tab') {
+      var items = Array.from(drawer.querySelectorAll('a[href], button, input, textarea, select')).filter(function (el) { return !el.disabled && el.getClientRects().length; });
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
   });
 
   /* 复制微信号 */

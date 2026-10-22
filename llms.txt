@@ -1,141 +1,58 @@
 # MacBuild
 
-> MacBuild 出租放在德国的专属 Mac mini（Apple Silicon M4）。整机独享，走德国本地独立线路。Claude 桌面端与 Claude Code 已预装，可用自己的账号，也可由服务方代开 Claude Max。仅租 Mac 首月 ¥699，含 Claude Max 5x ¥1,599/月，含 Claude Max 20x ¥2,800/月。人民币计价，付款后 24 小时内交付，可开发票。
+> 德国专属 Mac mini M4 租赁与自有设备托管服务。16GB 内存、256GB SSD，提供远程桌面 / SSH 接入，Claude Code 与 Xcode 等工具预装。机器、出口线路与账号订阅是不同的服务内容，实际库存和交付时间请先咨询。
 
-## 服务概览
+## 仅租 Mac
 
-- 产品名称：MacBuild 海外专属 Mac 托管
-- 设备：Mac mini（Apple Silicon M4），10 核 CPU / 10 核 GPU，16 GB 统一内存，256 GB SSD，千兆以太网
-- 部署位置：德国
-- 网络：德国本地独立线路，非机房 IP
-- 接入方式：UU 远程、ToDesk、RustDesk、Tailscale + SSH
-- 预装环境：Claude 桌面端、Claude Code、Xcode、Command Line Tools、Homebrew、Fastlane、CocoaPods、SwiftLint、Git
-- 归属：整机独享，1 台设备 = 1 位使用者
-- 另有「机房托管」服务：客户自带 Mac mini 放入我方德国机房，¥300/月/台，机器所有权属于客户
-- 交付时间：付款后 24 小时内（新客户需 1 个工作日审核）
-- 计费货币：人民币（CNY）
+租期内独享整台物理机器，Claude 账号自备。共享线路指多台机器共用出口，不是共享硬件。
 
-## 价格
+前 10 台机器享一次福利，按台计，每台只能使用一次。月付共享线路首月 ¥699，续租 ¥799/月；独立线路首月 ¥899，续租 ¥999/月。长周期一次付清，整个周期按共享 ¥699、独立 ¥899 的月基数打折。
 
-### 三档套餐（月付）
-
-| 套餐 | 独立线路 | 共享线路 | 说明 |
+| 周期 | 共享线路总价 | 独立线路总价 | 共享 / 独立折合月价 |
 | --- | --- | --- | --- |
-| 仅租 Mac | ¥899/月 | 首月 ¥699 | 专属 Mac mini，Claude Code 已预装，用你自己的 Claude 账号 |
-| Mac + Claude Max 5x | ¥1,799/月 | ¥1,599/月 | 含 Claude Max 5x 账号（约为 Pro 的 5 倍额度），以本人身份官方渠道订阅 |
-| Mac + Claude Max 20x | ¥3,000/月 | ¥2,800/月 | 含 Claude Max 20x 账号（约为 Pro 的 20 倍额度），含 KYC 协助 |
+| 月付 | 首月 ¥699，续租 ¥799/月 | 首月 ¥899，续租 ¥999/月 | 不把首月价视为长期月费 |
+| 季付 · 9 折 | ¥1,887 | ¥2,427 | 约 ¥629 / ¥809 |
+| 半年付 · 8.5 折 | ¥3,565 | ¥4,585 | 约 ¥594 / ¥764 |
+| 年付 · 8 折 | ¥6,710 | ¥8,630 | 约 ¥559 / ¥719 |
 
-独立线路 = 一台机器一条独立出口，不与其他客户共用；共享线路 = 多台机器共用一条出口，价格更低。两者都是德国本地线路，都不是机房 IP、不是机场节点、不是共享代理池。独立线路按批次开通，下单前需确认当期是否可交付。
+总价按元四舍五入，月均价为近似值。福利名额售完后恢复原价基数。独立线路按批次开通，需先确认容量；多台设备按数量相乘。
 
-### 付款周期（按「仅租 Mac · 共享线路」计价）
+## 其他服务
 
-| 周期 | 金额 | 等效月价 |
+| 服务 | 共享线路 | 独立线路 |
 | --- | --- | --- |
-| 月付 | ¥699 | 首月 ¥699 |
-| 季付（9 折） | ¥1,887 | ¥719/月 |
-| 半年付（8.5 折） | ¥3,565 | ¥679/月 |
-| 年付（8 折） | ¥6,710 | ¥639/月 |
+| Mac + Claude Max 5x | ¥1,599/月 | ¥1,799/月 |
+| Mac + Claude Max 20x | ¥2,800/月 | ¥3,000/月 |
 
-独立线路每月加 ¥200，同周期折扣同样适用。多台设备按数量相乘。含 Claude 账号的套餐按台数和周期另议。
+Max 套餐按月计费，不参与仅租 Mac 的长周期折扣。订阅由客户本人使用，服务方协助通过官方渠道开通，不提供共享账号、账号转售或账号不被停用的保证。
 
-## 关于 Claude 账号
+自有 Mac 机房托管：¥300/月/台，含机位、电力、网络接入与基础值守；硬件、订阅、寄送与维修不包含在上述价格中。机器所有权仍属于客户。
 
-- 「仅租 Mac」不含账号，客户使用自己的 Claude 账号登录（客户端已预装）
-- 「Mac + Max」套餐含账号：服务方协助客户**以本人身份、通过官方渠道**订阅 Claude Max，交付时已开通
-- 账号只供该客户自己使用，不转售、不与他人共用、不走逆向、不是二手号
-- 服务方不保证账号不被停用：账号状态取决于 Anthropic 的判定与客户自身使用行为
+## 服务边界
 
-## 服务不包含
+- 设备在德国不代表任何用户自动满足第三方服务商的地区、身份、付款或用途要求。
+- 不保证任何第三方账号不被停用；请遵守相应服务条款。
+- 不包含 Apple 开发者账号、签名证书与数据备份。
+- 网站不提供在线支付：先联系确认库存、配置和报价，再按约定付款与交付。
+- 故障响应、退款与使用要求以服务条款为准。
+- 本文件是事实摘要，不代表实时库存或最新第三方价格。
 
-- Apple 开发者账号与签名证书（请自行准备）
-- 「仅租 Mac」套餐不含 Claude 账号
-- 网络代理、VPN 或跨境网络服务
-- 数据备份与恢复
-- App Store 上架代办
+## 页面索引
 
-## 为什么选择德国
+- [方案、费用与申请](https://getmacbuild.com/)
+- [Claude Code 远程工作流](https://getmacbuild.com/claude-code-mac)
+- [地区与账号要求](https://getmacbuild.com/claude-code-china)
+- [远程 Mac 租赁入门](https://getmacbuild.com/remote-mac-rental)
+- [Mac 租赁选购清单](https://getmacbuild.com/mac-rental-guide)
+- [Windows 连接 Mac](https://getmacbuild.com/windows-remote-mac)
+- [Max 5x 与 20x](https://getmacbuild.com/claude-max-5x-vs-20x)
+- [Max 订阅协助](https://getmacbuild.com/claude-max)
+- [订阅与机器成本计算器](https://getmacbuild.com/claude-cost-calculator)
+- [自有 Mac 托管](https://getmacbuild.com/mac-colocation)
+- [租期与费用比较](https://getmacbuild.com/blog-claude-code-rental-term)
+- [Rent a Mac for Claude Code](https://getmacbuild.com/rent-mac-claude)
+- [服务条款](https://getmacbuild.com/terms)
 
-- 国际带宽与线路质量：德国是欧洲互联网枢纽之一，国际出口带宽充足，接当地商业线路，不是机场节点、不是共享代理池，也不会被 QoS 限速
-- 全中文沟通：下单、沟通、技术支持全程中文，微信与 Telegram 直接找人，不走工单系统
-- IP 归属地：德国在 Anthropic、OpenAI 等主流 AI 服务的支持地区列表内。设备走德国本地独立线路，不是机房 IP、不是机场节点、也不是共享代理池
+微信：Mondbinch · Telegram：https://t.me/Mondbinch
 
-## 适用场景
-
-- Claude Code 长任务：通宵跑重构、批量补测试，关掉自己的电脑也不中断
-- iOS / macOS 应用开发（构建、签名、上架）
-- CI/CD 流水线自托管 Runner（GitHub Actions、Jenkins、Fastlane）
-- 分布式团队的共同构建机
-- 需要长期在线的自动化任务
-
-## 常见问题
-
-### 包含 Claude 账号吗？
-
-看你选哪个套餐。仅租 Mac 不含账号，用你自己的 Claude 账号登录即可（客户端已预装）。Mac + Max 5x 和 Mac + Max 20x 含账号：服务方协助客户以本人身份、通过官方渠道订阅，交付时已经开好。账号只供客户自己使用，不转售、不与他人共用、不走逆向，也不是二手号。
-
-### Claude Code 是装好的吗？
-
-是。交付时 Claude 桌面端和 Claude Code 都已经装好，Xcode、Fastlane、Homebrew 等开发工具也一并预装，连上就能用。
-
-### 账号会被封吗？
-
-IP 层面是干净的：设备走德国本地独立线路，不是机房 IP。但服务方不保证任何账号不被停用——账号状态取决于 Anthropic 的判定与客户自身使用行为（如共享、转售、反代、批量抓取等）。请遵守 Anthropic 的使用政策。
-
-### 设备是物理机还是虚拟机？
-
-是实体 Mac mini，整机独享。不是虚拟机，也不是分时共享的远程桌面。
-
-### 设备会与他人共享吗？
-
-不会。租期内整台 Mac 只供一位客户使用。
-
-### 延迟如何？
-
-设备位于德国，从中国大陆访问的往返延迟通常在 250–350 毫秒。对 SSH 命令行、构建与 CI/CD 完全可用；重度图形界面操作会有延迟感。实际表现取决于客户本地网络。
-
-### 怎么连接？
-
-交付时提供连接地址、端口与账号。支持 UU 远程、ToDesk、RustDesk，以及 Tailscale + SSH。
-
-### 可以开发票吗？
-
-可以。德国合规经营，支持开具发票，税点由客户承担。
-
-### 数据如何保护？
-
-整机独享，不与他人共用硬件。服务方不查看客户文件内容与对话记录，但会监控资源占用、网络连接与进程列表以保障服务与合规。退租后抹掉全部数据并重装系统。
-
-### 可以中途退租吗？
-
-可以。季付、半年付、年付按已用月数扣除后退还剩余金额（扣 10% 手续费）；月付中途退租不退当月。
-
-## 使用限制
-
-禁止利用本服务搭建代理、VPN、中转、跳板等网络服务；禁止挖矿；禁止对外提供网络服务；禁止转租、转借、共享设备给第三方；禁止存储违法内容、攻击他人系统、批量注册第三方账号；禁止蒸馏模型、批量抓取输出、反代账号。违规即终止服务且不退款。
-
-## 商标声明
-
-Claude 是 Anthropic 的商标。MacBuild 是独立服务商，与 Anthropic 无关联，亦未获其背书。
-
-## 链接
-
-- [首页](https://getmacbuild.com/)：服务介绍、设备规格、价格与申请表单
-- [Claude 成本计算器](https://getmacbuild.com/claude-cost-calculator)：输入每天使用时长，算出该买 Pro / Max 5x / Max 20x，并对比四种获取方式的月成本（官方订阅、只租 Mac、租 Mac 含账号、自购 Mac 加机房托管）
-- [远程 Mac 租赁](https://getmacbuild.com/remote-mac-rental)：虚拟机 / 共享 Mac / 专属实体机三种形态对比、价格区间、延迟实测与选型标准
-- [Claude Code 国内怎么用](https://getmacbuild.com/claude-code-china)：网络、账号、风控三处卡点的拆解，三种方案的成本与风险对比
-- [Claude Code 用 Mac](https://getmacbuild.com/claude-code-mac)：Claude Code 专用 Mac 租赁
-- [Mac 机房托管](https://getmacbuild.com/mac-colocation)：客户自有 Mac mini 放入德国机房的托管服务，¥300/月/台，含机位、电力（UPS）、网络与基础值守，机器所有权属于客户
-- [Claude Max 5x 还是 20x](https://getmacbuild.com/claude-max-5x-vs-20x)：两档只差用量，官方 $100 / $200 每月，额度按滚动 5 小时窗口计算
-- [Windows 远程 Mac](https://getmacbuild.com/windows-remote-mac)：Windows 连 Mac 只能走 VNC 或第三方工具（macOS 无 RDP 服务端），含三种方案对比与配置步骤
-- [三档价格](https://getmacbuild.com/#pricing)：仅租 Mac / Max 5x / Max 20x
-- [Claude Code 场景](https://getmacbuild.com/#claude)：常见痛点与账号来源说明
-- [服务条款](https://getmacbuild.com/terms)：完整服务条款、使用规则与责任限制
-- [退款政策](https://getmacbuild.com/terms#s7)：四种退款情形与计算公式
-- [申请开通](https://getmacbuild.com/#order)：在线提交申请，24 小时内回复
-- [常见问题](https://getmacbuild.com/#faq)：常见问题解答
-
-## 联系方式
-
-- [在线申请表单](https://getmacbuild.com/#order)
-- [Telegram](https://t.me/Mondbinch)
-- 微信：Mondbinch
+更新：2026-10-22
