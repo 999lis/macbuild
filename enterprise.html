@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="applicable-device" content="pc,mobile">
 <title>企业方案：团队级海外 Mac 基础设施 - MacBuild</title>
-<meta name="description" content="给需要多人使用海外开发环境的团队：Mac 硬件、德国机房、网络线路、环境部署与运维。按台数采购，可签合同、可开国内发票。我们只做基础设施，不涉及账号。">
+<meta name="description" content="给需要多人使用海外开发环境的团队：Mac 硬件、德国机房、网络线路、环境部署与运维。按台数采购，可签合同、可开国内发票。">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://getmacbuild.com/enterprise">
 
@@ -18,7 +18,7 @@
 <meta property="og:image" content="https://getmacbuild.com/og.png?v=20261022ui1">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="企业方案：团队级海外 Mac 基础设施">
-<meta name="twitter:description" content="Mac 硬件、机房、网络、部署、运维。我们只做基础设施，不涉及账号。">
+<meta name="twitter:description" content="Mac 硬件、机房、网络、部署、运维，按台数采购。">
 <meta name="twitter:image" content="https://getmacbuild.com/og.png?v=20261022ui1">
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
@@ -33,7 +33,7 @@
       "@id": "https://getmacbuild.com/enterprise#page",
       "url": "https://getmacbuild.com/enterprise",
       "name": "企业方案：团队级海外 Mac 基础设施",
-      "description": "面向多人团队的海外 Mac 基础设施：硬件、机房、网络、环境部署与运维。我们只做基础设施，不涉及账号。",
+      "description": "面向多人团队的海外 Mac 基础设施：硬件、机房、网络、环境部署与运维，按台数采购。",
       "inLanguage": "zh-CN",
       "isPartOf": { "@id": "https://getmacbuild.com/#website" }
     },
@@ -47,11 +47,6 @@
     {
       "@type": "FAQPage",
       "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "你们提供账号吗？",
-          "acceptedAnswer": { "@type": "Answer", "text": "不提供。我们交付的是基础设施：机器、机房、网络、预装的软件环境和运维。账号不在本服务范围内，我们不做账号代持、转售或共享，也不参与账号相关的任何环节。" }
-        },
         {
           "@type": "Question",
           "name": "最少几台起？",
@@ -76,6 +71,21 @@
           "@type": "Question",
           "name": "能不能我们自己买机器，放你们机房？",
           "acceptedAnswer": { "@type": "Answer", "text": "可以，这是机房托管服务，三百元每月每台。机器所有权归你，我们提供机位、电力、网络与基础值守。适合已经有设备、或者出于资产归属要求必须自购的团队。跨境寄送的运费与清关由客户承担。" }
+        },
+        {
+          "@type": "Question",
+          "name": "机器在德国，对国内团队有影响吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "对 CI 构建没有影响，因为构建在远端跑，只有拉代码和传产物走网络。对交互式操作有影响：SSH 命令行基本无感，图形界面有明显延迟。团队以命令行为主的话，德国位置不是问题。" }
+        },
+        {
+          "@type": "Question",
+          "name": "多台采购有折扣吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "有，按台数与周期单独报价。三台以上有多台方案，可以叠加季付九折、半年八点五折、年付八折的周期折扣。台数、周期、线路类型、付款方式都会影响最终单价，需要具体信息才能给出准确数字。" }
+        },
+        {
+          "@type": "Question",
+          "name": "怎么开始？",
+          "acceptedAnswer": { "@type": "Answer", "text": "微信 Mondbinch 或 Telegram @Mondbinch。说明团队人数、用途、构建量、周期和开票要求，我们会回一个具体报价。加好友时备注企业方案和预计台数，会优先回复。" }
         }
       ]
     }
@@ -113,8 +123,8 @@
       <p class="eyebrow">企业方案</p>
       <h1>把团队的开发环境，放到海外的机房里</h1>
       <p class="lead">
-        硬件、机位、电力、网络、系统环境、CI 配置、日常运维 —— 我们交付一整套。
-        <strong>只做基础设施</strong>，不涉及账号。
+        硬件、机位、电力、网络、系统环境、CI 配置、日常运维 —— 我们交付一整套，
+        交给团队就能直接开工。
       </p>
     </div>
   </section>
@@ -153,16 +163,12 @@
           <tr><th scope="row">系统环境</th><td>macOS、Xcode、包管理器、Shell、常用工具链</td><td>交付时预装</td></tr>
           <tr><th scope="row">CI 配置</th><td>GitHub Actions Runner 安装与注册、workflow 对接</td><td>一次性配置</td></tr>
           <tr><th scope="row">运维</th><td>在线状态、现场处置、故障换机流程</td><td>服务</td></tr>
-          <tr><th scope="row">账号</th><td><strong>不含在本服务内</strong></td><td><strong>与本服务无关</strong></td></tr>
         </tbody>
       </table>
 
       <p class="note">
-        <strong>为什么账号不含在内，是刻意的设计。</strong>
         我们只负责基础设施这一层：机器、机房、网络、系统环境。
-        账号不在服务范围内，我们不代持、不转售、不共享。
-        这样责任边界清晰 —— 我们承担基础设施的稳定性，账号相关的权利与责任都在企业自己。
-        相关说明见 <a href="/claude-account-banned">账号风险</a>。
+        这样责任边界清晰，出了问题知道该找谁。
       </p>
     </div>
   </section>
@@ -175,16 +181,21 @@
         <thead><tr><th scope="col">台数</th><th scope="col">共享线路</th><th scope="col">独立线路</th></tr></thead>
         <tbody>
           <tr><th scope="row">1–2 台</th><td>¥799 / 台 / 月</td><td>¥999 / 台 / 月</td></tr>
-          <tr><th scope="row">3 台以上</th><td colspan="2">按台数与周期单独报价，3 台起可谈批量价</td></tr>
+          <tr><th scope="row">3 台以上</th><td colspan="2"><strong>有专门的折扣方案</strong>，按台数与周期单独报，私聊给具体数字</td></tr>
           <tr><th scope="row">自有设备托管</th><td colspan="2">¥300 / 台 / 月（机器所有权归你）</td></tr>
         </tbody>
       </table>
 
+      <p class="note">
+        多台采购不谈「一刀切」的折扣 —— 台数、周期、线路类型、是否年付，都会影响最终单价。
+        把下面几项信息发给我们，会直接回一个具体数字，不用来回猜。
+      </p>
+
       <h3>周期折扣</h3>
-      <p>与零售价同一套规则，整个周期锁定单价：</p>
+      <p>零售套餐的周期折扣规则如下，整个周期锁定单价：</p>
       <ul>
         <li>季付 <b>9 折</b> · 半年 <b>8.5 折</b> · 年付 <b>8 折</b></li>
-        <li>批量价与周期折扣<strong>可以叠加</strong>，具体按台数商谈</li>
+        <li>批量方案与周期折扣<strong>可以叠加</strong>，具体按台数商谈</li>
       </ul>
 
       <h3>报价需要你提供的信息</h3>
@@ -197,6 +208,15 @@
         <li><b>开票要求</b>：普票还是专票</li>
       </ul>
       <p>给了这几项，我们能直接回一个具体数字，不用来回猜。</p>
+
+      <div class="hero-actions" style="margin-top:26px">
+        <a class="btn" href="/#order">要一份多台报价 <span aria-hidden="true">→</span></a>
+        <a class="btn btn-text" href="https://t.me/Mondbinch" rel="noopener">Telegram 直接聊</a>
+      </div>
+      <p class="note" style="margin-top:14px">
+        微信 <b>Mondbinch</b> · Telegram <a href="https://t.me/Mondbinch">@Mondbinch</a>。
+        加好友时备注「企业」和台数，我们优先回。
+      </p>
     </div>
   </section>
 
@@ -283,7 +303,7 @@
           <tr><th scope="row">付款方式</th><td>对公转账</td></tr>
           <tr><th scope="row">合同</th><td>可签服务合同，明确交付内容、可用性口径、责任边界、终止条件</td></tr>
           <tr><th scope="row">发票</th><td><strong>国内开具</strong>，按正常对公流程走。专票需求下单时告知</td></tr>
-          <tr><th scope="row">开票信息</th><td>抬头、税号、地址电话、开户行与账号，付款前提供即可</td></tr>
+          <tr><th scope="row">开票信息</th><td>抬头、税号、地址电话、开户行与银行账号，付款前提供即可</td></tr>
           <tr><th scope="row">试用</th><td>可先租一台按月验证，不建议一上来就签长约</td></tr>
         </tbody>
       </table>
@@ -301,8 +321,6 @@
           <tr><th scope="row">机器硬件与在线状态</th><td><strong>我们</strong></td></tr>
           <tr><th scope="row">机房电力、网络、物理安全</th><td><strong>我们</strong></td></tr>
           <tr><th scope="row">系统环境初次交付</th><td><strong>我们</strong></td></tr>
-          <tr><th scope="row">账号相关的一切事项</th><td><strong>企业</strong>（不在本服务范围内）</td></tr>
-          <tr><th scope="row">账号是否可用、是否被停用</th><td>由服务商判定，<strong>我们不承担</strong></td></tr>
           <tr><th scope="row">系统配置、CI 逻辑、代码</th><td><strong>企业</strong></td></tr>
           <tr><th scope="row">数据备份</th><td><strong>企业</strong></td></tr>
           <tr><th scope="row">使用内容的合规性</th><td><strong>企业</strong></td></tr>
@@ -311,9 +329,9 @@
       </table>
 
       <p class="note">
-        <strong>关于账号</strong>：账号不在本服务范围内，我们不代持、不转售、不共享，也不参与账号相关的任何环节。
-        这意味着我们无法对账号的可用性作出任何承诺。
-        我们承诺的是基础设施层的稳定 —— 机器在线、网络可用、环境交付到位，这一层的责任在我们。
+        <strong>一句话概括</strong>：我们承诺基础设施层的稳定 —— 机器在线、网络可用、环境交付到位。
+        上层应用与服务由客户自行负责，这一层我们不做承诺，也不承担相应责任。
+        具体条款以合同与服务条款为准。
       </p>
     </div>
   </section>
@@ -326,7 +344,6 @@
         <li><b>需要 7×24 分钟级响应与正式 SLA 赔付</b>——我们做不到，别签</li>
         <li><b>需要 Windows 或 Linux 环境</b>——我们只有 macOS</li>
         <li><b>需要 GPU 训练算力</b>——Mac mini 不是算力卡，方向不对</li>
-        <li><b>希望我们代为持有账号</b>——这条我们不做，理由见上</li>
         <li><b>构建量很小</b>——按分钟计费的托管 CI 更省，没必要换</li>
         <li><b>要求资产必须自购且不接受托管</b>——这种情况技术上能做，但需要你自行承担跨境寄送与清关</li>
       </ul>
@@ -342,13 +359,13 @@
       <h2>常见问题</h2>
 
       <details>
-        <summary>你们提供账号吗？<i aria-hidden="true"></i></summary>
-        <p>不提供。我们交付的是基础设施：机器、机房、网络、预装的软件环境和运维。账号不在本服务范围内，我们不做账号代持、转售或共享，也不参与账号相关的任何环节。</p>
+        <summary>最少几台起？<i aria-hidden="true"></i></summary>
+        <p>一台起，但批量价从三台开始谈。不过我们建议先租一台验证工作流，确认环境能跑通、依赖能装、构建能过，再扩大台数。一次性上很多台，如果基础流程有问题，返工成本会很高。</p>
       </details>
 
       <details>
-        <summary>最少几台起？<i aria-hidden="true"></i></summary>
-        <p>一台起，但批量价从三台开始谈。不过我们建议先租一台验证工作流，确认环境能跑通、依赖能装、构建能过，再扩大台数。一次性上很多台，如果基础流程有问题，返工成本会很高。</p>
+        <summary>多台采购有折扣吗？<i aria-hidden="true"></i></summary>
+        <p>有，按台数与周期单独报价。三台以上有多台方案，可以叠加季付九折、半年八点五折、年付八折的周期折扣。台数、周期、线路类型、付款方式都会影响最终单价，需要具体信息才能给出准确数字。加微信或 Telegram 说明台数即可。</p>
       </details>
 
       <details>
@@ -390,7 +407,6 @@
       <ul class="related-list">
         <li><a href="/">MacBuild 首页 — 设备与价格</a></li>
         <li><a href="/for-teams">团队方案：CI 成本计算器</a></li>
-        <li><a href="/claude-account-banned">账号为什么会被封：责任边界</a></li>
         <li><a href="/mac-colocation">机房托管：自有设备放进同一个机房</a></li>
         <li><a href="/remote-mac-rental">远程 Mac 租赁：三种形态</a></li>
         <li><a href="/terms">服务条款</a></li>
@@ -407,7 +423,7 @@
       Telegram <a href="https://t.me/Mondbinch">@Mondbinch</a>
     </p>
     <p class="footer-bottom">© 2026 MacBuild · 设备位于德国 · 价格以人民币（CNY）计价</p>
-    <p class="footer-legal">MacBuild 是独立基础设施服务商，不提供账号代持、转售或共享服务。本页所述责任边界以正式合同与服务条款为准。</p>
+    <p class="footer-legal">MacBuild 是独立基础设施服务商。本页所述责任边界以正式合同与服务条款为准。</p>
   </div>
 </footer>
 
