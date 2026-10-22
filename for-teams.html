@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="applicable-device" content="pc,mobile">
+<title>团队用 Mac：CI 构建机与 Claude Code 环境 - MacBuild</title>
+<meta name="description" content="给开发团队的德国 Mac mini：iOS/macOS 构建机、GitHub Actions 自建 runner、Claude Code 开发环境。含 GitHub Actions macOS runner 成本对比计算器，以及多台采购、合同与开票说明。">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://getmacbuild.com/for-teams">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MacBuild">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:title" content="团队用 Mac：CI 构建机与 Claude Code 环境">
+<meta property="og:description" content="macOS 构建机、GitHub Actions 自建 runner、Claude Code 开发环境。含成本对比计算器与多台采购说明。">
+<meta property="og:url" content="https://getmacbuild.com/for-teams">
+<meta property="og:image" content="https://getmacbuild.com/og.png?v=20261022ui1">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="团队用 Mac：CI 构建机与 Claude Code 环境">
+<meta name="twitter:description" content="macOS 构建机、自建 runner、Claude Code 环境。含成本对比计算器。">
+<meta name="twitter:image" content="https://getmacbuild.com/og.png?v=20261022ui1">
+
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="/style.css?v=202610221900">
+
+<style>
+/* 团队页 · ROI 计算器 */
+.roi { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start; }
+@media (max-width: 880px) { .roi { grid-template-columns: 1fr; gap: 20px; } }
+.roi-inputs { padding: 24px 22px; background: var(--paper); border: 1px solid var(--line); border-radius: 14px; }
+.roi-field { margin-bottom: 22px; }
+.roi-field:last-child { margin-bottom: 0; }
+.roi-label { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 9px; font-size: 13.5px; color: var(--ink-soft); }
+.roi-label b { font-family: var(--serif); font-size: 19px; color: var(--accent); }
+.roi-range { width: 100%; accent-color: var(--accent); height: 4px; }
+.roi-hint { margin: 7px 0 0; font-size: 12px; color: var(--muted); }
+.roi-result { padding: 24px 22px; background: var(--paper-alt); border: 1px solid var(--line); border-radius: 14px; }
+.roi-compare { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+.roi-compare th, .roi-compare td { padding: 11px 6px; text-align: left; border-bottom: 1px solid var(--line-strong); }
+.roi-compare th { font-size: 12px; color: var(--muted); font-weight: 600; }
+.roi-compare td:last-child, .roi-compare th:last-child { text-align: right; white-space: nowrap; }
+.roi-compare .win td { color: var(--accent); font-weight: 700; }
+.roi-compare small { display: block; font-size: 11px; font-weight: 400; color: var(--muted); margin-top: 2px; }
+.roi-saving { margin: 18px 0 0; padding: 14px 16px; background: var(--accent-soft); border-left: 3px solid var(--accent); border-radius: 0 8px 8px 0; font-size: 14px; line-height: 1.7; }
+.roi-saving b { font-size: 1.35em; color: var(--accent); }
+.roi-note { margin: 16px 0 0; font-size: 11.5px; line-height: 1.7; color: var(--muted); }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://getmacbuild.com/for-teams#page",
+      "url": "https://getmacbuild.com/for-teams",
+      "name": "团队用 Mac：CI 构建机与 Claude Code 环境",
+      "description": "面向开发团队的德国 Mac mini：iOS/macOS 构建机、GitHub Actions 自建 runner、Claude Code 开发环境。含成本对比计算器与多台采购说明。",
+      "inLanguage": "zh-CN",
+      "isPartOf": { "@id": "https://getmacbuild.com/#website" }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "首页", "item": "https://getmacbuild.com/" },
+        { "@type": "ListItem", "position": 2, "name": "团队方案", "item": "https://getmacbuild.com/for-teams" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "自建 Mac runner 和 GitHub Actions 的 macOS runner 差多少？",
+          "acceptedAnswer": { "@type": "Answer", "text": "GitHub 官方对 macOS 3-core 或 4-core runner 的计费是每分鐘 0.062 美元，约合每小时 3.72 美元。一台自建 Mac 按月固定收费，不按分钟计。以每天 20 次、每次 15 分钟的构建量计算，GitHub Actions 的月成本约 558 美元，折合人民币约 4000 元，而一台共享线路的 Mac 是 799 元每月。" }
+        },
+        {
+          "@type": "Question",
+          "name": "自建 runner 需要自己维护吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "需要配置一次，之后基本免维护。具体是在机器上装 GitHub Actions Runner 并注册到仓库或组织，之后 workflow 里把 runs-on 指向 self-hosted 即可。系统更新、依赖升级由你控制，我们负责机器的电力、网络与在线状态。" }
+        },
+        {
+          "@type": "Question",
+          "name": "可以开票吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "我们可以提供德国主体的商业发票（Rechnung）。需要提前说明的是：中国大陆企业若需要增值税专用发票用于抵扣，境外主体通常无法开具。如果你的采购流程必须要有可抵扣的专票，请在付款前与我们确认，我们会明确告知当期能否满足，不会先收钱再说做不到。" }
+        },
+        {
+          "@type": "Question",
+          "name": "可以签合同吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "可以。多台采购、长期合作都可以签服务合同，明确交付内容、可用性口径、故障响应方式与责任边界。合同条款以服务条款为基础，可以按团队需求补充。" }
+        },
+        {
+          "@type": "Question",
+          "name": "多台有折扣吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "有。三台起可以谈批量价，具体取决于台数、周期与线路类型。长周期（半年、年付）本身已有折扣，与批量价可以叠加商谈。" }
+        },
+        {
+          "@type": "Question",
+          "name": "可以先试用吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "可以先按月租一台验证。建议用真实的构建流水线跑一周，确认依赖能装、构建能过、上传 App Store Connect 正常，再决定是否扩大台数。不建议一上来就签年付。" }
+        },
+        {
+          "@type": "Question",
+          "name": "机器在德国，对国内团队有影响吗？",
+          "acceptedAnswer": { "@type": "Answer", "text": "对 CI 构建本身没有影响，因为构建是在远端跑的，只有拉取代码和上传产物走网络。对交互式操作有影响：SSH 命令行基本无感，图形界面有明显延迟。CI 场景不看界面，所以德国位置不是问题；但如果你的团队要频繁用远程桌面操作，体验会下降。" }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span>MacBuild</span>
+    </a>
+    <nav class="nav" id="nav" aria-label="主导航">
+      <a href="/#fleet">机位</a>
+      <a href="/#pricing">价格</a>
+      <a href="/#faq">常见问题</a>
+      <a href="/terms">服务条款</a>
+      <div class="nav-cta">
+        <a class="btn" href="/#order">立即订购</a>
+      </div>
+    </nav>
+    <button class="nav-toggle" type="button" aria-controls="nav" aria-expanded="false" aria-label="打开菜单"><span></span></button>
+  </div>
+</header>
+
+<main id="main">
+
+  <nav class="breadcrumb wrap" aria-label="面包屑导航"><a href="/">首页</a><span aria-hidden="true">/</span><span aria-current="page">团队方案</span></nav>
+
+  <section class="hero hero-sub">
+    <div class="wrap">
+      <p class="eyebrow">团队方案</p>
+      <h1>给开发团队的 Mac：构建机、runner、开发环境</h1>
+      <p class="lead">
+        你团队现在跑 iOS 构建，可能正在为<strong>同一台机器的算力</strong>付五倍价钱。
+        这一页不劝你买，先帮你算清楚账。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap">
+      <h2>先算一笔账</h2>
+      <p class="section-intro" style="margin-bottom:26px">
+        GitHub 官方对 macOS runner 的计费是 <strong>$0.062 / 分钟</strong>（3-core 或 4-core）。
+        拖动下面的滑块，看你团队的实际成本。
+      </p>
+
+      <div class="roi">
+        <div class="roi-inputs">
+          <div class="roi-field">
+            <div class="roi-label"><span>每天构建次数</span><b id="out-builds">20 次</b></div>
+            <input class="roi-range" type="range" id="in-builds" min="1" max="100" step="1" value="20">
+            <p class="roi-hint">指 CI 触发的 macOS 任务总数，含 PR 校验、主分支构建、上架打包。</p>
+          </div>
+
+          <div class="roi-field">
+            <div class="roi-label"><span>单次构建时长</span><b id="out-mins">15 分钟</b></div>
+            <input class="roi-range" type="range" id="in-mins" min="3" max="60" step="1" value="15">
+            <p class="roi-hint">从 checkout 到产物上传的总耗时。首次构建慢，之后有缓存会快一些。</p>
+          </div>
+
+          <div class="roi-field">
+            <div class="roi-label"><span>需要的机器台数</span><b id="out-machines">1 台</b></div>
+            <input class="roi-range" type="range" id="in-machines" min="1" max="10" step="1" value="1">
+            <p class="roi-hint">一台 Mac 串行跑构建，够用的上限大约是每天 30 次 × 15 分钟。超过就该加机器。</p>
+          </div>
+        </div>
+
+        <div class="roi-result">
+          <table class="roi-compare">
+            <thead>
+              <tr><th>方案</th><th>月成本</th></tr>
+            </thead>
+            <tbody>
+              <tr id="row-gha">
+                <td>GitHub Actions<small>macOS runner · $0.062/分钟</small></td>
+                <td id="cost-gha">—</td>
+              </tr>
+              <tr id="row-mac" class="win">
+                <td>自建 Mac（共享线路）<small>固定月费，不按分钟计</small></td>
+                <td id="cost-mac">—</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="roi-saving" id="saving">—</p>
+
+          <p class="roi-note">
+            计算口径：GitHub Actions 按官方公布的 macOS runner 单价 $0.062/分钟 × 30 天计算，汇率按 1 USD ≈ 7.2 CNY。
+            自建 Mac 按共享线路 ¥799/月/台 计算，不含独立线路加价。<strong>以上未计入 GitHub 免费额度</strong>——
+            免费额度对 macOS 构建来说很少，通常几天内用完，所以这里按全额计费更接近实际。
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap wrap-narrow">
+      <h2>为什么差价这么大</h2>
+      <p>
+        GitHub Actions 的 macOS runner 按分钟计费，Linux 是 $0.006/分钟，macOS 是 <strong>$0.062/分钟</strong>——
+        <strong>十倍</strong>。原因是 Apple 的虚拟化授权限制，GitHub 只能用 Mac 硬件跑 macOS，成本降不下来。
+      </p>
+      <p>
+        而一台 Mac mini 一旦买下来或租下来，它的算力是<strong>不按分钟计</strong>的。你跑 1 次和跑 100 次，成本一样。
+      </p>
+      <p>
+        <strong>所以差别不在「谁的机器便宜」，而在「计费方式」。</strong>
+        用量越大，按分钟计费越吃亏；固定月费越划算。
+      </p>
+      <p class="note">
+        反过来说：如果你的构建量很小（比如一周只跑几次），按分钟计费反而更省。
+        上面计算器拉到最低会看到这一点——我们不建议小用量的人换自建。
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap-narrow">
+      <h2>自建 runner 要做什么</h2>
+      <p>不需要重写 CI。只需要三步，配置一次。</p>
+
+      <h3>① 在机器上装 Runner</h3>
+      <p>从仓库的 Settings → Actions → Runners 拿到注册命令，在 Mac 上执行一次。之后机器会常驻在线等待任务。</p>
+
+      <h3>② 改 workflow 的 runs-on</h3>
+      <pre style="overflow-x:auto;padding:14px 16px;background:var(--paper-alt);border-radius:8px;font-size:13px"><code>jobs:
+  build:
+    runs-on: self-hosted    # 原来是 macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      # 其余步骤不用改</code></pre>
+
+      <h3>③ 装好构建依赖</h3>
+      <p>Xcode 版本、CocoaPods、Fastlane、证书与描述文件。这一步是一次性的，装好之后所有构建共用。</p>
+
+      <p class="note">
+        <strong>需要你注意的</strong>：自建 runner 意味着构建环境由你控制，也由你维护。
+        系统更新、Xcode 升级、依赖变更都需要你自己处理。我们负责机器的电力、网络和在线状态，不负责 CI 配置。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap wrap-narrow">
+      <h2>除了 CI，还能做什么</h2>
+
+      <h3>Claude Code 开发环境</h3>
+      <p>给团队里每个人配一台独立环境，各自用自己的账号。<strong>不共享账号</strong>——共享是封号最主要的原因，见 <a href="/claude-account-banned">账号风险说明</a>。</p>
+
+      <h3>App Store 上架打包</h3>
+      <p>需要 macOS 环境做签名、归档、上传 App Store Connect。放在机房的好处是上传带宽稳定，不占开发机。</p>
+
+      <h3>海外环境验证</h3>
+      <p>出海团队需要海外 IP 做投放验证、支付通道测试、应用商店区域检查。德国是欧洲互联网枢纽，出口质量稳定。</p>
+
+      <h3>长期运行的自动化任务</h3>
+      <p>爬虫、监控、定时任务。这类需求的特点是「必须一直开着」，正好是机房环境相对办公室的优势——有 UPS、有稳定网络、不会因为停电或搬工位中断。</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="wrap wrap-narrow">
+      <h2>采购与合作方式</h2>
+
+      <table class="cycle-table">
+        <thead><tr><th scope="col">项目</th><th scope="col">说明</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">最低起租</th><td>1 台。不建议一上来就多台，先验证一台跑通</td></tr>
+          <tr><th scope="row">批量价</th><td>3 台起可谈，与周期折扣可叠加</td></tr>
+          <tr><th scope="row">周期</th><td>月付 / 季付 / 半年 / 年付，长周期有折扣</td></tr>
+          <tr><th scope="row">合同</th><td>可签服务合同，明确交付内容、可用性口径与责任边界</td></tr>
+          <tr><th scope="row">试用</th><td>先按月租一台跑一周真实流水线，再决定是否扩大</td></tr>
+          <tr><th scope="row">发票</th><td><strong>德国主体商业发票可以开</strong>。中国增值税专用发票需要单独确认，见下方说明</td></tr>
+        </tbody>
+      </table>
+
+      <h3 style="margin-top:28px">关于开票，需要提前说清楚</h3>
+      <p>
+        我们可以提供德国主体的商业发票（Rechnung）。但如果你所在的公司<strong>必须有增值税专用发票才能抵扣</strong>，
+        境外主体通常无法开具。
+      </p>
+      <p>
+        <strong>请在付款前确认这件事，不要等付完才发现财务过不了。</strong>
+        我们不希望出现「钱付了、票开不出、财务卡住」的情况——这对双方都是麻烦。
+      </p>
+      <p class="note">
+        如果你的采购流程必须要可抵扣专票，直接告诉我们，我们会明确说当期能不能满足，不会先收钱再说做不到。
+      </p>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="wrap wrap-narrow">
+      <h2>什么情况下你不该找我们</h2>
+      <p>这一节是为了让你少花时间。</p>
+
+      <ul>
+        <li><b>构建量很小</b>——一周只跑几次，GitHub Actions 按分钟计费更省，别换</li>
+        <li><b>需要可抵扣的增值税专用发票</b>——境外主体开不出，除非你已经确认过财务能接受境外发票</li>
+        <li><b>要频繁用图形界面操作</b>——远程桌面有延迟，视频剪辑、UI 设计这类工作不适合</li>
+        <li><b>需要 GPU 训练</b>——Mac mini 不是算力卡，训练模型请找别的方案</li>
+        <li><b>要 Windows 环境</b>——我们只有 macOS</li>
+        <li><b>需要分钟级 SLA 与 7×24 值班</b>——我们做不到，别买</li>
+      </ul>
+
+      <p>
+        如果你的需求不在这几条里，<a href="/#order">告诉我们团队规模和构建量</a>，
+        我们会给你一个具体报价，包括「你这个量其实不用换」这种回答。
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="faq">
+    <div class="wrap wrap-narrow">
+      <h2>常见问题</h2>
+
+      <details>
+        <summary>自建 Mac runner 和 GitHub Actions 的 macOS runner 差多少？<i aria-hidden="true"></i></summary>
+        <p>GitHub 官方对 macOS 3-core 或 4-core runner 的计费是每分鐘 0.062 美元，约合每小时 3.72 美元。一台自建 Mac 按月固定收费，不按分钟计。以每天 20 次、每次 15 分钟的构建量计算，GitHub Actions 的月成本约 558 美元，折合人民币约 4000 元，而一台共享线路的 Mac 是 799 元每月。</p>
+      </details>
+
+      <details>
+        <summary>自建 runner 需要自己维护吗？<i aria-hidden="true"></i></summary>
+        <p>需要配置一次，之后基本免维护。具体是在机器上装 GitHub Actions Runner 并注册到仓库或组织，之后 workflow 里把 runs-on 指向 self-hosted 即可。系统更新、依赖升级由你控制，我们负责机器的电力、网络与在线状态。</p>
+      </details>
+
+      <details>
+        <summary>可以开票吗？<i aria-hidden="true"></i></summary>
+        <p>我们可以提供德国主体的商业发票（Rechnung）。需要提前说明的是：中国大陆企业若需要增值税专用发票用于抵扣，境外主体通常无法开具。如果你的采购流程必须要有可抵扣的专票，请在付款前与我们确认，我们会明确告知当期能否满足，不会先收钱再说做不到。</p>
+      </details>
+
+      <details>
+        <summary>可以签合同吗？<i aria-hidden="true"></i></summary>
+        <p>可以。多台采购、长期合作都可以签服务合同，明确交付内容、可用性口径、故障响应方式与责任边界。合同条款以服务条款为基础，可以按团队需求补充。</p>
+      </details>
+
+      <details>
+        <summary>多台有折扣吗？<i aria-hidden="true"></i></summary>
+        <p>有。三台起可以谈批量价，具体取决于台数、周期与线路类型。长周期（半年、年付）本身已有折扣，与批量价可以叠加商谈。</p>
+      </details>
+
+      <details>
+        <summary>可以先试用吗？<i aria-hidden="true"></i></summary>
+        <p>可以先按月租一台验证。建议用真实的构建流水线跑一周，确认依赖能装、构建能过、上传 App Store Connect 正常，再决定是否扩大台数。不建议一上来就签年付。</p>
+      </details>
+
+      <details>
+        <summary>机器在德国，对国内团队有影响吗？<i aria-hidden="true"></i></summary>
+        <p>对 CI 构建本身没有影响，因为构建是在远端跑的，只有拉取代码和上传产物走网络。对交互式操作有影响：SSH 命令行基本无感，图形界面有明显延迟。CI 场景不看界面，所以德国位置不是问题；但如果你的团队要频繁用远程桌面操作，体验会下降。</p>
+      </details>
+
+      <details>
+        <summary>怎么联系你们？<i aria-hidden="true"></i></summary>
+        <p>微信 <b>Mondbinch</b>，或 Telegram <a href="https://t.me/Mondbinch">@Mondbinch</a>。也可以直接<a href="/#order">在线提交申请</a>，注明团队规模与构建量，我们会回一个具体报价。</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- related-links -->
+  <section class="section section-alt related-links">
+    <div class="wrap wrap-narrow">
+      <h2>延伸阅读</h2>
+      <ul class="related-list">
+        <li><a href="/">MacBuild 首页 — 设备与价格</a></li>
+        <li><a href="/claude-cost-calculator">成本计算器：订阅 vs API vs 租 Mac</a></li>
+        <li><a href="/claude-account-banned">Claude 账号为什么会被封</a></li>
+        <li><a href="/remote-mac-rental">远程 Mac 租赁：三种形态</a></li>
+        <li><a href="/mac-colocation">机房托管：自有 Mac 放进同一个机房</a></li>
+        <li><a href="/terms">服务条款</a></li>
+      </ul>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="footer-contact">
+      微信 <a href="/#order" data-open-contact><b>Mondbinch</b></a> ·
+      Telegram <a href="https://t.me/Mondbinch">@Mondbinch</a>
+    </p>
+    <p class="footer-bottom">© 2026 MacBuild · 设备位于德国 · 价格以人民币（CNY）计价</p>
+    <p class="footer-legal">Claude 是 Anthropic 的商标，GitHub 是 GitHub, Inc. 的商标。MacBuild 是独立服务商，与二者均无关联，亦未获其背书。本页成本对比基于公开定价，仅供估算。</p>
+  </div>
+</footer>
+
+<script>
+/* ---------- 品牌菜单 ---------- */
+const toggle = document.querySelector('.nav-toggle');
+const nav = document.getElementById('nav');
+if (toggle) {
+  toggle.addEventListener('click', () => {
+    const open = nav.classList.toggle('is-open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+}
+
+/* ---------- ROI 计算器 ---------- */
+(function () {
+  var P = {
+    usdPerMin: 0.062,   // GitHub 官方 macOS runner 单价
+    usdCny: 7.2,        // 汇率（估算）
+    days: 30,
+    macMonthly: 799     // 共享线路 ¥799/月/台
+  };
+
+  var inBuilds = document.getElementById('in-builds');
+  var inMins = document.getElementById('in-mins');
+  var inMachines = document.getElementById('in-machines');
+  if (!inBuilds) return;
+
+  var outBuilds = document.getElementById('out-builds');
+  var outMins = document.getElementById('out-mins');
+  var outMachines = document.getElementById('out-machines');
+  var costGha = document.getElementById('cost-gha');
+  var costMac = document.getElementById('cost-mac');
+  var saving = document.getElementById('saving');
+  var rowGha = document.getElementById('row-gha');
+  var rowMac = document.getElementById('row-mac');
+
+  function money(n) { return '¥' + Math.round(n).toLocaleString('en-US'); }
+
+  function render() {
+    var builds = +inBuilds.value;
+    var mins = +inMins.value;
+    var machines = +inMachines.value;
+
+    outBuilds.textContent = builds + ' 次';
+    outMins.textContent = mins + ' 分钟';
+    outMachines.textContent = machines + ' 台';
+
+    // GitHub Actions：总分钟 × 单价 × 天数
+    var totalMin = builds * mins * P.days;
+    var ghaUsd = totalMin * P.usdPerMin;
+    var ghaCny = ghaUsd * P.usdCny;
+
+    // 自建：台数 × 月费
+    var macCny = machines * P.macMonthly;
+
+    costGha.innerHTML = money(ghaCny) + '<small>' + totalMin.toLocaleString('en-US') + ' 分钟 / 月 · $' + Math.round(ghaUsd) + '</small>';
+    costMac.innerHTML = money(macCny) + '<small>' + machines + ' 台 × ¥' + P.macMonthly + '</small>';
+
+    // 谁更省
+    var diff = ghaCny - macCny;
+    if (diff > 0) {
+      rowMac.className = 'win';
+      rowGha.className = '';
+      var ratio = (ghaCny / macCny);
+      saving.innerHTML = '自建 Mac 每月省 <b>' + money(diff) + '</b>' +
+        (ratio >= 1.5 ? '，GitHub Actions 的成本是它的 <b>' + ratio.toFixed(1) + ' 倍</b>' : '') +
+        '。一年下来差 <b>' + money(diff * 12) + '</b>。';
+    } else if (diff < 0) {
+      rowGha.className = 'win';
+      rowMac.className = '';
+      saving.innerHTML = '以你现在的用量，<b>GitHub Actions 更便宜</b>（每月省 ' + money(-diff) + '）。' +
+        '构建量小的时候按分钟计费更划算——这种情况我们不建议换自建。';
+    } else {
+      rowMac.className = 'win';
+      rowGha.className = '';
+      saving.innerHTML = '两种方案成本接近，选哪个都不亏。如果看重环境可控性，自建更灵活。';
+    }
+  }
+
+  [inBuilds, inMins, inMachines].forEach(function (el) {
+    el.addEventListener('input', render);
+  });
+  render();
+})();
+</script>
+
+
+<!-- ==================== 咨询抽屉 ==================== -->
+<a class="side-contact" href="#order" data-open-contact aria-label="加微信咨询">
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-9 8.4 9.4 9.4 0 0 1-3.8-.8L3 21l1.9-4.6A8.4 8.4 0 0 1 12 3a8.4 8.4 0 0 1 9 8.5z"/></svg>
+  <span>咨询</span>
+</a>
+
+<nav class="mobile-contact" aria-label="快捷联系"><a href="/#order" data-open-contact>微信咨询</a><a href="https://t.me/Mondbinch">Telegram</a></nav>
+
+<div class="drawer-overlay" id="drawer-overlay" hidden></div>
+
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true" inert>
+  <div class="drawer-head">
+    <h2 id="drawer-title">咨询与预约</h2>
+    <button type="button" class="drawer-close" data-close aria-label="关闭">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+  <div class="drawer-body">
+    <p class="drawer-lead" id="drawer-context">直接加微信最快。告诉我们用途和期望期限，我们会回你哪台能最快开通。</p>
+
+    <div class="d-card">
+      <p class="d-label">微信（最快）</p>
+      <p class="d-id" id="d-wechat">Mondbinch</p>
+      <button type="button" class="d-copy" data-copy="Mondbinch" data-copy-target="d-wechat">复制微信号</button>
+      <p class="d-tip" aria-live="polite"></p>
+    </div>
+
+    <div class="d-row">
+      <span>Telegram</span>
+      <a href="https://t.me/Mondbinch">@Mondbinch</a>
+    </div>
+
+    <p class="drawer-note">
+      加好友时备注「Mac mini」。价格、开票和开通时间都在微信里确认 —— 本站不走在线支付。
+    </p>
+
+    <div class="d-form-wrap">
+      <p class="d-form-title">或者留言，我们来找你</p>
+      <p class="d-form-sub">留个联系方式，24 小时内回复。</p>
+      <form class="d-form" id="drawerForm" action="/api/order" method="POST">
+        <input type="hidden" name="来源" value="macbuild-drawer">
+        <input type="hidden" name="周期" id="drawer-selection" value="">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <label class="d-sr" for="df-name">怎么称呼你</label>
+        <input id="df-name" type="text" name="称呼" placeholder="怎么称呼你" required>
+        <label class="d-sr" for="df-contact">联系方式</label>
+        <input id="df-contact" type="text" name="联系方式" placeholder="微信 / Telegram / 邮箱" required>
+        <label class="d-sr" for="df-msg">用途</label>
+        <textarea id="df-msg" name="留言" rows="2" placeholder="用法与期望开通时间（可留空）"></textarea>
+        <button type="submit" class="d-submit">提交留言</button>
+        <p class="d-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</aside>
+
+<script>
+/* 咨询抽屉：微信复制 + 机位编号透传 + 侧边浮标 */
+(function () {
+  var drawer = document.getElementById('drawer');
+  var overlay = document.getElementById('drawer-overlay');
+  var tab = document.querySelector('.side-contact');
+  if (!drawer || !overlay) return;
+
+  var ctx = document.getElementById('drawer-context');
+  var selectedMachine = document.getElementById('drawer-selection');
+  var ctxDefault = ctx ? ctx.textContent : '';
+  var lastFocus = null;
+
+  function open(code) {
+    lastFocus = document.activeElement;
+    var summary = document.getElementById('orderForm').dataset.bookingSummary || '服务方案待确认';
+    selectedMachine.value = selectedMachine.defaultValue = summary;
+    if (ctx) {
+      ctx.textContent = code
+        ? '你正在咨询 ' + code + '。加微信后告知这个编号，具体库存与交付时间以回复为准。'
+        : summary + '。告诉我们用途与期望时间，我们会确认库存和报价。';
+    }
+    drawer.inert = false;
+    drawer.classList.add('open');
+    drawer.setAttribute('aria-hidden', 'false');
+    overlay.hidden = false;
+    requestAnimationFrame(function () { overlay.classList.add('show'); });
+    document.body.classList.add('locked');
+    var b = drawer.querySelector('[data-close]');
+    if (b) b.focus();
+  }
+
+  function close() {
+    drawer.inert = true;
+    drawer.classList.remove('open');
+    drawer.setAttribute('aria-hidden', 'true');
+    overlay.classList.remove('show');
+    setTimeout(function () { overlay.hidden = true; }, 240);
+    document.body.classList.remove('locked');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  /* 入口：带 data-open-contact 的元素 */
+  document.querySelectorAll('[data-open-contact]').forEach(function (el) {
+    el.addEventListener('click', function (e) {
+      e.preventDefault();
+      open(el.getAttribute('data-book') || '');
+    });
+  });
+
+  document.addEventListener('open-booking-contact', function () { open(''); });
+
+  document.querySelectorAll('[data-close]').forEach(function (el) {
+    el.addEventListener('click', function (e) { e.preventDefault(); close(); });
+  });
+  overlay.addEventListener('click', close);
+  document.addEventListener('keydown', function (e) {
+    if (!drawer.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'Tab') {
+      var items = Array.from(drawer.querySelectorAll('a[href], button, input, textarea, select')).filter(function (el) { return !el.disabled && el.getClientRects().length; });
+      var first = items[0], last = items[items.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  /* 复制微信号 */
+  document.querySelectorAll('.d-copy').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var text = b.getAttribute('data-copy');
+      var tip = b.parentNode.querySelector('.d-tip');
+      function say(m) { if (tip) tip.textContent = m; }
+      function fallback() {
+        var t = document.getElementById(b.getAttribute('data-copy-target'));
+        var ok = false;
+        if (t) {
+          var r = document.createRange();
+          r.selectNodeContents(t);
+          var s = getSelection();
+          s.removeAllRanges();
+          s.addRange(r);
+          try { ok = document.execCommand('copy'); } catch (err) {}
+        }
+        say(ok ? '已复制，去微信粘贴' : '请手动选中上面的微信号');
+      }
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(text).then(function () { say('已复制，去微信粘贴'); }, fallback);
+      } else {
+        fallback();
+      }
+    });
+  });
+
+  /* 侧边浮标：滚过首屏才出现 */
+  var hero = document.querySelector('.hero');
+  function onScroll() {
+    if (!tab) return;
+    var past = hero ? window.scrollY > hero.offsetHeight * 0.8 : window.scrollY > 400;
+    tab.classList.toggle('show', past);
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  /* 抽屉内留言表单 */
+  var dForm = document.getElementById('drawerForm');
+  if (dForm) {
+    var dStatus = dForm.querySelector('.d-status');
+    var dBtn = dForm.querySelector('.d-submit');
+    dForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      dStatus.textContent = '';
+      dStatus.className = 'd-status';
+      dBtn.disabled = true;
+      var orig = dBtn.textContent;
+      dBtn.textContent = '提交中…';
+      fetch(dForm.getAttribute('action'), {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(dForm)
+      }).then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          return { ok: res.ok, data: data };
+        });
+      }).then(function (r) {
+        if (r.ok) {
+          dStatus.textContent = '已收到，我们 24 小时内联系你。';
+          dStatus.className = 'd-status ok';
+          dForm.reset();
+          dBtn.textContent = '已提交';
+          setTimeout(function () { dBtn.textContent = orig; dBtn.disabled = false; }, 4000);
+        } else {
+          var msg = (r.data && r.data.errors && r.data.errors.map(function (x) { return x.message; }).join('；')) || '提交失败，请稍后重试。';
+          dStatus.textContent = msg + ' 也可以直接加微信 Mondbinch。';
+          dStatus.className = 'd-status err';
+          dBtn.textContent = orig;
+          dBtn.disabled = false;
+        }
+      }).catch(function () {
+        dStatus.textContent = '网络异常，请直接加微信 Mondbinch。';
+        dStatus.className = 'd-status err';
+        dBtn.textContent = orig;
+        dBtn.disabled = false;
+      });
+    });
+  }
+})();
+</script>
+
+</body>
+</html>
