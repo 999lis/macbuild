@@ -1,0 +1,15 @@
+{
+  "updatedAt":"2026-10-22",
+  "machines":[
+    {"id":"MY-01","status":"available","promoEligible":false},
+    {"id":"MY-02","status":"reserved","promoEligible":true},
+    {"id":"MY-03","status":"rented","promoEligible":false},
+    {"id":"MY-04","status":"maintenance","promoEligible":true},
+    {"id":"MY-05","status":"rented","promoEligible":false},
+    {"id":"MY-06","status":"rented","promoEligible":false},
+    {"id":"MY-07","status":"rented","promoEligible":false},
+    {"id":"MY-08","status":"rented","promoEligible":false},
+    {"id":"MY-09","status":"rented","promoEligible":false},
+    {"id":"MY-10","status":"rented","promoEligible":false}
+  ]
+}

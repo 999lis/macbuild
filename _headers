@@ -7,6 +7,9 @@
 /style.css
   Cache-Control: public, max-age=300, must-revalidate
 
+/inventory.json
+  Cache-Control: no-store
+
 /og.png
   Cache-Control: public, max-age=86400
 

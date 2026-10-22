@@ -1,0 +1,15 @@
+{
+  "updatedAt": "2026-10-22",
+  "machines": [
+    {"id":"MY-01","status":"available","promoEligible":true},
+    {"id":"MY-02","status":"available","promoEligible":true},
+    {"id":"MY-03","status":"available","promoEligible":true},
+    {"id":"MY-04","status":"available","promoEligible":true},
+    {"id":"MY-05","status":"available","promoEligible":true},
+    {"id":"MY-06","status":"available","promoEligible":true},
+    {"id":"MY-07","status":"available","promoEligible":true},
+    {"id":"MY-08","status":"available","promoEligible":true},
+    {"id":"MY-09","status":"available","promoEligible":true},
+    {"id":"MY-10","status":"available","promoEligible":true}
+  ]
+}

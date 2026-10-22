@@ -68,8 +68,18 @@ hero=re.search(r'<section class="hero hero-photo">([\s\S]*?)</section>',pages['i
 check('href="https://t.me/Mondbinch"' in hero,'Homepage hero must retain the direct Telegram entry')
 check('data-open-contact' in hero and 'Mondbinch' in hero,'Homepage hero must retain the WeChat entry')
 fleet=re.search(r'<section class="section section-alt" id="fleet">([\s\S]*?)</section>',pages['index.html'][0]).group(1)
-check('<details' not in fleet and 'data-fleet-total' in fleet,'Fleet count and cards must be visible without expansion')
-check(len(re.findall(r'class="machine"',fleet))==10,'Preserve the ten inventory cards')
+check('<details' not in fleet and 'id="fleet-list"' in fleet,'Fleet must remain expanded')
+inventory=json.loads((ROOT/'inventory.json').read_text(encoding='utf-8'),object_pairs_hook=json_object)
+check(len(inventory['machines'])==10,'Preserve the ten inventory records')
+check({m['id'] for m in inventory['machines']}=={f'MY-{i:02}' for i in range(1,11)},'Inventory IDs changed')
+for path in ROOT.glob('*.mjs'):
+    result=subprocess.run(['node','--check',str(path)],capture_output=True,text=True)
+    check(result.returncode==0,f'{path.name}: module syntax error {result.stderr}')
+for name,(text,page) in pages.items():
+    bars=[a for tag,a in page.tags if tag=='nav' and a.get('class')=='mobile-contact']
+    check(len(bars)==1,f'{name}: mobile contact bar missing or duplicated')
+    check('style.css?v=20261022service2' in text,f'{name}: old CSS version')
+check('__' not in pages['terms.html'][0],'Unfilled terms placeholder')
 check('QuHn0AD6ER3RVNrzNeMpHS3IiZXI2J0_Fb33i250fK0' in pages['index.html'][0],'GSC ownership token missing')
 for filename in ['functions/api/order.js','_redirects','_routes.json','d457c96f62b51b4586bdcf2402b3140d.txt']:
     before=subprocess.check_output(['git','show','HEAD:'+filename],cwd=ROOT)

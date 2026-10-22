@@ -1,4 +1,7 @@
 [
   {"称呼":"UI Fixture","联系方式":"fixture@example.test","台数":"2 台","周期":"仅租 Mac · 独立线路 · 年付 · ¥8,630/年/台","留言":"Deterministic local fixture","来源":"macbuild-site"},
-  {"称呼":"Drawer Fixture","联系方式":"fixture@example.test","留言":"Deterministic drawer fixture","来源":"macbuild-drawer"}
+  {"称呼":"Drawer Fixture","联系方式":"fixture@example.test","留言":"Deterministic drawer fixture","来源":"macbuild-drawer"},
+  {"称呼":"Colocation Fixture","联系方式":"fixture@example.test","台数":"1 台","周期":"自有 Mac 托管 · ¥300/月/台","留言":"Owned Mac fixture","来源":"macbuild-site"},
+  {"称呼":"Max Fixture","联系方式":"fixture@example.test","台数":"1 个账号","周期":"单独开通 Max 20x · ¥2,150/月/账号","留言":"Monthly inclusive subscription fixture","来源":"macbuild-site"},
+  {"称呼":"Used Benefit Fixture","联系方式":"fixture@example.test","台数":"1 台","周期":"仅租 Mac · MY-02 · 独立 · 年付 · ¥9,590/年/台","留言":"Previously consumed benefit fixture","来源":"macbuild-drawer"}
 ]

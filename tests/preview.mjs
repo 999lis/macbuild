@@ -4,6 +4,8 @@ import { readFile } from 'node:fs/promises';
 import { resolve, extname, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root=fileURLToPath(new URL('../',import.meta.url));
+const previewPort=Number(process.env.MACBUILD_PREVIEW_PORT || 8107);
+const inventoryFixture=process.env.MACBUILD_PREVIEW_INVENTORY;
 const source=await readFile(resolve(root,'functions/api/order.js'),'utf8');
 const {onRequest}=await import('data:text/javascript;base64,'+Buffer.from(source).toString('base64'));
 const receipts=[];
@@ -12,10 +14,14 @@ globalThis.fetch=async (url,options)=>{
   receipts.push(JSON.parse(options.body));
   return Response.json({id:'local-fixture-only'});
 };
-const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.xml':'application/xml','.txt':'text/plain; charset=utf-8'};
+const mime={'.html':'text/html; charset=utf-8','.css':'text/css; charset=utf-8','.js':'text/javascript; charset=utf-8','.mjs':'text/javascript; charset=utf-8','.json':'application/json; charset=utf-8','.svg':'image/svg+xml','.png':'image/png','.jpg':'image/jpeg','.webp':'image/webp','.xml':'application/xml','.txt':'text/plain; charset=utf-8'};
 const server=http.createServer(async(req,res)=>{
-  const pathname=new URL(req.url,'http://127.0.0.1:8107').pathname;
+  const pathname=new URL(req.url,'http://127.0.0.1:'+previewPort).pathname;
   try {
+    if(pathname==='/inventory.json' && inventoryFixture) {
+      res.writeHead(200,{'Content-Type':'application/json; charset=utf-8','Cache-Control':'no-store'});
+      res.end(await readFile(resolve(root,inventoryFixture)));return;
+    }
     if(pathname==='/__fixture__/receipts') {res.setHeader('Content-Type','application/json');res.end(JSON.stringify(receipts));return;}
     if(req.method==='POST' && pathname==='/api/order') {
       const chunks=[];for await(const c of req)chunks.push(c);
@@ -31,4 +37,4 @@ const server=http.createServer(async(req,res)=>{
     const body=await readFile(file);res.writeHead(200,{'Content-Type':mime[extname(file)]||'application/octet-stream','Cache-Control':'no-store'});res.end(body);
   } catch {res.writeHead(404,{'Content-Type':'text/html; charset=utf-8'});res.end(await readFile(resolve(root,'404.html')));}
 });
-server.listen(8107,'127.0.0.1',()=>console.log('Local preview http://127.0.0.1:8107/index.html — provider delivery is a fixture; no email is sent.'));
+server.listen(previewPort,'127.0.0.1',()=>console.log('Local preview http://127.0.0.1:'+previewPort+'/index.html — provider delivery is a fixture; no email is sent.'));
