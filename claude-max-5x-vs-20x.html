@@ -23,7 +23,7 @@
 <meta name="twitter:image" content="https://getmacbuild.com/og.png">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231e5a48'/%3E%3Crect x='8' y='10' width='16' height='12' rx='3' fill='none' stroke='%23faf7f0' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23faf7f0'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="style.css?v=202610221111">
+<link rel="stylesheet" href="style.css?v=202610221120">
 
 <script type="application/ld+json">
 {
@@ -459,6 +459,23 @@ if (toggle) {
     <p class="drawer-note">
       加好友时备注「Mac mini」。价格、开票和开通时间都在微信里确认 —— 本站不走在线支付。
     </p>
+
+    <div class="d-form-wrap">
+      <p class="d-form-title">或者留言，我们来找你</p>
+      <p class="d-form-sub">留个联系方式，24 小时内回复。</p>
+      <form class="d-form" id="drawerForm" action="/api/order" method="POST">
+        <input type="hidden" name="来源" value="macbuild-drawer">
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
+        <label class="d-sr" for="df-name">怎么称呼你</label>
+        <input id="df-name" type="text" name="称呼" placeholder="怎么称呼你" required>
+        <label class="d-sr" for="df-contact">联系方式</label>
+        <input id="df-contact" type="text" name="联系方式" placeholder="微信 / Telegram / 邮箱" required>
+        <label class="d-sr" for="df-msg">用途</label>
+        <textarea id="df-msg" name="留言" rows="2" placeholder="用法与期望开通时间（可留空）"></textarea>
+        <button type="submit" class="d-submit">提交留言</button>
+        <p class="d-status" role="status" aria-live="polite"></p>
+      </form>
+    </div>
   </div>
 </aside>
 
@@ -560,6 +577,49 @@ if (toggle) {
   }
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+
+  /* 抽屉内留言表单 */
+  var dForm = document.getElementById('drawerForm');
+  if (dForm) {
+    var dStatus = dForm.querySelector('.d-status');
+    var dBtn = dForm.querySelector('.d-submit');
+    dForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      dStatus.textContent = '';
+      dStatus.className = 'd-status';
+      dBtn.disabled = true;
+      var orig = dBtn.textContent;
+      dBtn.textContent = '提交中…';
+      fetch(dForm.getAttribute('action'), {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(dForm)
+      }).then(function (res) {
+        return res.json().catch(function () { return {}; }).then(function (data) {
+          return { ok: res.ok, data: data };
+        });
+      }).then(function (r) {
+        if (r.ok) {
+          dStatus.textContent = '已收到，我们 24 小时内联系你。';
+          dStatus.className = 'd-status ok';
+          dForm.reset();
+          dBtn.textContent = '已提交';
+          setTimeout(function () { dBtn.textContent = orig; dBtn.disabled = false; }, 4000);
+        } else {
+          var msg = (r.data && r.data.errors && r.data.errors.map(function (x) { return x.message; }).join('；')) || '提交失败，请稍后重试。';
+          dStatus.textContent = msg + ' 也可以直接加微信 Mondbinch。';
+          dStatus.className = 'd-status err';
+          dBtn.textContent = orig;
+          dBtn.disabled = false;
+        }
+      }).catch(function () {
+        dStatus.textContent = '网络异常，请直接加微信 Mondbinch。';
+        dStatus.className = 'd-status err';
+        dBtn.textContent = orig;
+        dBtn.disabled = false;
+      });
+    });
+  }
 })();
 </script>
 
