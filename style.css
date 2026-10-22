@@ -1104,14 +1104,14 @@ p a:not(.btn),
 .hero-sub .hero-price { margin: 26px 0 0; }
 
 /* ============================================================
-   首屏 · 全幅双子塔照片版（覆盖旧的浅色双栏 hero）
+   首屏 · 全幅德国城市夜景（覆盖旧的浅色双栏 hero）
    ============================================================ */
 .hero-photo {
   position: relative;
   display: block;
   padding: clamp(92px, 13vh, 152px) 0 clamp(52px, 7vh, 84px);
   border-bottom: 0;
-  background: #0c1410 url("kl-towers.jpg") no-repeat center 46% / cover;
+  background: #0c1410 url("de-night.jpg") no-repeat center 46% / cover;
   color: #fff;
   overflow: hidden;
   isolation: isolate;

@@ -23,7 +23,7 @@
 <meta name="twitter:image" content="https://getmacbuild.com/og.png">
 
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231e5a48'/%3E%3Crect x='8' y='10' width='16' height='12' rx='3' fill='none' stroke='%23faf7f0' stroke-width='2'/%3E%3Ccircle cx='16' cy='16' r='2.5' fill='%23faf7f0'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="style.css?v=202610221120">
+<link rel="stylesheet" href="style.css?v=202610221137">
 
 <script type="application/ld+json">
 {
@@ -61,7 +61,7 @@
         {
           "@type": "Question",
           "name": "远程 Mac 的延迟大概多少？",
-          "acceptedAnswer": { "@type": "Answer", "text": "取决于机器位置。中国大陆境内 20–50ms，香港/新加坡 40–80ms，日本/韩国 60–120ms，马来西亚 180–220ms，欧美 200–350ms。SSH 命令行和编译操作对延迟不敏感；拖窗口、滚网页、操作模拟器会明显感觉到。" }
+          "acceptedAnswer": { "@type": "Answer", "text": "取决于机器位置。中国大陆境内 20–50ms，香港/新加坡 40–80ms，日本/韩国 60–120ms，德国 250–350ms，欧美 200–350ms。SSH 命令行和编译操作对延迟不敏感；拖窗口、滚网页、操作模拟器会明显感觉到。" }
         },
         {
           "@type": "Question",
@@ -327,7 +327,7 @@ Host mac
           <tr><th>中国大陆境内</th><td>20–50ms</td><td>无感</td><td>接近本地</td></tr>
           <tr><th>香港 / 新加坡</th><td>40–80ms</td><td>无感</td><td>轻微延迟</td></tr>
           <tr><th>日本 / 韩国</th><td>60–120ms</td><td>无感</td><td>可感知</td></tr>
-          <tr><th>马来西亚</th><td>180–220ms</td><td>无感</td><td>明显延迟</td></tr>
+          <tr><th>德国</th><td>250–350ms</td><td>无感</td><td>明显延迟</td></tr>
           <tr><th>欧美</th><td>200–350ms</td><td>轻微</td><td>卡顿明显</td></tr>
         </tbody>
       </table>
@@ -342,7 +342,7 @@ Host mac
     <div class="wrap wrap-narrow">
       <h2>MacBuild 的方案</h2>
       <p>
-        我们出租马来西亚的专属 Mac mini M4，Windows 用户可以远程连上去用。
+        我们出租德国的专属 Mac mini M4，Windows 用户可以远程连上去用。
       </p>
       <ul>
         <li>Mac mini M4 / 16GB / 256GB，整机独享，不是虚拟机</li>
@@ -351,7 +351,7 @@ Host mac
         <li>仅租 Mac <strong>首月 ¥699</strong>，包月不限时</li>
       </ul>
       <p class="note">
-        <strong>说实话</strong>：马来西亚到国内约 180–220ms，图形界面有明显延迟感，命令行无感。
+        <strong>说实话</strong>：德国到国内约 250–350ms，图形界面有明显延迟感，命令行无感。
         如果你的工作以 Xcode 图形调试为主，这个延迟会影响效率——建议考虑更近的机器，或者直接用本地 Mac。
         如果你的工作以写代码 + 命令行构建为主，只在需要时看模拟器，这个方案完全够用。
       </p>
@@ -378,7 +378,7 @@ Host mac
 
       <details>
         <summary>延迟大概多少？<i aria-hidden="true"></i></summary>
-        <p>中国大陆境内 20–50ms，香港/新加坡 40–80ms，日本/韩国 60–120ms，马来西亚 180–220ms，欧美 200–350ms。SSH 和编译对延迟不敏感；拖窗口、滚网页、操作模拟器会明显感觉到。</p>
+        <p>中国大陆境内 20–50ms，香港/新加坡 40–80ms，日本/韩国 60–120ms，德国 250–350ms，欧美 200–350ms。SSH 和编译对延迟不敏感；拖窗口、滚网页、操作模拟器会明显感觉到。</p>
       </details>
 
       <details>
@@ -408,7 +408,7 @@ Host mac
       <h2>相关页面</h2>
       <ul>        <li><a href="/claude-cost-calculator">Claude 成本计算器：你该买哪档</a></li>
 
-        <li><a href="/">MacBuild 首页 — 马来西亚专属 Mac 托管</a></li>
+        <li><a href="/">MacBuild 首页 — 德国专属 Mac 托管</a></li>
         <li><a href="/remote-mac-rental">远程 Mac 租赁：三种形态与价格</a></li>
         <li><a href="/claude-code-china">Claude Code 国内怎么用</a></li>
         <li><a href="/claude-max-5x-vs-20x">Claude Max 5x 还是 20x</a></li>
@@ -416,7 +416,7 @@ Host mac
         <li><a href="/mac-rental-guide">海外 Mac 租用怎么选</a></li>
         <li><a href="/#fleet">机位与库存</a></li>
         <li><a href="/terms">服务条款</a></li>
-              <li><a href="/mac-colocation">Mac 机房托管：自有 Mac 放马来西亚机房</a></li>
+              <li><a href="/mac-colocation">Mac 机房托管：自有 Mac 放德国机房</a></li>
 </ul>
       <p class="note">
         Claude 是 Anthropic 的商标。MacBuild 是独立服务商，与 Anthropic 无关联，亦未获其背书。
@@ -433,7 +433,7 @@ Host mac
       微信 <a href="#order" data-open-contact><b>Mondbinch</b></a> ·
       Telegram <a href="https://t.me/Mondbinch">@Mondbinch</a>
     </p>
-    <p class="footer-bottom">© 2026 MacBuild · 设备位于马来西亚 · 价格以人民币（CNY）计价</p>
+    <p class="footer-bottom">© 2026 MacBuild · 设备位于德国 · 价格以人民币（CNY）计价</p>
     <p class="footer-legal">Claude 是 Anthropic 的商标。MacBuild 是独立服务商，与 Anthropic 无关联，亦未获其背书。</p>
   </div>
 </footer>
