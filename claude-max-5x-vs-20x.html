@@ -92,6 +92,114 @@
 <section class="section section-alt"><div class="wrap wrap-narrow"><h2>用实际工作记录判断是否升级</h2><ol><li><b>先看账号使用页面：</b>区分会话限额、周限额和可能存在的模型限制。不要把会话窗口重置当成全部额度恢复。</li><li><b>记录触发限制的任务：</b>仓库规模、上下文长度、模型选择和工具调用都会影响消耗；单看时长无法保证某一档够用。</li><li><b>评估等待成本：</b>如果任务经常中断且影响交付，再比较升级差价与等待成本。偶尔遇到限制时，可先调整任务安排。</li><li><b>保留升级空间：</b>不确定需求时先使用较低的适用档位，依据真实用量决定升级；20x 也不是无限使用。</li></ol><p class="note">关于限额与用量，参阅<a href="https://support.claude.com/en/articles/11145838-use-claude-code-with-your-pro-or-max-plan">使用 Pro / Max 运行 Claude Code</a>，以账号页面显示为准。</p></div></section>
 <section class="section"><div class="wrap wrap-narrow"><h2>订阅、API 与机器费用分别看</h2><p>订阅计划的包含权益、可选额外用量与 API 按量计费规则不同。不能只因为某月 API 账单超过 $100 或 $200，就断定相应 Max 档位足以替代。应比较同类任务的实际消耗与官方计费说明。</p><p>MacBuild 的 Mac + Max 套餐还包含远程机器和线路，与官方单独订阅费不是同一个费用范围。用<a href="/claude-cost-calculator">成本计算器</a>拆开看预算；最新租机与套餐报价见<a href="/#pricing">首页价格区</a>。</p><p>账号须由本人使用并满足服务商要求。我们不保证任何第三方账号不会被停用。</p><div class="hero-actions"><a class="btn" href="/#order">咨询适用方案</a><a class="btn btn-text" href="/claude-max">查看订阅协助流程</a></div></div></section>
 
+
+<section class="section"><div class="wrap wrap-narrow"><h2>限额是怎么算的</h2>
+<p>大多数人对 Max 限额的误解，是把它当成「每月固定额度」。实际上它是<strong>按时间窗口滚动计算</strong>的，理解这一点能解释很多「为什么突然不能用了」的困惑。</p>
+
+<h3>会话窗口：滚动 5 小时</h3>
+<p>用量在一个滚动的 5 小时窗口内累计。窗口不是整点重置，而是从你第一次发起请求开始往后推 5 小时。所以「早上用完下午就好了」通常不成立——如果早上 9 点用完，10 点重置的是 9 点前那段，而不是全部清零。</p>
+<p>这也是为什么有人觉得限额「忽多忽少」：窗口是滑动的，你每次用量的分布决定了什么时候真正恢复。</p>
+
+<h3>周限额：另一层约束</h3>
+<p>除会话窗口外，账号还可能存在以周为单位的用量上限。这一层容易被忽略，因为表现和会话限额相似，但恢复时间长得多。</p>
+<p><strong>区分方法</strong>：等 5 小时后能继续用，是会话限额；等一天以上仍不行，大概率碰到了周限额。</p>
+
+<h3>不同模型的消耗权重不同</h3>
+<p>Opus 与 Sonnet 在额度计算中的权重不一样。同样的任务用 Opus 跑，消耗会明显高于 Sonnet。这意味着「我明明没改多少代码怎么就没了」很多时候是因为模型选择，而不是任务量。</p>
+<p class="note">以上是机制层面的通用说明。具体配额数值由 Anthropic 决定且可能调整，以你的账号用量页面为准。</p>
+</div></section>
+
+<section class="section section-alt"><div class="wrap wrap-narrow"><h2>什么在消耗额度</h2>
+<p>额度消耗和「在线时长」的关联度很低，和下面五个因素关联度很高。理解这五点，比计算坐了几小时有用得多。</p>
+
+<table class="cycle-table">
+<thead><tr><th scope="col">因素</th><th scope="col">影响</th><th scope="col">怎么控制</th></tr></thead>
+<tbody>
+<tr><th scope="row">上下文长度</th><td><strong>大</strong></td><td>每次请求都会带上对话历史。长会话越到后面越贵。定期开新会话、把结论写成文件而不是留在上下文里</td></tr>
+<tr><th scope="row">模型选择</th><td><strong>大</strong></td><td>能用 Sonnet 完成的任务不要用 Opus。把 Opus 留给真正需要推理的环节</td></tr>
+<tr><th scope="row">工具调用次数</th><td>中</td><td>读文件、跑命令、搜索都算请求。让 Claude 先规划再执行，比让它边试边改省</td></tr>
+<tr><th scope="row">缓存命中</th><td>中</td><td>重复的上下文（如项目说明）命中缓存后消耗低。频繁切换任务会破坏缓存</td></tr>
+<tr><th scope="row">任务复杂度</th><td>中</td><td>一次让它改十个文件，比改一个文件消耗高得多。拆成小步反而更可控</td></tr>
+</tbody>
+</table>
+
+<p><strong>由此得出的一条实用结论</strong>：如果你的用法是「开一个长会话，连续工作一整天」，消耗会远高于「多个短会话，各自聚焦一个任务」。后者不仅省额度，出问题时也更容易回溯。</p>
+</div></section>
+
+<section class="section"><div class="wrap wrap-narrow"><h2>撞限额的三种表现，怎么区分</h2>
+<p>「用不了」有至少三种完全不同的原因，处理方式也不一样。分不清就容易做出错误决策——比如明明是模型临时不可用，却去升级套餐。</p>
+
+<table class="cycle-table">
+<thead><tr><th scope="col">你看到的</th><th scope="col">真正原因</th><th scope="col">怎么办</th></tr></thead>
+<tbody>
+<tr><th scope="row">提示达到用量上限，等几小时后恢复</th><td>会话限额（滚动 5 小时）</td><td>等窗口滑过；或调整任务节奏错峰</td></tr>
+<tr><th scope="row">等了一天以上仍然受限</th><td>周限额</td><td>本周内基本无法恢复；下个周期才重置。<strong>这才是升级 20x 的典型场景</strong></td></tr>
+<tr><th scope="row">某个模型不可选或报错，其他模型正常</th><td>模型临时不可用或分档限制</td><td>换模型；<strong>升级套餐通常解决不了</strong></td></tr>
+<tr><th scope="row">请求变慢但没报错</th><td>服务端负载或限流</td><td>换个时间段；与你的套餐档位无关</td></tr>
+</tbody>
+</table>
+
+<p class="note">这张表是症状归纳，不是官方错误码说明。具体提示以账号页面与实际返回为准。</p>
+</div></section>
+
+<section class="section section-alt"><div class="wrap wrap-narrow"><h2>五种典型工作流的消耗画像</h2>
+<p>与其猜「我每天用 3 小时够不够」，不如对照你的工作类型。下面五种是 Claude Code 最常见的使用模式。</p>
+
+<h3>① 小步修改、单文件为主</h3>
+<p>改一个函数、修一个 bug、加一段校验。上下文短、工具调用少。<strong>消耗最低</strong>，Pro 或 5x 通常够用。</p>
+
+<h3>② 中型重构、跨多个文件</h3>
+<p>改一个模块的接口，牵动五到十个文件。需要读多个文件、理解依赖关系。<strong>消耗中等偏高</strong>，是 5x 的主要使用场景，也是最容易在下午撞限额的类型。</p>
+
+<h3>③ 从零搭一个项目</h3>
+<p>初始化、配依赖、写脚手架、调通第一个功能。前期上下文增长快，但一旦结构稳定，后续消耗会降下来。<strong>前期陡峭，后期平缓</strong>。</p>
+
+<h3>④ 长时间探索性工作</h3>
+<p>排查一个说不清的问题、试多个方案、读大量日志。这类任务的特点是<strong>大量试错</strong>，每次尝试都是一次完整请求。消耗最高，且很难预估。</p>
+
+<h3>⑤ 批量处理</h3>
+<p>对几十个文件做同类修改、批量生成测试、批量迁移。单次消耗不高但次数极多。<strong>总量容易失控</strong>，建议拆批执行并观察中间消耗。</p>
+
+<p><strong>判断方法</strong>：如果你的工作以 ① ② 为主，5x 大概率够；如果 ④ ⑤ 占比高，或者经常在下午被迫停下，20x 的差价买到的是「不用重新安排工作节奏」。</p>
+</div></section>
+
+<section class="section"><div class="wrap wrap-narrow"><h2>升级与降级的决策</h2>
+
+<h3>什么时候该升级</h3>
+<p>不是「偶尔撞一次限额」就升。真正的信号是<strong>下面任意一条持续出现</strong>：</p>
+<ul>
+<li>每周有两天以上因为限额被迫中断，且中断影响了交付时间</li>
+<li>为了省额度而改变工作方式（不敢开长会话、不敢让模型读大文件），导致产出质量下降</li>
+<li>撞的是<strong>周限额</strong>而不是会话限额</li>
+</ul>
+<p>如果只是「某天特别忙撞了一次」，调整任务安排比升级划算。</p>
+
+<h3>降级是可行的</h3>
+<p>从 20x 降到 5x 没有惩罚机制，下个计费周期生效即可。所以「先上 20x 试试」的风险比想象中低——最坏情况是用一个月觉得浪费，然后降回去。</p>
+<p>反过来，月中从 5x 升到 20x 通常按新档位重新计费，不是按比例补差价。具体以 Anthropic 的计费规则为准。</p>
+
+<h3>20x 不是无限</h3>
+<p>这一点必须说清楚：20x 是「约 20 倍于 Pro」的档位，不是无限制。极高强度的连续使用同样会触达上限。如果你的需求已经超出 20x，正确方向是<strong>API 按量计费</strong>，而不是继续找更高的订阅档。</p>
+</div></section>
+
+<section class="section section-alt"><div class="wrap wrap-narrow"><h2>换成「每单位工作」的成本比较</h2>
+<p>按月比较 $100 和 $200 意义不大，因为两档能完成的工作量不同。更有用的算法是<strong>看每完成一件同类工作需要多少钱</strong>。</p>
+
+<p>举个具体的比较方式：</p>
+<ol>
+<li>选一个你经常做的典型任务（比如「给一个模块加上单元测试」）</li>
+<li>记录它在你当前档位下消耗了多少额度、花了多久</li>
+<li>用这个任务的完成数量，反推两档分别能支撑多少件</li>
+<li>用月费除以件数，得到单件成本</li>
+</ol>
+
+<p>如果你的典型任务在 5x 下每月能做 40 件、在 20x 下能做 90 件，那么单件成本分别是 $2.5 和 $2.2——20x 更划算。但如果 20x 的额度你用不完（只做了 50 件），单件成本反而变成 $4，那 5x 就是理性选择。</p>
+
+<p><strong>这个算法的关键不是精确，而是让你从「猜额度」变成「看产出」。</strong> 额度看不见，产出看得见。</p>
+
+<p>如果想连同机器和线路费用一起算，用<a href="/claude-cost-calculator">成本计算器</a>可以一次看清四种获取方式的月成本对比。</p>
+</div></section>
+
   <!-- related-links -->
   <section class="section section-alt related-links">
     <div class="wrap wrap-narrow">

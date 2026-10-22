@@ -160,6 +160,117 @@
   <section class="section section-alt"><div class="wrap wrap-narrow"><h2>计算口径与资料来源</h2><p>自己订阅的方案在机器费用之外加上所选订阅费；Mac + Max 套餐已经包含对应订阅，不重复加算。已有 Mac 托管按 ¥300/月/台计算；新购设备再加 ¥4,500 ÷ 36 ≈ ¥125/月的摊销。</p><p>长周期租赁请用<a href="/#pricing">首页报价区</a>计算，这里只比较月付场景。不能直接用 API 账单金额推断哪档订阅足够用，二者的计费和用量限制不同。</p><p class="note">订阅参考价核对于 2026-10-22：<a href="https://claude.com/pricing">Claude 官方价格</a>、<a href="https://support.claude.com/en/articles/11049741-what-is-the-max-plan">Max 计划说明</a>。实际地区价格、税费、包含权益与用量限制以服务商和账号页面为准。</p></div></section>
   <section class="section"><div class="wrap wrap-narrow"><h2>继续比较</h2><ul><li><a href="/claude-max-5x-vs-20x">Max 5x 与 20x：按使用限制选择档位</a></li><li><a href="/blog-claude-code-rental-term">月付与长周期租赁的费用区别</a></li><li><a href="/mac-colocation">自有 Mac 托管包含什么</a></li></ul></div></section>
 
+
+<section class="section section-alt"><div class="wrap wrap-narrow"><h2>这个工具不算什么（以及为什么）</h2>
+<p>很多「Claude 成本计算器」会让你输入每天使用时长，然后精确算出每月花多少钱。那些数字基本是编的。<strong>我们不这么做。</strong></p>
+
+<p>原因很直接：</p>
+<ul>
+<li><b>额度不是按月计量的</b>——它按滚动窗口计算，你无法从「每天几小时」推出「够不够用」</li>
+<li><b>同样一小时，消耗可以差十倍</b>——读大文件、用 Opus、长会话，都会显著提高消耗</li>
+<li><b>官方没有公开精确配额</b>——任何给出「Max 5x 等于 X 万 token」的说法都没有依据</li>
+</ul>
+
+<p>所以这个工具做的是另一件事：<strong>给出决策框架和盈亏平衡点，而不是伪造精确数字。</strong></p>
+
+<table class="cycle-table">
+<thead><tr><th scope="col">这个工具会算</th><th scope="col">这个工具不会算</th></tr></thead>
+<tbody>
+<tr><td>你该选哪个档位（基于使用特征）</td><td>你每月会消耗多少 token</td></tr>
+<tr><td>四种获取方式的月成本对比</td><td>你的额度还剩多少</td></tr>
+<tr><td>API 与订阅的盈亏平衡点</td><td>精确到元的 API 账单预测</td></tr>
+<tr><td>自购机器与租用的回本周期</td><td>你个人最省钱的确切方案</td></tr>
+</tbody>
+</table>
+
+<p class="note">如果你需要一个「输入时长 → 输出精确金额」的工具，市面上有，但那些结果不具备参考价值。我们更愿意给你一个能自己判断的框架。</p>
+</div></section>
+
+<section class="section"><div class="wrap wrap-narrow"><h2>四种获取方式的完整对比</h2>
+<p>大多数人只比较「官方订阅多少钱」和「租 Mac 多少钱」，忽略了另外两条路径。四条放在一起才看得清。</p>
+
+<table class="cycle-table">
+<thead><tr><th scope="col">方式</th><th scope="col">月成本构成</th><th scope="col">一次性投入</th><th scope="col">需要自己解决</th></tr></thead>
+<tbody>
+<tr>
+  <th scope="row">官方订阅（自有设备）</th>
+  <td>仅订阅费 $20 / $100 / $200</td>
+  <td>已有设备则为 0</td>
+  <td>网络环境、付款方式、设备常驻在线</td>
+</tr>
+<tr>
+  <th scope="row">只租 Mac（账号自备）</th>
+  <td>机器租金 ¥699 起 / ¥799 续租</td>
+  <td>0</td>
+  <td>账号订阅（境外付款、KYC）</td>
+</tr>
+<tr>
+  <th scope="row">租 Mac + 代为开通账号</th>
+  <td>¥1,599（5x）/ ¥2,800（20x）</td>
+  <td>0</td>
+  <td>无需自己处理付款与开通</td>
+</tr>
+<tr>
+  <th scope="row">自购 Mac + 机房托管</th>
+  <td>折旧 ¥125 + 托管 ¥300 + 订阅费</td>
+  <td><strong>约 ¥4,500</strong>（机器）</td>
+  <td>网络、账号、环境配置，全部自己来</td>
+</tr>
+</tbody>
+</table>
+
+<h3>各方式的真实取舍</h3>
+<p><strong>官方订阅最便宜，但前提最多。</strong>你需要一台常驻的设备、稳定的网络环境、可用的境外付款方式。这三项任何一项缺失，实际成本就会上升。</p>
+
+<p><strong>只租 Mac 是折中方案，但有个隐性门槛。</strong>机器我们提供，账号你自己订——听起来省了钱，但「自己订账号」对很多人来说意味着要解决境外付款和 KYC 验证。这个门槛比想象中高。</p>
+
+<p><strong>打包套餐贵在服务，不是贵在机器。</strong>多付的钱买的是「不用自己折腾付款、开通、环境配置」。如果你的时间值钱，这笔钱花得合理；如果你完全熟悉流程，自己订确实更省。</p>
+
+<p><strong>自购 + 托管月成本最低，但回本周期长。</strong>一次性投 ¥4,500，按每月省 ¥300 算，需要 15 个月才回本。用不满一年半，不如直接租。</p>
+</div></section>
+
+<section class="section section-alt"><div class="wrap wrap-narrow"><h2>API 与订阅的盈亏平衡点怎么读</h2>
+<p>这是工具里最容易被误读的部分，单独说明。</p>
+
+<p>Max 5x 是 $100/月，Max 20x 是 $200/月。所以一个粗略的判断是：</p>
+<ul>
+<li>每月 API 账单 <strong>低于 $100</strong> → 用 API 更省</li>
+<li>账单<strong>超过 $100</strong> → Max 5x 开始划算</li>
+<li>账单<strong>超过 $200</strong> 且 20x 仍不够 → 真正的重度用户</li>
+</ul>
+
+<p><strong>但这个判断有两个陷阱：</strong></p>
+
+<h3>陷阱一：API 消耗 ≠ 订阅消耗</h3>
+<p>不能因为「某月 API 花了 $150」就断定「Max 5x 够用」。订阅的额度计算方式和 API 的 token 计价不是一回事。API 账单高只说明你的用量大，不说明订阅档位能承接。</p>
+
+<h3>陷阱二：可预测性本身有价值</h3>
+<p>API 按量计费的账单会随用量波动，订阅是固定支出。如果你的工作强度不稳定，订阅的「可预测」本身就有价值——尤其是需要报预算或走公司流程的场景。</p>
+
+<p><strong>更可靠的做法</strong>：先用 API 跑两周，记录实际消耗和任务类型。如果消耗稳定且低于 $100，继续用 API；如果经常超过且波动大，切订阅。用真实数据判断，比用计算器猜准。</p>
+
+<p class="note">API 单价参考（2026 年 10 月）：Sonnet 5.5 输入 $2 / 输出 $10 每百万 token；Opus 5.5 输入 $4 / 输出 $20。价格可能调整，以 Anthropic 官方为准。</p>
+</div></section>
+
+<section class="section"><div class="wrap wrap-narrow"><h2>数据来源与更新</h2>
+<p>这个工具用到的所有数字都来自可查证的来源，没有估算值混在里面。</p>
+
+<table class="cycle-table">
+<thead><tr><th scope="col">数据</th><th scope="col">来源</th><th scope="col">说明</th></tr></thead>
+<tbody>
+<tr><th scope="row">Pro / Max 5x / Max 20x 月费</th><td>Anthropic 官方定价页</td><td>$20 / $100 / $200，按月计费</td></tr>
+<tr><th scope="row">API token 单价</th><td>Claude Platform 定价文档</td><td>按模型区分，输入输出价格不同</td></tr>
+<tr><th scope="row">Mac 租金</th><td>我们的当期报价</td><td>首页价格区为准</td></tr>
+<tr><th scope="row">机房托管费</th><td>我们的当期报价</td><td>¥300 / 月 / 台</td></tr>
+<tr><th scope="row">机器折旧</th><td>¥4,500 ÷ 36 个月</td><td>假设 3 年折旧，可自行调整</td></tr>
+<tr><th scope="row">汇率</th><td>1 USD ≈ 7.2 CNY</td><td>估算值，仅用于换算展示</td></tr>
+</tbody>
+</table>
+
+<p><strong>哪些是估算，我们说清楚：</strong>汇率是估算，折旧年限是假设。其余数字都来自官方页面或我们的实际报价。</p>
+<p>数据核对日期：2026 年 10 月。Anthropic 可能调整价格，如果发现数字对不上，请以官方为准，也欢迎告诉我们更新。</p>
+</div></section>
+
   <!-- related-links -->
   <section class="section section-alt related-links">
     <div class="wrap wrap-narrow">

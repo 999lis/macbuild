@@ -92,6 +92,105 @@
 <section class="section section-alt"><div class="wrap wrap-narrow"><h2>远程 Mac 能提供哪些帮助</h2><p>当你已经具备相应服务的使用资格，远程设备可承载预装的 Claude Code、开发依赖和持久任务环境，也可用于 Xcode 构建与自托管 CI。机器、网络出口和订阅分别承担不同作用。</p><p>共享线路或独立线路是设备网络配置选项。它们不构成账号不会被停用、无需验证或可以忽略地区要求的承诺。请先确认用途和资格，再选择<a href="/claude-code-mac">远程工作流</a>。</p></div></section>
 <section class="section"><div class="wrap wrap-narrow"><h2>MacBuild 的服务边界</h2><p>仅租 Mac 套餐不含 Claude 账号；符合条件的客户可咨询本人账号的官方渠道订阅协助。我们不提供共享号、反向代理或网络中转服务，也不保证任何第三方账号不被停用。</p><p>如果你暂时不具备 Claude 的使用资格，仍可根据自己的开发需求评估 Mac 的 Xcode、编译和 CI 用途；不要为尚未确认可用的订阅预付长期机器费用。</p><div class="hero-actions"><a class="btn" href="/#order">咨询设备与用途</a><a class="btn btn-text" href="/mac-rental-guide">查看选购清单</a></div></div></section>
 
+
+<section class="section section-alt"><div class="wrap wrap-narrow"><h2>三种常见接入方式，各自卡在哪</h2>
+<p>「国内怎么用 Claude Code」这个问题，实际上取决于你在哪一层遇到了阻碍。不同方式的瓶颈完全不同，混在一起讨论就会得出错误结论。</p>
+
+<table class="cycle-table">
+<thead><tr><th scope="col">方式</th><th scope="col">实际卡点</th><th scope="col">适用前提</th></tr></thead>
+<tbody>
+<tr><th scope="row">本地电脑 + 本地网络</th><td>服务覆盖地区与网络可达性</td><td>所在地在服务范围内，或具备稳定的境外网络环境</td></tr>
+<tr><th scope="row">本地电脑 + 代理</th><td>代理稳定性、IP 归属一致性</td><td>代理质量稳定，且不用于规避账号层面的限制</td></tr>
+<tr><th scope="row">远程境外机器</th><td>账号身份与付款归属，而非网络</td><td>已具备使用资格，只是需要一台常驻的开发机</td></tr>
+</tbody>
+</table>
+
+<p><strong>关键区分</strong>：前两种解决的是「网络能不能连上」，第三种解决的是「有没有一台不关机的机器」。远程机器<strong>不解决账号资格问题</strong>——这是很多人的误解，也是我们在其他页面反复强调边界的原因。</p>
+
+<h3>为什么「有境外机器」不等于「账号合规」</h3>
+<p>服务商判断的是账号的地区、身份、付款方式与使用行为是否一致，而不是单纯看登录 IP。一台德国机器配一个身份信息不明的账号，反而会因为「环境与主体矛盾」提高被复核的概率。</p>
+<p>反过来，一个以本人身份、正规渠道订阅的账号，在德国的机器上使用，本身不构成问题。差别在于<strong>账号是否合规</strong>，不在于<strong>机器在哪里</strong>。</p>
+</div></section>
+
+<section class="section"><div class="wrap wrap-narrow"><h2>开通前要准备的清单</h2>
+<p>把这件事拆成可勾选的项，比笼统地问「能不能用」有效得多。下面每一项都是前置条件，缺一项就会卡住。</p>
+
+<h3>账号侧</h3>
+<ul class="check-list">
+<li><b>支持地区的身份与地址信息</b>——注册时填写的信息要能被验证</li>
+<li><b>可用的付款方式</b>——能完成订阅扣款，且卡归属与账号信息不矛盾</li>
+<li><b>本人使用</b>——不与他人共享，不转售，不做二次分发</li>
+</ul>
+
+<h3>设备侧</h3>
+<ul class="check-list">
+<li><b>一台常驻在线的机器</b>——长任务不会因为本地休眠而中断</li>
+<li><b>预装工具链</b>——Claude Code、Xcode、包管理器、Shell 环境</li>
+<li><b>稳定的接入方式</b>——SSH 或远程桌面，取决于你的工作类型</li>
+</ul>
+
+<h3>工作流侧</h3>
+<ul class="check-list">
+<li><b>任务持久化机制</b>——用 tmux 或 screen，避免连接断开导致进程被杀</li>
+<li><b>代码同步方式</b>——Git 远端是必须的，不要只靠本机文件</li>
+<li><b>额度观察习惯</b>——知道自己在消耗什么，见 <a href="/claude-max-5x-vs-20x">5x 与 20x 的判断依据</a></li>
+</ul>
+
+<p class="note">第三项最容易被忽略，但它决定了「机器有没有真正被用起来」。很多人买了远程机器，结果因为没用 tmux，一断线任务就没了，体验反而比本地差。</p>
+</div></section>
+
+<section class="section section-alt"><div class="wrap wrap-narrow"><h2>远程开发环境的实际体验</h2>
+<p>不夸大也不贬低，按实际感受说。</p>
+
+<h3>几乎没有差别的部分</h3>
+<ul>
+<li><b>SSH 命令行操作</b>——打字、跑命令、看日志，和本地终端没有可感知的区别</li>
+<li><b>编译与构建</b>——耗时由机器性能决定，不受网络影响</li>
+<li><b>长任务执行</b>——反而是远程机器的优势，本地关电脑也不中断</li>
+<li><b>Claude Code 交互</b>——纯文本交互，延迟主要体现在模型响应而非网络</li>
+</ul>
+
+<h3>有明显差别的部分</h3>
+<ul>
+<li><b>图形界面操作</b>——拖窗口、滚动网页、看视频，延迟感明显。重度图形工作不适合远程</li>
+<li><b>大文件传输</b>——上传下载受带宽限制，大项目首次同步会慢</li>
+<li><b>Xcode 界面调试</b>——能用，但不如本地流畅。多数人选择在远程跑命令行构建，本地看结果</li>
+</ul>
+
+<p><strong>结论</strong>：如果你的工作以「写代码 + 跑命令 + 长任务」为主，远程环境几乎无感；如果以「界面操作 + 频繁预览」为主，体验会明显下降，需要先想清楚。</p>
+</div></section>
+
+<section class="section"><div class="wrap wrap-narrow"><h2>几个容易踩的坑</h2>
+
+<h3>① 以为有机器就能用</h3>
+<p>最常见的误解。机器解决的是「环境」和「常驻」，不解决「资格」。开通前先确认账号侧的条件，否则机器买了也用不上。</p>
+
+<h3>② 不用 tmux 直接跑长任务</h3>
+<p>SSH 连接一断，进程就收到 SIGHUP 被杀。Claude Code 跑到一半的重构直接丢失。这一条比机器配置重要得多，几乎零成本，但很多人栽在这里。</p>
+
+<h3>③ 为未确认的订阅预付长期费用</h3>
+<p>如果你还没确认自己具备使用资格，不要因为长周期折扣就一次性付一年。先按月跑通，确认工作流成立，再考虑长周期。</p>
+
+<h3>④ 忽视额度机制</h3>
+<p>以为「买了 20x 就随便用」，结果照样撞限额。额度是按窗口滚动的，不是月度总量。理解机制才能安排工作节奏，见 <a href="/claude-max-5x-vs-20x">限额是怎么算的</a>。</p>
+
+<h3>⑤ 把远程机器当代理用</h3>
+<p>远程机器是开发环境，不是网络中转。用它承载代理流量、做二次分发，既违反服务条款，也会让账号进入高风险状态。我们不提供这类服务。</p>
+</div></section>
+
+<section class="section section-alt"><div class="wrap wrap-narrow"><h2>如果暂时不具备资格怎么办</h2>
+<p>这是一个现实问题，值得单独说。</p>
+<p>Mac 本身是一台完整的开发机。如果你现在还不具备 Claude 的使用条件，它仍然可以用于：</p>
+<ul>
+<li>iOS / macOS 应用的编译与签名</li>
+<li>自托管 CI 与自动化构建</li>
+<li>跨平台项目的构建验证</li>
+<li>需要 macOS 环境的其他工具链</li>
+</ul>
+<p>换句话说，<strong>不要只为「跑 Claude Code」买机器</strong>。先确认这台机器在你的工作流里有独立价值，再决定。这样即使账号侧暂时卡住，投入也不会浪费。</p>
+<p>如果你不确定自己的场景是否值得，可以看<a href="/remote-mac-rental">三种远程 Mac 形态的对比</a>，或者直接<a href="/#order">告诉我们用途</a>，我们会说实话——包括劝你不要买的情况。</p>
+</div></section>
+
   <!-- related-links -->
   <section class="section section-alt related-links">
     <div class="wrap wrap-narrow">
