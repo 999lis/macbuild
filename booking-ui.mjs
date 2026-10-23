@@ -108,10 +108,19 @@ $('fleet-list').addEventListener('click',e=>{
 form.addEventListener('reset',()=>queueMicrotask(()=>{state=selectionFromSearch(location.search);syncForm();}));
 renderInventory();syncForm();renderRental();
 try {
-  const response=await fetch('/inventory.json',{cache:'no-store'});
-  if(!response.ok)throw new Error('Inventory unavailable');
-  inventory=parseInventory(await response.json());
-} catch {inventory=null;}
+  // 优先读 D1 实时库存；失败则回退到静态 inventory.json（保证页面不会白屏）
+  let data = null;
+  try {
+    const live = await fetch('/api/devices', { cache: 'no-store' });
+    if (live.ok) data = await live.json();
+  } catch { /* 忽略，走回退 */ }
+  if (!data || !Array.isArray(data.machines)) {
+    const response = await fetch('/inventory.json', { cache: 'no-store' });
+    if (!response.ok) throw new Error('Inventory unavailable');
+    data = await response.json();
+  }
+  inventory = parseInventory(data);
+} catch { inventory = null; }
 renderInventory();syncForm();renderRental();
 // Loading the inventory inserts cards above the application form. Restore the
 // original anchor only if the visitor has not started interacting with the page.

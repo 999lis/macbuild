@@ -18,3 +18,23 @@
 
 /404.html
   Cache-Control: public, max-age=0, must-revalidate
+
+# 管理后台：不进索引、不缓存、不被嵌入
+/admin
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/admin.html
+  X-Robots-Tag: noindex, nofollow, noarchive
+  Cache-Control: no-store
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+
+/api/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store
+
