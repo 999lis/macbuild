@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="applicable-device" content="pc,mobile">
 <title>Claude 订阅与远程 Mac 成本计算器 - MacBuild</title>
-<meta name="description" content="选择 Pro、Max 5x 或 Max 20x，估算订阅、租 Mac、自有设备托管与新购 Mac 的参考月成本。区分首月福利、续租费用和购机摊销，公开汇率及购机预算假设。">
+<meta name="description" content="选择 Pro、Max 5x 或 Max 20x，估算订阅、租 Mac、自有设备托管与新购 Mac 的参考月成本。区分租机月费与购机摊销，公开汇率及购机预算假设。">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://getmacbuild.com/claude-cost-calculator">
 
@@ -13,16 +13,16 @@
 <meta property="og:site_name" content="MacBuild">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:title" content="Claude 订阅与远程 Mac 成本计算器 - MacBuild">
-<meta property="og:description" content="选择 Pro、Max 5x 或 Max 20x，估算订阅、租 Mac、自有设备托管与新购 Mac 的参考月成本。区分首月福利、续租费用和购机摊销，公开汇率及购机预算假设。">
+<meta property="og:description" content="选择 Pro、Max 5x 或 Max 20x，估算订阅、租 Mac、自有设备托管与新购 Mac 的参考月成本。区分租机月费与购机摊销，公开汇率及购机预算假设。">
 <meta property="og:url" content="https://getmacbuild.com/claude-cost-calculator">
 <meta property="og:image" content="https://getmacbuild.com/og.png?v=20261022ui1">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Claude 订阅与远程 Mac 成本计算器 - MacBuild">
-<meta name="twitter:description" content="选择 Pro、Max 5x 或 Max 20x，估算订阅、租 Mac、自有设备托管与新购 Mac 的参考月成本。区分首月福利、续租费用和购机摊销，公开汇率及购机预算假设。">
+<meta name="twitter:description" content="选择 Pro、Max 5x 或 Max 20x，估算订阅、租 Mac、自有设备托管与新购 Mac 的参考月成本。区分租机月费与购机摊销，公开汇率及购机预算假设。">
 <meta name="twitter:image" content="https://getmacbuild.com/og.png?v=20261022ui1">
 
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="/style.css?v=20261023070525">
+<link rel="stylesheet" href="/style.css?v=202610301556">
 
 <style>
 /* ---- 计算器 ---- */
@@ -88,7 +88,7 @@
       "@id": "https://getmacbuild.com/claude-cost-calculator#page",
       "url": "https://getmacbuild.com/claude-cost-calculator",
       "name": "Claude 订阅与远程 Mac 成本计算器 - MacBuild",
-      "description": "选择 Pro、Max 5x 或 Max 20x，估算订阅、租 Mac、自有设备托管与新购 Mac 的参考月成本。区分首月福利、续租费用和购机摊销，公开汇率及购机预算假设。",
+      "description": "选择 Pro、Max 5x 或 Max 20x，估算订阅、租 Mac、自有设备托管与新购 Mac 的参考月成本。区分租机月费与购机摊销，公开汇率及购机预算假设。",
       "inLanguage": "zh-CN",
       "isPartOf": {
         "@id": "https://getmacbuild.com/#website"
@@ -147,11 +147,11 @@
     <div class="calc-inputs">
       <div class="calc-field"><div class="calc-label"><span>你要估算哪个订阅档位</span></div><div class="calc-seg" id="seg-tier" role="group" aria-label="订阅档位"><button type="button" data-tier="pro" aria-pressed="false">Pro</button><button type="button" data-tier="max5x" class="on" aria-pressed="true">Max 5x</button><button type="button" data-tier="max20x" aria-pressed="false">Max 20x</button></div><p class="calc-hint">按实际任务与使用限额选择。<a href="/claude-max-5x-vs-20x">了解档位差异</a>。</p></div>
       <div class="calc-field"><div class="calc-label"><span>你已经有 Mac 了吗</span></div><div class="calc-seg" id="seg-mac" role="group" aria-label="是否已有 Mac"><button type="button" data-mac="no" class="on" aria-pressed="true">还没有</button><button type="button" data-mac="yes" aria-pressed="false">已经有</button></div><p class="calc-hint">已有机器按托管费计算；新购设备另外列出购机投入与摊销假设。</p></div>
-      <div class="calc-field"><div class="calc-label"><span>租机月费按哪种情况估算</span></div><div class="calc-seg" id="seg-month" role="group" aria-label="租机计费阶段"><button type="button" data-month="first" class="on" aria-pressed="true">符合首月福利</button><button type="button" data-month="renew" aria-pressed="false">续租月份</button></div><p class="calc-hint">仅租 Mac 的前 10 台机器首月 ¥699，按台计且每台只能用一次；续租 ¥799。这里按共享线路、月付估算。</p></div>
+      <div class="calc-field"><div class="calc-label"><span>租机月费基准</span></div><p class="calc-hint">仅租 Mac 共享线路 ¥899/月，独立线路 ¥1,099/月；季付 9 折、半年付 8.5 折、年付 8 折。下方一律按共享线路、月付估算。</p></div>
     </div>
     <div class="calc-result" aria-live="polite">
       <div class="calc-rec"><p class="calc-rec-label">所选订阅档位</p><p class="calc-rec-tier" id="rec-tier">Max 5x</p><p class="calc-rec-price">网页月订阅参考价 <b id="rec-price">$100</b> ≈ <b id="rec-cny">¥720</b> / 月</p></div>
-      <table class="calc-table"><thead><tr><th scope="col">方案与费用范围</th><th scope="col">参考月成本</th></tr></thead><tbody id="calc-rows"><tr><td>只付 Max 5x 订阅费<small>不含 Mac 硬件或托管</small></td><td>¥720</td></tr><tr><td>租 Mac + 自己订阅<small>共享线路，符合首月福利</small></td><td>¥1,419</td></tr><tr><td>Mac + Max 5x 套餐<small>共享线路，按月计费</small></td><td>¥1,599</td></tr><tr><td>新购 Mac + 托管 + 订阅<small>含购机摊销，非每月实际付款额</small></td><td>¥1,145</td></tr></tbody></table>
+      <table class="calc-table"><thead><tr><th scope="col">方案与费用范围</th><th scope="col">参考月成本</th></tr></thead><tbody id="calc-rows"><tr><td>只付 Max 5x 订阅费<small>不含 Mac 硬件或托管</small></td><td>¥720</td></tr><tr><td>租 Mac + 自己订阅<small>共享线路，符合首月福利</small></td><td>¥1,419</td></tr><tr><td>Mac + Max 5x 套餐<small>共享线路，按月计费</small></td><td>¥1,899</td></tr><tr><td>新购 Mac + 托管 + 订阅<small>含购机摊销，非每月实际付款额</small></td><td>¥1,145</td></tr></tbody></table>
       <p class="calc-note" id="calc-verdict">新购机器需另准备约 ¥4,500 的一次性购机预算；摊销仅用于比较长期成本。</p>
       <div class="calc-cta"><a class="btn" href="/#pricing">查看租赁方案</a><a class="btn btn-text" href="/mac-colocation">了解自有 Mac 托管</a></div>
       <p class="calc-note">假设：1 USD = 7.2 CNY；新 Mac 预算 ¥4,500，按 3 年摊销。以上不是实时汇率或购机报价，不含税费、跨境寄送、维修与额外用量费用。每个方案的费用范围不同，请结合已有设备比较。</p>
@@ -200,13 +200,13 @@
 </tr>
 <tr>
   <th scope="row">只租 Mac（账号自备）</th>
-  <td>机器租金 ¥699 起 / ¥799 续租</td>
+  <td>机器租金 ¥899 起 / ¥899 续租</td>
   <td>0</td>
   <td>账号订阅（境外付款、KYC）</td>
 </tr>
 <tr>
   <th scope="row">租 Mac + 代为开通账号</th>
-  <td>¥1,599（5x）/ ¥2,800（20x）</td>
+  <td>¥1,899（5x）/ ¥3,199（20x）</td>
   <td>0</td>
   <td>无需自己处理付款与开通</td>
 </tr>
@@ -310,10 +310,10 @@ const PRICE = {
   pro: 20,              // USD / 月
   max5x: 100,           // USD / 月
   max20x: 200,          // USD / 月
-  rentMacFirst: 699,    // 仅租 Mac 首月
-  rentMacRenew: 799,    // 仅租 Mac 续租
-  rentMac5x: 1599,      // 租 Mac + Max 5x
-  rentMac20x: 2800,     // 租 Mac + Max 20x
+  rentMacFirst: 899,    // 仅租 Mac 月付
+  rentMacRenew: 899,    // 同上（已无首月价差）
+  rentMac5x: 1899,      // 租 Mac + Max 5x
+  rentMac20x: 3199,     // 租 Mac + Max 20x
   colo: 300,            // 机房托管 / 月
   macPrice: 4500,       // Mac mini 购机价
   macYears: 3           // 折旧年限
@@ -342,6 +342,7 @@ function render() {
   $('calc-verdict').textContent = state.hasMac ? '托管参考月费：' + fmt(PRICE.colo) + '；自己的订阅另外计费。寄送、维修与其他未包含费用需单独确认。' : '新购机器需另准备约 ' + fmt(PRICE.macPrice) + ' 的一次性购机预算；摊销仅用于比较长期成本。';
 }
 function bindGroup(id, attr, change) {
+  if(!$(id))return;
   $(id).addEventListener('click', e=>{
     const button=e.target.closest('button');
     if(!button || !$(id).contains(button))return;
@@ -352,7 +353,7 @@ function bindGroup(id, attr, change) {
 }
 bindGroup('seg-tier','tier',v=>state.tier=v);
 bindGroup('seg-mac','mac',v=>state.hasMac=v==='yes');
-bindGroup('seg-month','month',v=>state.month=v);
+
 render();
 
 </script>
