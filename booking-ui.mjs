@@ -11,7 +11,7 @@ const entryEvents=new AbortController();
 for(const type of ['wheel','touchstart','pointerdown','keydown']) {
   window.addEventListener(type,()=>{entryInteracted=true;},{passive:true,signal:entryEvents.signal});
 }
-const setText=(id,text)=>{$(id).textContent=text;};
+const setText=(id,text)=>{const el=$(id);if(el)el.textContent=text;};
 
 function renderRental() {
   const quote=getQuote(rental,inventory);
@@ -88,7 +88,6 @@ function renderInventory() {
   if(state.machine && !inventory?.machines.some(m=>m.id===state.machine))$('f-machine').append(new Option(state.machine+' · 待确认',state.machine));
   setText('hero-rent-price',stats?.available?`${money(P.origShared)} / 月`:'租赁报价待确认');
   setText('hero-rent-promo','');
-  $('hero-rent-original').hidden=true;
 }
 document.querySelectorAll('[data-rental-line]').forEach(b=>b.addEventListener('click',()=>{state={...rental,line:b.dataset.rentalLine};syncForm();}));
 document.querySelectorAll('[data-rental-cycle]').forEach(b=>b.addEventListener('click',()=>{state={...rental,cycle:b.dataset.rentalCycle};syncForm();}));
